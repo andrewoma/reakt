@@ -10,6 +10,11 @@ To run the example, clone the repository and open `index.html` from the `todo` d
 * A completely typesafe wrapper over React.
 * A Kotlin-based HTML builder api (no JSX equivalent is required).
 
+#### Comparison
+* Component: [Kotlin](https://github.com/andrewoma/reakt/blob/master/src/todo/components/TodoItem.kt)  vs [JavaScript](https://github.com/facebook/flux/blob/master/examples/flux-todomvc/js/components/TodoItem.react.js)
+* Actions: [Kotlin](https://github.com/andrewoma/reakt/blob/master/src/todo/actions/Actions.kt)  vs [JavaScript](https://github.com/facebook/flux/blob/master/examples/flux-todomvc/js/actions/TodoActions.js)  
+* Store: [Kotlin](https://github.com/andrewoma/reakt/blob/master/src/todo/stores/TodoStore.kt)  vs [JavaScript](https://github.com/facebook/flux/blob/master/examples/flux-todomvc/js/stores/TodoStore.js)
+
 #### Building
 * Currently, it can only be built using IntelliJ IDEA.
 
@@ -28,6 +33,7 @@ To run the example, clone the repository and open `index.html` from the `todo` d
 * Support the full React API (refs, renderToString, renderToDocument et al)
 * Build as a library and separate out the todo example as a user of the library
 * Wrap the test API and support DOM-based tests (probably via Karma)
+* Review the visibility of the react.* package
 
 #### License
 This project is licensed under a MIT license.
