@@ -37,7 +37,10 @@ class TodoItem : ComponentSpec<TodoItemProps, TodoItemState>() {
                     text(props.todo.text)
                 }
 
-                button({ className = "destroy"; onClick = { onDestroyClick() } })
+                button({
+                    className = "destroy"
+                    onClick = { onDestroyClick() }
+                })
             }
 
             if (state.isEditing) {
