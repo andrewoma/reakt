@@ -10,9 +10,5 @@ fun check(condition: Boolean, message: String = "Assertion failed"): Unit {
 native
 val debugger: Any = noImpl;
 
-class Pair<K, V>(val first: K, val second: V)
-fun <A, B> A.to(that: B): Pair<A, B> = Pair(this, that)
-
-
 native("Reakt.uniqueId") suppress("UNUSED_PARAMETER")
 fun uniqueId(obj: Any): String = noImpl
