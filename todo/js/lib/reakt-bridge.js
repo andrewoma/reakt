@@ -44,26 +44,26 @@ Reakt.createClass = function (spec) {
     }
 };
 
-Reakt.setAttribute = function(thisRef, name, value) {
-    if (!thisRef.__attrs) {
-        thisRef.__attrs = {};
+Reakt.setProperty = function(thisRef, name, value) {
+    if (!thisRef.__props) {
+        thisRef.__props = {};
     }
-    thisRef.__attrs[name] = value
+    thisRef.__props[name] = value
 };
 
-Reakt.getAttribute = function(thisRef, name) {
-    if (!thisRef.__attrs) return null;
-    return thisRef.__attrs[name];
+Reakt.getProperty = function(thisRef, name) {
+    if (!thisRef.__props) return null;
+    return thisRef.__props[name];
 };
 
-Reakt.getAttributes = function(thisRef) {
-    return thisRef.__attrs;
+Reakt.getProperties = function(thisRef) {
+    return thisRef.__props;
 };
 
 Reakt.flattenProperties = function (props) {
     var flattened = null;
-    if (props !== null && props.__attrs !== null) {
-        flattened = Reakt.getAttributes(props);
+    if (props !== null && props.__props !== null) {
+        flattened = Reakt.getProperties(props);
     }
     return flattened;
 };

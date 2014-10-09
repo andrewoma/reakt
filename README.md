@@ -28,8 +28,8 @@ To run the example, clone the repository and open `index.html` from the `todo` d
 
 #### Roadmap
 * Clean up copyrights and licenses for derivative work
-* Review naming conventions (remove mixtures of Attributes/Properites, Actions/Events)
-* Add attributes to the CSS Sytle class
+* Review naming conventions (Actions/Events)
+* Add properties to the CSS Sytle class
 * Support the full React API (refs, renderToString, renderToDocument et al)
 * Build as a library and separate out the todo example as a user of the library
 * Wrap the test API and support DOM-based tests (probably via Karma)

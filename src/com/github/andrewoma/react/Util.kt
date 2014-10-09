@@ -8,7 +8,7 @@ fun check(condition: Boolean, message: String = "Assertion failed"): Unit {
 
 // Like the JS "debugger" statement. Launches the JS debugger
 native
-val debugger: Any = noImpl;
+val debugger: Any = noImpl
 
 native("Reakt.uniqueId") suppress("UNUSED_PARAMETER")
 fun uniqueId(obj: Any): String = noImpl

@@ -3,12 +3,12 @@ package generator
 import java.io.File
 import java.util.regex.Pattern
 
-// A very quick and dirty generator of React Dom components and attributes by parsing
+// A very quick and dirty generator of React Dom components and properties by parsing
 // the typescript definitions from https://github.com/wizzard0/react-typescript-definitions
 fun main(args: Array<String>) {
     val lines = File("generator/src/generator/react.d.ts").readLines(Charsets.UTF_8)
-    //    generateEvents(lines)
-    generateDom(lines)
+        generateEvents(lines)
+//    generateDom(lines)
 }
 
 data class Property(val name: String, val kind: String, val optional: Boolean, val isOpen: Boolean = false) {
@@ -26,12 +26,12 @@ data class Kind(val name: String, val properties: List<Property>, val extends: L
 
         val prefix = if (extends.empty) "" else ": "
         val classType = if (isClass && isOpen) "open class" else if (isClass) "class" else "trait"
-        val extendsConstructors = extends.map { if (it.contains("Attributes")) it + "()" else it }
+        val extendsConstructors = extends.map { if (it.contains("Properties")) it + "()" else it }
 
         val sb = StringBuilder("$classType $name ${extendsConstructors.join(", ", prefix)} {\n")
         for (property in properties) {
             sb.append("\t${property.propertyType()} ${property}")
-            if (isClass) sb.append(" by Attribute()\n") else sb.append("\n")
+            if (isClass) sb.append(" by Property()\n") else sb.append("\n")
         }
 
         sb.append("}\n")
@@ -40,7 +40,8 @@ data class Kind(val name: String, val properties: List<Property>, val extends: L
     }
 }
 
-data class Dom(val name: String, val attributes: String) {
+data class Dom(val name: String, attributes: String) {
+    val attributes: String = rename(attributes)
     val initialCapName: String
         get() = Character.toUpperCase(name[0]) + name.substring(1)
 
@@ -139,7 +140,7 @@ private fun printClasses(kinds: MutableMap<String, Kind>) {
 
 import kotlin.js.dom.html.Window
 import kotlin.js.dom.html.Event
-import com.github.andrewoma.react.Attribute
+import com.github.andrewoma.react.Property
 
 // TODO
 trait EventTarget {
@@ -160,7 +161,11 @@ class Style {
     }
 }
 
-private fun mungeClasses(kinds: MutableMap<String, Kind>) {
+fun rename(name: String) = name.replaceAll("Attributes", "Properties")
+        .replaceAll("HTML", "Html")
+        .replaceAll("SVG", "Svg")
+
+fun mungeClasses(kinds: MutableMap<String, Kind>) {
     val events = kinds.remove("ReactEvents")!!
     val attributes = kinds["ReactAttributes"]!!
 
@@ -175,6 +180,10 @@ private fun mungeClasses(kinds: MutableMap<String, Kind>) {
             val props = result.properties.map { if (it.name in setOf("key", "ref")) it.copy(isOpen = true) else it }
             result = result.copy(isOpen = true, properties = props)
         }
+
+        result = result.copy(name = rename(result.name), extends = result.extends.map { rename(it) })
+
+        if (result.name != kind.name) kinds.remove(kind.name)
 
         kinds[result.name] = result
     }

@@ -26,14 +26,14 @@ fun Collection<Todo>.completedCount(): Int {
 
 class TodoStore {
     private val todos = LinkedHashMap<String, Todo>()
-    private val listeners = HashSet<(Event) -> Unit>();
+    private val listeners = HashSet<(Event) -> Unit>()
 
     fun getAll(): Collection<Todo> = todos.values()
 
     fun get(id: String) = todos[id]
 
     fun create(text: String) {
-        val id = (Date().getTime() + Math.floor(Math.random() * 999999)).toString().toString();
+        val id = (Date().getTime() + Math.floor(Math.random() * 999999)).toString().toString()
         todos.put(id, Todo(id, text, complete = false))
     }
 

@@ -106,7 +106,7 @@
             var completed = _.todo.stores.completedCount(this.props.todos);
             var itemsLeft = this.props.todos.size() - completed;
             var itemsLeftPhrase = (itemsLeft === 1 ? ' item ' : ' items ') + 'left';
-            _.com.github.andrewoma.react.footer_cnsq9w$($receiver, _.todo.components.Footer.render_sx5o3u$f, _.todo.components.Footer.render_sx5o3u$f_0(itemsLeft, itemsLeftPhrase, completed, this));
+            _.com.github.andrewoma.react.footer_yckneo$($receiver, _.todo.components.Footer.render_sx5o3u$f, _.todo.components.Footer.render_sx5o3u$f_0(itemsLeft, itemsLeftPhrase, completed, this));
           },
           onClearCompletedClick: function () {
             _.todo.actions.todoActions.destroyCompleted();
@@ -130,7 +130,7 @@
           },
           f_1: function (itemsLeft, itemsLeftPhrase) {
             return function () {
-              _.com.github.andrewoma.react.text_8z0lzh$(_.com.github.andrewoma.react.strong_cnsq9w$(this, void 0, _.todo.components.Footer.f_0(itemsLeft)), itemsLeftPhrase);
+              _.com.github.andrewoma.react.text_8z0lzh$(_.com.github.andrewoma.react.strong_yckneo$(this, void 0, _.todo.components.Footer.f_0(itemsLeft)), itemsLeftPhrase);
             };
           },
           f_2: function (this$Footer) {
@@ -151,9 +151,9 @@
           },
           render_sx5o3u$f_0: function (itemsLeft, itemsLeftPhrase, completed, this$Footer) {
             return function () {
-              _.com.github.andrewoma.react.span_cnsq9w$(this, _.todo.components.Footer.f, _.todo.components.Footer.f_1(itemsLeft, itemsLeftPhrase));
+              _.com.github.andrewoma.react.span_yckneo$(this, _.todo.components.Footer.f, _.todo.components.Footer.f_1(itemsLeft, itemsLeftPhrase));
               if (completed !== 0) {
-                _.com.github.andrewoma.react.button_zacx7s$(this, _.todo.components.Footer.f_3(this$Footer), _.todo.components.Footer.f_4(completed));
+                _.com.github.andrewoma.react.button_n1zczg$(this, _.todo.components.Footer.f_3(this$Footer), _.todo.components.Footer.f_4(completed));
               }
             };
           }
@@ -173,7 +173,7 @@
         }, /** @lends _.todo.components.Header.prototype */ {
           render_sx5o3u$: function ($receiver) {
             _.com.github.andrewoma.react.log.debug_9mqe4v$(['Header.render']);
-            _.com.github.andrewoma.react.header_cnsq9w$($receiver, _.todo.components.Header.render_sx5o3u$f, _.todo.components.Header.render_sx5o3u$f_0(this));
+            _.com.github.andrewoma.react.header_yckneo$($receiver, _.todo.components.Header.render_sx5o3u$f, _.todo.components.Header.render_sx5o3u$f_0(this));
           },
           onSave: function (text) {
             if (text.trim().length !== 0) {
@@ -199,7 +199,7 @@
           },
           render_sx5o3u$f_0: function (this$Header) {
             return function () {
-              _.com.github.andrewoma.react.h1_cnsq9w$(this, void 0, _.todo.components.Header.f);
+              _.com.github.andrewoma.react.h1_yckneo$(this, void 0, _.todo.components.Header.f);
               _.todo.components.todoTextInput(this, new _.todo.components.TodoTextInputProps(void 0, 'new-todo', 'What needs to be done?', void 0, _.todo.components.Header.f_0(this$Header)));
             };
           }
@@ -240,7 +240,7 @@
             _.com.github.andrewoma.react.log.debug_9mqe4v$(['MainSection.render', this.props]);
             if (this.props.todos.size() < 1)
               return;
-            _.com.github.andrewoma.react.section_cnsq9w$($receiver, _.todo.components.MainSection.render_sx5o3u$f, _.todo.components.MainSection.render_sx5o3u$f_0(this));
+            _.com.github.andrewoma.react.section_yckneo$($receiver, _.todo.components.MainSection.render_sx5o3u$f, _.todo.components.MainSection.render_sx5o3u$f_0(this));
           },
           onToggleCompleteAll: function () {
             _.todo.actions.todoActions.toggleCompleteAll();
@@ -288,9 +288,9 @@
           },
           render_sx5o3u$f_0: function (this$MainSection) {
             return function () {
-              _.com.github.andrewoma.react.input_gcvk32$(this, _.todo.components.MainSection.f_0(this$MainSection));
-              _.com.github.andrewoma.react.label_9jwnu0$(this, _.todo.components.MainSection.f_1, _.todo.components.MainSection.f_2);
-              _.com.github.andrewoma.react.ul_cnsq9w$(this, _.todo.components.MainSection.f_3, _.todo.components.MainSection.f_4(this$MainSection));
+              _.com.github.andrewoma.react.input_t1nbuy$(this, _.todo.components.MainSection.f_0(this$MainSection));
+              _.com.github.andrewoma.react.label_34v3xw$(this, _.todo.components.MainSection.f_1, _.todo.components.MainSection.f_2);
+              _.com.github.andrewoma.react.ul_yckneo$(this, _.todo.components.MainSection.f_3, _.todo.components.MainSection.f_4(this$MainSection));
             };
           }
         }),
@@ -339,7 +339,7 @@
             _.todo.stores.todoStore.removeChangeListener(this.listener);
           },
           render_sx5o3u$: function ($receiver) {
-            _.com.github.andrewoma.react.div_cnsq9w$($receiver, void 0, _.todo.components.TodoApp.render_sx5o3u$f(this));
+            _.com.github.andrewoma.react.div_yckneo$($receiver, void 0, _.todo.components.TodoApp.render_sx5o3u$f(this));
           },
           onChange: function () {
             this.state = new _.todo.components.TodoAppState(_.todo.stores.todoStore.getAll());
@@ -426,7 +426,7 @@
           render_sx5o3u$: function ($receiver) {
             _.com.github.andrewoma.react.log.debug_9mqe4v$(['TodoItem.render', this.props, this.state]);
             var classes = _.com.github.andrewoma.react.classSet([Kotlin.modules['stdlib'].kotlin.to_l1ob02$('completed', this.props.todo.complete), Kotlin.modules['stdlib'].kotlin.to_l1ob02$('editing', this.state.isEditing)]);
-            _.com.github.andrewoma.react.li_nvwzjh$($receiver, _.todo.components.TodoItem.render_sx5o3u$f(classes, this), _.todo.components.TodoItem.render_sx5o3u$f_0(this));
+            _.com.github.andrewoma.react.li_b757rl$($receiver, _.todo.components.TodoItem.render_sx5o3u$f(classes, this), _.todo.components.TodoItem.render_sx5o3u$f_0(this));
           },
           onToggleComplete: function () {
             _.todo.actions.todoActions.toggleComplete(this.props.todo);
@@ -500,9 +500,9 @@
           },
           f_7: function (this$TodoItem) {
             return function () {
-              _.com.github.andrewoma.react.input_gcvk32$(this, _.todo.components.TodoItem.f_1(this$TodoItem));
-              _.com.github.andrewoma.react.label_9jwnu0$(this, _.todo.components.TodoItem.f_3(this$TodoItem), _.todo.components.TodoItem.f_4(this$TodoItem));
-              _.com.github.andrewoma.react.button_zacx7s$(this, _.todo.components.TodoItem.f_6(this$TodoItem));
+              _.com.github.andrewoma.react.input_t1nbuy$(this, _.todo.components.TodoItem.f_1(this$TodoItem));
+              _.com.github.andrewoma.react.label_34v3xw$(this, _.todo.components.TodoItem.f_3(this$TodoItem), _.todo.components.TodoItem.f_4(this$TodoItem));
+              _.com.github.andrewoma.react.button_n1zczg$(this, _.todo.components.TodoItem.f_6(this$TodoItem));
             };
           },
           f_8: function (this$TodoItem) {
@@ -512,7 +512,7 @@
           },
           render_sx5o3u$f_0: function (this$TodoItem) {
             return function () {
-              _.com.github.andrewoma.react.div_cnsq9w$(this, _.todo.components.TodoItem.f, _.todo.components.TodoItem.f_7(this$TodoItem));
+              _.com.github.andrewoma.react.div_yckneo$(this, _.todo.components.TodoItem.f, _.todo.components.TodoItem.f_7(this$TodoItem));
               if (this$TodoItem.state.isEditing) {
                 _.todo.components.todoTextInput(this, new _.todo.components.TodoTextInputProps('edit', void 0, void 0, this$TodoItem.props.todo.text, _.todo.components.TodoItem.f_8(this$TodoItem)));
               }
@@ -553,7 +553,7 @@
           },
           render_sx5o3u$: function ($receiver) {
             _.com.github.andrewoma.react.log.debug_9mqe4v$(['TodoTextInput.render', this.props, this.state]);
-            _.com.github.andrewoma.react.input_gcvk32$($receiver, _.todo.components.TodoTextInput.render_sx5o3u$f(this));
+            _.com.github.andrewoma.react.input_t1nbuy$($receiver, _.todo.components.TodoTextInput.render_sx5o3u$f(this));
           },
           save: function () {
             this.props.onSave(this.state);
@@ -847,17 +847,6 @@
             this.log = new _.com.github.andrewoma.react.Log(_.com.github.andrewoma.react.logLevelFromLocation(document.location.search));
             this.react = new _.com.github.andrewoma.react.React();
           }, /** @lends _.com.github.andrewoma.react */ {
-            ReadWriteProperty: Kotlin.createTrait(null),
-            Attribute: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.ReadWriteProperty];
-            }, null, /** @lends _.com.github.andrewoma.react.Attribute.prototype */ {
-              get_1tsekc$: function (thisRef, desc) {
-                return Reakt.getAttribute(thisRef, desc.name);
-              },
-              set_1z3uih$: function (thisRef, desc, value) {
-                Reakt.setAttribute(thisRef, desc.name, value);
-              }
-            }),
             ComponentRenderer: Kotlin.createTrait(null, /** @lends _.com.github.andrewoma.react.ComponentRenderer.prototype */ {
               render: function () {
                 var root = _.com.github.andrewoma.react.ComponentRenderer.render$f();
@@ -910,6 +899,1926 @@
                 };
               }
             }),
+            initProps: function (properties, init) {
+              init.call(properties);
+              return Reakt.flattenProperties(properties);
+            },
+            text_8z0lzh$f: function () {
+            },
+            text_8z0lzh$f_0: function (value) {
+              return function (it) {
+                return value;
+              };
+            },
+            text_8z0lzh$: function ($receiver, value, init) {
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.text_8z0lzh$f;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.text_8z0lzh$f_0(value)), init);
+            },
+            a_y7i9$f: function () {
+            },
+            a_y7i9$f_0: function () {
+            },
+            a_y7i9$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.a.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.AProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            a_y7i9$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.a_y7i9$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.a_y7i9$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.a_y7i9$f_1(properties)), init);
+            },
+            abbr_yckneo$f: function () {
+            },
+            abbr_yckneo$f_0: function () {
+            },
+            abbr_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.abbr.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            abbr_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.abbr_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.abbr_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.abbr_yckneo$f_1(properties)), init);
+            },
+            address_yckneo$f: function () {
+            },
+            address_yckneo$f_0: function () {
+            },
+            address_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.address.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            address_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.address_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.address_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.address_yckneo$f_1(properties)), init);
+            },
+            area_gq3tmp$f: function () {
+            },
+            area_gq3tmp$f_0: function () {
+            },
+            area_gq3tmp$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.area.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.AreaProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            area_gq3tmp$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.area_gq3tmp$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.area_gq3tmp$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.area_gq3tmp$f_1(properties)), init);
+            },
+            article_yckneo$f: function () {
+            },
+            article_yckneo$f_0: function () {
+            },
+            article_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.article.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            article_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.article_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.article_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.article_yckneo$f_1(properties)), init);
+            },
+            aside_yckneo$f: function () {
+            },
+            aside_yckneo$f_0: function () {
+            },
+            aside_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.aside.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            aside_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.aside_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.aside_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.aside_yckneo$f_1(properties)), init);
+            },
+            audio_i2mylm$f: function () {
+            },
+            audio_i2mylm$f_0: function () {
+            },
+            audio_i2mylm$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.audio.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.AudioProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            audio_i2mylm$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.audio_i2mylm$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.audio_i2mylm$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.audio_i2mylm$f_1(properties)), init);
+            },
+            b_yckneo$f: function () {
+            },
+            b_yckneo$f_0: function () {
+            },
+            b_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.b.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            b_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.b_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.b_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.b_yckneo$f_1(properties)), init);
+            },
+            base_mh6qyl$f: function () {
+            },
+            base_mh6qyl$f_0: function () {
+            },
+            base_mh6qyl$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.base.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.BaseProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            base_mh6qyl$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.base_mh6qyl$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.base_mh6qyl$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.base_mh6qyl$f_1(properties)), init);
+            },
+            bdi_yckneo$f: function () {
+            },
+            bdi_yckneo$f_0: function () {
+            },
+            bdi_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.bdi.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            bdi_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.bdi_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.bdi_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.bdi_yckneo$f_1(properties)), init);
+            },
+            bdo_yckneo$f: function () {
+            },
+            bdo_yckneo$f_0: function () {
+            },
+            bdo_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.bdo.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            bdo_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.bdo_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.bdo_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.bdo_yckneo$f_1(properties)), init);
+            },
+            big_yckneo$f: function () {
+            },
+            big_yckneo$f_0: function () {
+            },
+            big_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.big.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            big_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.big_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.big_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.big_yckneo$f_1(properties)), init);
+            },
+            blockquote_yckneo$f: function () {
+            },
+            blockquote_yckneo$f_0: function () {
+            },
+            blockquote_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.blockquote.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            blockquote_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.blockquote_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.blockquote_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.blockquote_yckneo$f_1(properties)), init);
+            },
+            body_yckneo$f: function () {
+            },
+            body_yckneo$f_0: function () {
+            },
+            body_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.body.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            body_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.body_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.body_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.body_yckneo$f_1(properties)), init);
+            },
+            br_yckneo$f: function () {
+            },
+            br_yckneo$f_0: function () {
+            },
+            br_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.br.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            br_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.br_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.br_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.br_yckneo$f_1(properties)), init);
+            },
+            button_n1zczg$f: function () {
+            },
+            button_n1zczg$f_0: function () {
+            },
+            button_n1zczg$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.button.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.ButtonProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            button_n1zczg$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.button_n1zczg$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.button_n1zczg$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.button_n1zczg$f_1(properties)), init);
+            },
+            canvas_z4vkt2$f: function () {
+            },
+            canvas_z4vkt2$f_0: function () {
+            },
+            canvas_z4vkt2$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.canvas.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.CanvasProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            canvas_z4vkt2$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.canvas_z4vkt2$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.canvas_z4vkt2$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.canvas_z4vkt2$f_1(properties)), init);
+            },
+            caption_yckneo$f: function () {
+            },
+            caption_yckneo$f_0: function () {
+            },
+            caption_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.caption.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            caption_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.caption_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.caption_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.caption_yckneo$f_1(properties)), init);
+            },
+            cite_yckneo$f: function () {
+            },
+            cite_yckneo$f_0: function () {
+            },
+            cite_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.cite.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            cite_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.cite_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.cite_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.cite_yckneo$f_1(properties)), init);
+            },
+            code_yckneo$f: function () {
+            },
+            code_yckneo$f_0: function () {
+            },
+            code_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.code.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            code_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.code_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.code_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.code_yckneo$f_1(properties)), init);
+            },
+            col_yckneo$f: function () {
+            },
+            col_yckneo$f_0: function () {
+            },
+            col_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.col.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            col_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.col_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.col_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.col_yckneo$f_1(properties)), init);
+            },
+            colgroup_yckneo$f: function () {
+            },
+            colgroup_yckneo$f_0: function () {
+            },
+            colgroup_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.colgroup.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            colgroup_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.colgroup_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.colgroup_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.colgroup_yckneo$f_1(properties)), init);
+            },
+            data_yckneo$f: function () {
+            },
+            data_yckneo$f_0: function () {
+            },
+            data_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.data.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            data_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.data_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.data_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.data_yckneo$f_1(properties)), init);
+            },
+            datalist_yckneo$f: function () {
+            },
+            datalist_yckneo$f_0: function () {
+            },
+            datalist_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.datalist.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            datalist_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.datalist_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.datalist_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.datalist_yckneo$f_1(properties)), init);
+            },
+            dd_yckneo$f: function () {
+            },
+            dd_yckneo$f_0: function () {
+            },
+            dd_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.dd.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            dd_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.dd_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.dd_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.dd_yckneo$f_1(properties)), init);
+            },
+            del_bgwk45$f: function () {
+            },
+            del_bgwk45$f_0: function () {
+            },
+            del_bgwk45$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.del.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.DelProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            del_bgwk45$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.del_bgwk45$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.del_bgwk45$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.del_bgwk45$f_1(properties)), init);
+            },
+            details_yckneo$f: function () {
+            },
+            details_yckneo$f_0: function () {
+            },
+            details_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.details.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            details_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.details_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.details_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.details_yckneo$f_1(properties)), init);
+            },
+            dfn_yckneo$f: function () {
+            },
+            dfn_yckneo$f_0: function () {
+            },
+            dfn_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.dfn.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            dfn_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.dfn_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.dfn_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.dfn_yckneo$f_1(properties)), init);
+            },
+            div_yckneo$f: function () {
+            },
+            div_yckneo$f_0: function () {
+            },
+            div_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.div.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            div_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.div_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.div_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.div_yckneo$f_1(properties)), init);
+            },
+            dl_yckneo$f: function () {
+            },
+            dl_yckneo$f_0: function () {
+            },
+            dl_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.dl.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            dl_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.dl_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.dl_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.dl_yckneo$f_1(properties)), init);
+            },
+            dt_yckneo$f: function () {
+            },
+            dt_yckneo$f_0: function () {
+            },
+            dt_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.dt.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            dt_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.dt_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.dt_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.dt_yckneo$f_1(properties)), init);
+            },
+            em_yckneo$f: function () {
+            },
+            em_yckneo$f_0: function () {
+            },
+            em_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.em.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            em_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.em_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.em_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.em_yckneo$f_1(properties)), init);
+            },
+            embed_9e6l4p$f: function () {
+            },
+            embed_9e6l4p$f_0: function () {
+            },
+            embed_9e6l4p$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.embed.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.EmbedProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            embed_9e6l4p$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.embed_9e6l4p$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.embed_9e6l4p$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.embed_9e6l4p$f_1(properties)), init);
+            },
+            fieldset_2i5mre$f: function () {
+            },
+            fieldset_2i5mre$f_0: function () {
+            },
+            fieldset_2i5mre$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.fieldset.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.FieldsetProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            fieldset_2i5mre$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.fieldset_2i5mre$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.fieldset_2i5mre$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.fieldset_2i5mre$f_1(properties)), init);
+            },
+            figcaption_yckneo$f: function () {
+            },
+            figcaption_yckneo$f_0: function () {
+            },
+            figcaption_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.figcaption.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            figcaption_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.figcaption_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.figcaption_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.figcaption_yckneo$f_1(properties)), init);
+            },
+            figure_yckneo$f: function () {
+            },
+            figure_yckneo$f_0: function () {
+            },
+            figure_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.figure.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            figure_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.figure_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.figure_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.figure_yckneo$f_1(properties)), init);
+            },
+            footer_yckneo$f: function () {
+            },
+            footer_yckneo$f_0: function () {
+            },
+            footer_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.footer.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            footer_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.footer_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.footer_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.footer_yckneo$f_1(properties)), init);
+            },
+            form_pzn76e$f: function () {
+            },
+            form_pzn76e$f_0: function () {
+            },
+            form_pzn76e$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.form.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.FormProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            form_pzn76e$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.form_pzn76e$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.form_pzn76e$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.form_pzn76e$f_1(properties)), init);
+            },
+            h1_yckneo$f: function () {
+            },
+            h1_yckneo$f_0: function () {
+            },
+            h1_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.h1.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            h1_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.h1_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.h1_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.h1_yckneo$f_1(properties)), init);
+            },
+            h2_yckneo$f: function () {
+            },
+            h2_yckneo$f_0: function () {
+            },
+            h2_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.h2.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            h2_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.h2_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.h2_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.h2_yckneo$f_1(properties)), init);
+            },
+            h3_yckneo$f: function () {
+            },
+            h3_yckneo$f_0: function () {
+            },
+            h3_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.h3.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            h3_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.h3_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.h3_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.h3_yckneo$f_1(properties)), init);
+            },
+            h4_yckneo$f: function () {
+            },
+            h4_yckneo$f_0: function () {
+            },
+            h4_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.h4.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            h4_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.h4_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.h4_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.h4_yckneo$f_1(properties)), init);
+            },
+            h5_yckneo$f: function () {
+            },
+            h5_yckneo$f_0: function () {
+            },
+            h5_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.h5.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            h5_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.h5_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.h5_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.h5_yckneo$f_1(properties)), init);
+            },
+            h6_yckneo$f: function () {
+            },
+            h6_yckneo$f_0: function () {
+            },
+            h6_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.h6.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            h6_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.h6_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.h6_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.h6_yckneo$f_1(properties)), init);
+            },
+            head_yckneo$f: function () {
+            },
+            head_yckneo$f_0: function () {
+            },
+            head_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.head.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            head_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.head_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.head_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.head_yckneo$f_1(properties)), init);
+            },
+            header_yckneo$f: function () {
+            },
+            header_yckneo$f_0: function () {
+            },
+            header_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.header.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            header_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.header_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.header_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.header_yckneo$f_1(properties)), init);
+            },
+            hr_yckneo$f: function () {
+            },
+            hr_yckneo$f_0: function () {
+            },
+            hr_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.hr.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            hr_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.hr_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.hr_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.hr_yckneo$f_1(properties)), init);
+            },
+            html_yckneo$f: function () {
+            },
+            html_yckneo$f_0: function () {
+            },
+            html_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.html.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            html_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.html_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.html_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.html_yckneo$f_1(properties)), init);
+            },
+            i_yckneo$f: function () {
+            },
+            i_yckneo$f_0: function () {
+            },
+            i_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.i.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            i_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.i_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.i_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.i_yckneo$f_1(properties)), init);
+            },
+            iframe_9jmpi$f: function () {
+            },
+            iframe_9jmpi$f_0: function () {
+            },
+            iframe_9jmpi$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.iframe.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.IframeProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            iframe_9jmpi$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.iframe_9jmpi$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.iframe_9jmpi$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.iframe_9jmpi$f_1(properties)), init);
+            },
+            img_bkqdy5$f: function () {
+            },
+            img_bkqdy5$f_0: function () {
+            },
+            img_bkqdy5$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.img.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.ImgProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            img_bkqdy5$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.img_bkqdy5$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.img_bkqdy5$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.img_bkqdy5$f_1(properties)), init);
+            },
+            input_t1nbuy$f: function () {
+            },
+            input_t1nbuy$f_0: function () {
+            },
+            input_t1nbuy$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.input.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.InputProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            input_t1nbuy$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.input_t1nbuy$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.input_t1nbuy$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.input_t1nbuy$f_1(properties)), init);
+            },
+            ins_cw53ce$f: function () {
+            },
+            ins_cw53ce$f_0: function () {
+            },
+            ins_cw53ce$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.ins.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.InsProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            ins_cw53ce$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.ins_cw53ce$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.ins_cw53ce$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.ins_cw53ce$f_1(properties)), init);
+            },
+            kbd_yckneo$f: function () {
+            },
+            kbd_yckneo$f_0: function () {
+            },
+            kbd_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.kbd.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            kbd_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.kbd_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.kbd_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.kbd_yckneo$f_1(properties)), init);
+            },
+            keygen_5br9fh$f: function () {
+            },
+            keygen_5br9fh$f_0: function () {
+            },
+            keygen_5br9fh$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.keygen.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.KeygenProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            keygen_5br9fh$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.keygen_5br9fh$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.keygen_5br9fh$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.keygen_5br9fh$f_1(properties)), init);
+            },
+            label_34v3xw$f: function () {
+            },
+            label_34v3xw$f_0: function () {
+            },
+            label_34v3xw$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.label.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.LabelProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            label_34v3xw$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.label_34v3xw$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.label_34v3xw$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.label_34v3xw$f_1(properties)), init);
+            },
+            legend_yckneo$f: function () {
+            },
+            legend_yckneo$f_0: function () {
+            },
+            legend_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.legend.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            legend_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.legend_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.legend_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.legend_yckneo$f_1(properties)), init);
+            },
+            li_b757rl$f: function () {
+            },
+            li_b757rl$f_0: function () {
+            },
+            li_b757rl$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.li.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.LiProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            li_b757rl$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.li_b757rl$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.li_b757rl$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.li_b757rl$f_1(properties)), init);
+            },
+            link_933vxw$f: function () {
+            },
+            link_933vxw$f_0: function () {
+            },
+            link_933vxw$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.link.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.LinkProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            link_933vxw$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.link_933vxw$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.link_933vxw$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.link_933vxw$f_1(properties)), init);
+            },
+            main_yckneo$f: function () {
+            },
+            main_yckneo$f_0: function () {
+            },
+            main_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.main.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            main_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.main_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.main_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.main_yckneo$f_1(properties)), init);
+            },
+            map_lonzrw$f: function () {
+            },
+            map_lonzrw$f_0: function () {
+            },
+            map_lonzrw$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.map.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.MapProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            map_lonzrw$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.map_lonzrw$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.map_lonzrw$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.map_lonzrw$f_1(properties)), init);
+            },
+            mark_yckneo$f: function () {
+            },
+            mark_yckneo$f_0: function () {
+            },
+            mark_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.mark.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            mark_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.mark_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.mark_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.mark_yckneo$f_1(properties)), init);
+            },
+            menu_mugchb$f: function () {
+            },
+            menu_mugchb$f_0: function () {
+            },
+            menu_mugchb$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.menu.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.MenuProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            menu_mugchb$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.menu_mugchb$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.menu_mugchb$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.menu_mugchb$f_1(properties)), init);
+            },
+            menuitem_yckneo$f: function () {
+            },
+            menuitem_yckneo$f_0: function () {
+            },
+            menuitem_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.menuitem.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            menuitem_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.menuitem_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.menuitem_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.menuitem_yckneo$f_1(properties)), init);
+            },
+            meta_hl4k7d$f: function () {
+            },
+            meta_hl4k7d$f_0: function () {
+            },
+            meta_hl4k7d$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.meta.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.MetaProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            meta_hl4k7d$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.meta_hl4k7d$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.meta_hl4k7d$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.meta_hl4k7d$f_1(properties)), init);
+            },
+            meter_394vrr$f: function () {
+            },
+            meter_394vrr$f_0: function () {
+            },
+            meter_394vrr$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.meter.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.MeterProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            meter_394vrr$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.meter_394vrr$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.meter_394vrr$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.meter_394vrr$f_1(properties)), init);
+            },
+            nav_yckneo$f: function () {
+            },
+            nav_yckneo$f_0: function () {
+            },
+            nav_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.nav.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            nav_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.nav_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.nav_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.nav_yckneo$f_1(properties)), init);
+            },
+            noscript_yckneo$f: function () {
+            },
+            noscript_yckneo$f_0: function () {
+            },
+            noscript_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.noscript.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            noscript_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.noscript_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.noscript_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.noscript_yckneo$f_1(properties)), init);
+            },
+            obj_uv6ljj$f: function () {
+            },
+            obj_uv6ljj$f_0: function () {
+            },
+            obj_uv6ljj$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.object.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.ObjectProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            obj_uv6ljj$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.obj_uv6ljj$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.obj_uv6ljj$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.obj_uv6ljj$f_1(properties)), init);
+            },
+            ol_yckneo$f: function () {
+            },
+            ol_yckneo$f_0: function () {
+            },
+            ol_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.ol.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            ol_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.ol_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.ol_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.ol_yckneo$f_1(properties)), init);
+            },
+            optgroup_yckneo$f: function () {
+            },
+            optgroup_yckneo$f_0: function () {
+            },
+            optgroup_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.optgroup.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            optgroup_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.optgroup_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.optgroup_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.optgroup_yckneo$f_1(properties)), init);
+            },
+            option_no14o7$f: function () {
+            },
+            option_no14o7$f_0: function () {
+            },
+            option_no14o7$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.option.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.OptionProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            option_no14o7$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.option_no14o7$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.option_no14o7$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.option_no14o7$f_1(properties)), init);
+            },
+            output_f1zy8d$f: function () {
+            },
+            output_f1zy8d$f_0: function () {
+            },
+            output_f1zy8d$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.output.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.OutputProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            output_f1zy8d$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.output_f1zy8d$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.output_f1zy8d$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.output_f1zy8d$f_1(properties)), init);
+            },
+            p_yckneo$f: function () {
+            },
+            p_yckneo$f_0: function () {
+            },
+            p_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.p.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            p_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.p_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.p_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.p_yckneo$f_1(properties)), init);
+            },
+            param_17ly99$f: function () {
+            },
+            param_17ly99$f_0: function () {
+            },
+            param_17ly99$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.param.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.ParamProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            param_17ly99$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.param_17ly99$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.param_17ly99$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.param_17ly99$f_1(properties)), init);
+            },
+            pre_yckneo$f: function () {
+            },
+            pre_yckneo$f_0: function () {
+            },
+            pre_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.pre.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            pre_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.pre_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.pre_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.pre_yckneo$f_1(properties)), init);
+            },
+            progress_7u5ie7$f: function () {
+            },
+            progress_7u5ie7$f_0: function () {
+            },
+            progress_7u5ie7$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.progress.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.ProgressProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            progress_7u5ie7$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.progress_7u5ie7$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.progress_7u5ie7$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.progress_7u5ie7$f_1(properties)), init);
+            },
+            q_yckneo$f: function () {
+            },
+            q_yckneo$f_0: function () {
+            },
+            q_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.q.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            q_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.q_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.q_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.q_yckneo$f_1(properties)), init);
+            },
+            rp_yckneo$f: function () {
+            },
+            rp_yckneo$f_0: function () {
+            },
+            rp_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.rp.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            rp_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.rp_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.rp_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.rp_yckneo$f_1(properties)), init);
+            },
+            rt_yckneo$f: function () {
+            },
+            rt_yckneo$f_0: function () {
+            },
+            rt_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.rt.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            rt_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.rt_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.rt_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.rt_yckneo$f_1(properties)), init);
+            },
+            ruby_yckneo$f: function () {
+            },
+            ruby_yckneo$f_0: function () {
+            },
+            ruby_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.ruby.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            ruby_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.ruby_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.ruby_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.ruby_yckneo$f_1(properties)), init);
+            },
+            s_yckneo$f: function () {
+            },
+            s_yckneo$f_0: function () {
+            },
+            s_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.s.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            s_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.s_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.s_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.s_yckneo$f_1(properties)), init);
+            },
+            samp_yckneo$f: function () {
+            },
+            samp_yckneo$f_0: function () {
+            },
+            samp_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.samp.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            samp_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.samp_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.samp_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.samp_yckneo$f_1(properties)), init);
+            },
+            script_35ty83$f: function () {
+            },
+            script_35ty83$f_0: function () {
+            },
+            script_35ty83$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.script.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.ScriptProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            script_35ty83$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.script_35ty83$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.script_35ty83$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.script_35ty83$f_1(properties)), init);
+            },
+            section_yckneo$f: function () {
+            },
+            section_yckneo$f_0: function () {
+            },
+            section_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.section.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            section_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.section_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.section_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.section_yckneo$f_1(properties)), init);
+            },
+            select_hysefi$f: function () {
+            },
+            select_hysefi$f_0: function () {
+            },
+            select_hysefi$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.select.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.SelectProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            select_hysefi$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.select_hysefi$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.select_hysefi$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.select_hysefi$f_1(properties)), init);
+            },
+            small_yckneo$f: function () {
+            },
+            small_yckneo$f_0: function () {
+            },
+            small_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.small.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            small_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.small_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.small_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.small_yckneo$f_1(properties)), init);
+            },
+            source_yyjyz1$f: function () {
+            },
+            source_yyjyz1$f_0: function () {
+            },
+            source_yyjyz1$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.source.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.SourceProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            source_yyjyz1$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.source_yyjyz1$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.source_yyjyz1$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.source_yyjyz1$f_1(properties)), init);
+            },
+            span_yckneo$f: function () {
+            },
+            span_yckneo$f_0: function () {
+            },
+            span_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.span.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            span_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.span_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.span_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.span_yckneo$f_1(properties)), init);
+            },
+            strong_yckneo$f: function () {
+            },
+            strong_yckneo$f_0: function () {
+            },
+            strong_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.strong.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            strong_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.strong_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.strong_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.strong_yckneo$f_1(properties)), init);
+            },
+            style_kvshbj$f: function () {
+            },
+            style_kvshbj$f_0: function () {
+            },
+            style_kvshbj$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.style.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.StyleProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            style_kvshbj$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.style_kvshbj$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.style_kvshbj$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.style_kvshbj$f_1(properties)), init);
+            },
+            sub_yckneo$f: function () {
+            },
+            sub_yckneo$f_0: function () {
+            },
+            sub_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.sub.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            sub_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.sub_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.sub_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.sub_yckneo$f_1(properties)), init);
+            },
+            summary_yckneo$f: function () {
+            },
+            summary_yckneo$f_0: function () {
+            },
+            summary_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.summary.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            summary_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.summary_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.summary_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.summary_yckneo$f_1(properties)), init);
+            },
+            sup_yckneo$f: function () {
+            },
+            sup_yckneo$f_0: function () {
+            },
+            sup_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.sup.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            sup_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.sup_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.sup_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.sup_yckneo$f_1(properties)), init);
+            },
+            table_ihzozy$f: function () {
+            },
+            table_ihzozy$f_0: function () {
+            },
+            table_ihzozy$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.table.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.TableProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            table_ihzozy$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.table_ihzozy$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.table_ihzozy$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.table_ihzozy$f_1(properties)), init);
+            },
+            tbody_yckneo$f: function () {
+            },
+            tbody_yckneo$f_0: function () {
+            },
+            tbody_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.tbody.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            tbody_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.tbody_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.tbody_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.tbody_yckneo$f_1(properties)), init);
+            },
+            td_ow7m9q$f: function () {
+            },
+            td_ow7m9q$f_0: function () {
+            },
+            td_ow7m9q$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.td.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.TdProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            td_ow7m9q$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.td_ow7m9q$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.td_ow7m9q$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.td_ow7m9q$f_1(properties)), init);
+            },
+            textarea_l7ry5w$f: function () {
+            },
+            textarea_l7ry5w$f_0: function () {
+            },
+            textarea_l7ry5w$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.textarea.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.TextareaProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            textarea_l7ry5w$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.textarea_l7ry5w$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.textarea_l7ry5w$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.textarea_l7ry5w$f_1(properties)), init);
+            },
+            tfoot_yckneo$f: function () {
+            },
+            tfoot_yckneo$f_0: function () {
+            },
+            tfoot_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.tfoot.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            tfoot_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.tfoot_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.tfoot_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.tfoot_yckneo$f_1(properties)), init);
+            },
+            th_y6jkze$f: function () {
+            },
+            th_y6jkze$f_0: function () {
+            },
+            th_y6jkze$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.th.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.ThProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            th_y6jkze$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.th_y6jkze$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.th_y6jkze$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.th_y6jkze$f_1(properties)), init);
+            },
+            thead_yckneo$f: function () {
+            },
+            thead_yckneo$f_0: function () {
+            },
+            thead_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.thead.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            thead_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.thead_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.thead_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.thead_yckneo$f_1(properties)), init);
+            },
+            time_jszqf5$f: function () {
+            },
+            time_jszqf5$f_0: function () {
+            },
+            time_jszqf5$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.time.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.TimeProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            time_jszqf5$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.time_jszqf5$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.time_jszqf5$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.time_jszqf5$f_1(properties)), init);
+            },
+            title_yckneo$f: function () {
+            },
+            title_yckneo$f_0: function () {
+            },
+            title_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.title.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            title_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.title_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.title_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.title_yckneo$f_1(properties)), init);
+            },
+            tr_yckneo$f: function () {
+            },
+            tr_yckneo$f_0: function () {
+            },
+            tr_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.tr.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            tr_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.tr_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.tr_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.tr_yckneo$f_1(properties)), init);
+            },
+            track_9uxr9x$f: function () {
+            },
+            track_9uxr9x$f_0: function () {
+            },
+            track_9uxr9x$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.track.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.TrackProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            track_9uxr9x$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.track_9uxr9x$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.track_9uxr9x$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.track_9uxr9x$f_1(properties)), init);
+            },
+            u_yckneo$f: function () {
+            },
+            u_yckneo$f_0: function () {
+            },
+            u_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.u.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            u_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.u_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.u_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.u_yckneo$f_1(properties)), init);
+            },
+            ul_yckneo$f: function () {
+            },
+            ul_yckneo$f_0: function () {
+            },
+            ul_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.ul.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            ul_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.ul_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.ul_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.ul_yckneo$f_1(properties)), init);
+            },
+            variable_yckneo$f: function () {
+            },
+            variable_yckneo$f_0: function () {
+            },
+            variable_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.var.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            variable_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.variable_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.variable_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.variable_yckneo$f_1(properties)), init);
+            },
+            video_uya05$f: function () {
+            },
+            video_uya05$f_0: function () {
+            },
+            video_uya05$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.video.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.VideoProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            video_uya05$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.video_uya05$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.video_uya05$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.video_uya05$f_1(properties)), init);
+            },
+            wbr_yckneo$f: function () {
+            },
+            wbr_yckneo$f_0: function () {
+            },
+            wbr_yckneo$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.wbr.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HtmlGlobalProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            wbr_yckneo$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.wbr_yckneo$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.wbr_yckneo$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.wbr_yckneo$f_1(properties)), init);
+            },
+            circle_an79jw$f: function () {
+            },
+            circle_an79jw$f_0: function () {
+            },
+            circle_an79jw$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.circle.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.SvgProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            circle_an79jw$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.circle_an79jw$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.circle_an79jw$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.circle_an79jw$f_1(properties)), init);
+            },
+            g_an79jw$f: function () {
+            },
+            g_an79jw$f_0: function () {
+            },
+            g_an79jw$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.g.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.SvgProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            g_an79jw$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.g_an79jw$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.g_an79jw$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.g_an79jw$f_1(properties)), init);
+            },
+            line_an79jw$f: function () {
+            },
+            line_an79jw$f_0: function () {
+            },
+            line_an79jw$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.line.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.SvgProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            line_an79jw$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.line_an79jw$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.line_an79jw$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.line_an79jw$f_1(properties)), init);
+            },
+            path_an79jw$f: function () {
+            },
+            path_an79jw$f_0: function () {
+            },
+            path_an79jw$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.path.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.SvgProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            path_an79jw$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.path_an79jw$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.path_an79jw$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.path_an79jw$f_1(properties)), init);
+            },
+            polygon_an79jw$f: function () {
+            },
+            polygon_an79jw$f_0: function () {
+            },
+            polygon_an79jw$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.polygon.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.SvgProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            polygon_an79jw$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.polygon_an79jw$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.polygon_an79jw$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.polygon_an79jw$f_1(properties)), init);
+            },
+            polyline_an79jw$f: function () {
+            },
+            polyline_an79jw$f_0: function () {
+            },
+            polyline_an79jw$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.polyline.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.SvgProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            polyline_an79jw$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.polyline_an79jw$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.polyline_an79jw$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.polyline_an79jw$f_1(properties)), init);
+            },
+            rect_an79jw$f: function () {
+            },
+            rect_an79jw$f_0: function () {
+            },
+            rect_an79jw$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.rect.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.SvgProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            rect_an79jw$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.rect_an79jw$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.rect_an79jw$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.rect_an79jw$f_1(properties)), init);
+            },
+            svg_an79jw$f: function () {
+            },
+            svg_an79jw$f_0: function () {
+            },
+            svg_an79jw$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.svg.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.SvgProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            svg_an79jw$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.svg_an79jw$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.svg_an79jw$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.svg_an79jw$f_1(properties)), init);
+            },
+            text_an79jw$f: function () {
+            },
+            text_an79jw$f_0: function () {
+            },
+            text_an79jw$f_1: function (properties) {
+              return function (it) {
+                return React.DOM.text.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.SvgProperties(), properties)].concat(it.transformChildren()));
+              };
+            },
+            text_an79jw$: function ($receiver, properties, init) {
+              if (properties === void 0)
+                properties = _.com.github.andrewoma.react.text_an79jw$f;
+              if (init === void 0)
+                init = _.com.github.andrewoma.react.text_an79jw$f_0;
+              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.text_an79jw$f_1(properties)), init);
+            },
             EventTarget: Kotlin.createTrait(null, /** @lends _.com.github.andrewoma.react.EventTarget.prototype */ {
               value: {
                 get: function () {
@@ -1318,42 +3227,42 @@
                 }
               }
             }),
-            ReactAttributes: Kotlin.createClass(null, function () {
-              this.key$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.ref$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.onCopy$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.onCut$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.onPaste$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.onKeyDown$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.onKeyPress$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.onKeyUp$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.onFocus$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.onBlur$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.onChange$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.onInput$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.onSubmit$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.onClick$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.onDoubleClick$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.onDrag$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.onDragEnd$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.onDragEnter$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.onDragExit$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.onDragLeave$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.onDragOver$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.onDragStart$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.onDrop$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.onMouseDown$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.onMouseEnter$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.onMouseLeave$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.onMouseMove$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.onMouseUp$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.onTouchCancel$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.onTouchEnd$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.onTouchMove$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.onTouchStart$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.onScroll$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.onWheel$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.ReactAttributes.prototype */ {
+            ReactProperties: Kotlin.createClass(null, function () {
+              this.key$delegate = new _.com.github.andrewoma.react.Property();
+              this.ref$delegate = new _.com.github.andrewoma.react.Property();
+              this.onCopy$delegate = new _.com.github.andrewoma.react.Property();
+              this.onCut$delegate = new _.com.github.andrewoma.react.Property();
+              this.onPaste$delegate = new _.com.github.andrewoma.react.Property();
+              this.onKeyDown$delegate = new _.com.github.andrewoma.react.Property();
+              this.onKeyPress$delegate = new _.com.github.andrewoma.react.Property();
+              this.onKeyUp$delegate = new _.com.github.andrewoma.react.Property();
+              this.onFocus$delegate = new _.com.github.andrewoma.react.Property();
+              this.onBlur$delegate = new _.com.github.andrewoma.react.Property();
+              this.onChange$delegate = new _.com.github.andrewoma.react.Property();
+              this.onInput$delegate = new _.com.github.andrewoma.react.Property();
+              this.onSubmit$delegate = new _.com.github.andrewoma.react.Property();
+              this.onClick$delegate = new _.com.github.andrewoma.react.Property();
+              this.onDoubleClick$delegate = new _.com.github.andrewoma.react.Property();
+              this.onDrag$delegate = new _.com.github.andrewoma.react.Property();
+              this.onDragEnd$delegate = new _.com.github.andrewoma.react.Property();
+              this.onDragEnter$delegate = new _.com.github.andrewoma.react.Property();
+              this.onDragExit$delegate = new _.com.github.andrewoma.react.Property();
+              this.onDragLeave$delegate = new _.com.github.andrewoma.react.Property();
+              this.onDragOver$delegate = new _.com.github.andrewoma.react.Property();
+              this.onDragStart$delegate = new _.com.github.andrewoma.react.Property();
+              this.onDrop$delegate = new _.com.github.andrewoma.react.Property();
+              this.onMouseDown$delegate = new _.com.github.andrewoma.react.Property();
+              this.onMouseEnter$delegate = new _.com.github.andrewoma.react.Property();
+              this.onMouseLeave$delegate = new _.com.github.andrewoma.react.Property();
+              this.onMouseMove$delegate = new _.com.github.andrewoma.react.Property();
+              this.onMouseUp$delegate = new _.com.github.andrewoma.react.Property();
+              this.onTouchCancel$delegate = new _.com.github.andrewoma.react.Property();
+              this.onTouchEnd$delegate = new _.com.github.andrewoma.react.Property();
+              this.onTouchMove$delegate = new _.com.github.andrewoma.react.Property();
+              this.onTouchStart$delegate = new _.com.github.andrewoma.react.Property();
+              this.onScroll$delegate = new _.com.github.andrewoma.react.Property();
+              this.onWheel$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.ReactProperties.prototype */ {
               key: {
                 get: function () {
                   return this.key$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('key'));
@@ -1627,26 +3536,26 @@
                 }
               }
             }),
-            HTMLGlobalAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.ReactAttributes];
+            HtmlGlobalProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.ReactProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.key$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.accessKey$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.className$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.contentEditable$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.contextMenu$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.dir$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.draggable$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.hidden$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.id$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.lang$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.spellCheck$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.role$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.scrollLeft$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.scrollTop$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.style$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.HTMLGlobalAttributes.prototype */ {
+              this.key$delegate = new _.com.github.andrewoma.react.Property();
+              this.accessKey$delegate = new _.com.github.andrewoma.react.Property();
+              this.className$delegate = new _.com.github.andrewoma.react.Property();
+              this.contentEditable$delegate = new _.com.github.andrewoma.react.Property();
+              this.contextMenu$delegate = new _.com.github.andrewoma.react.Property();
+              this.dir$delegate = new _.com.github.andrewoma.react.Property();
+              this.draggable$delegate = new _.com.github.andrewoma.react.Property();
+              this.hidden$delegate = new _.com.github.andrewoma.react.Property();
+              this.id$delegate = new _.com.github.andrewoma.react.Property();
+              this.lang$delegate = new _.com.github.andrewoma.react.Property();
+              this.spellCheck$delegate = new _.com.github.andrewoma.react.Property();
+              this.role$delegate = new _.com.github.andrewoma.react.Property();
+              this.scrollLeft$delegate = new _.com.github.andrewoma.react.Property();
+              this.scrollTop$delegate = new _.com.github.andrewoma.react.Property();
+              this.style$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.HtmlGlobalProperties.prototype */ {
               key: {
                 get: function () {
                   return this.key$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('key'));
@@ -1768,19 +3677,19 @@
                 }
               }
             }),
-            FormAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.HTMLGlobalAttributes];
+            FormProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.HtmlGlobalProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.accept$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.action$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.autoCapitalize$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.autoComplete$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.encType$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.method$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.name$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.target$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.FormAttributes.prototype */ {
+              this.accept$delegate = new _.com.github.andrewoma.react.Property();
+              this.action$delegate = new _.com.github.andrewoma.react.Property();
+              this.autoCapitalize$delegate = new _.com.github.andrewoma.react.Property();
+              this.autoComplete$delegate = new _.com.github.andrewoma.react.Property();
+              this.encType$delegate = new _.com.github.andrewoma.react.Property();
+              this.method$delegate = new _.com.github.andrewoma.react.Property();
+              this.name$delegate = new _.com.github.andrewoma.react.Property();
+              this.target$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.FormProperties.prototype */ {
               accept: {
                 get: function () {
                   return this.accept$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('accept'));
@@ -1846,37 +3755,37 @@
                 }
               }
             }),
-            InputAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.HTMLGlobalAttributes];
+            InputProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.HtmlGlobalProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.accept$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.alt$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.autoCapitalize$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.autoComplete$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.autoFocus$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.checked$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.defaultValue$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.disabled$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.form$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.height$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.list$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.max$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.maxLength$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.min$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.multiple$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.name$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.pattern$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.placeholder$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.readOnly$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.required$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.size$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.src$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.step$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.type$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.value$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.width$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.InputAttributes.prototype */ {
+              this.accept$delegate = new _.com.github.andrewoma.react.Property();
+              this.alt$delegate = new _.com.github.andrewoma.react.Property();
+              this.autoCapitalize$delegate = new _.com.github.andrewoma.react.Property();
+              this.autoComplete$delegate = new _.com.github.andrewoma.react.Property();
+              this.autoFocus$delegate = new _.com.github.andrewoma.react.Property();
+              this.checked$delegate = new _.com.github.andrewoma.react.Property();
+              this.defaultValue$delegate = new _.com.github.andrewoma.react.Property();
+              this.disabled$delegate = new _.com.github.andrewoma.react.Property();
+              this.form$delegate = new _.com.github.andrewoma.react.Property();
+              this.height$delegate = new _.com.github.andrewoma.react.Property();
+              this.list$delegate = new _.com.github.andrewoma.react.Property();
+              this.max$delegate = new _.com.github.andrewoma.react.Property();
+              this.maxLength$delegate = new _.com.github.andrewoma.react.Property();
+              this.min$delegate = new _.com.github.andrewoma.react.Property();
+              this.multiple$delegate = new _.com.github.andrewoma.react.Property();
+              this.name$delegate = new _.com.github.andrewoma.react.Property();
+              this.pattern$delegate = new _.com.github.andrewoma.react.Property();
+              this.placeholder$delegate = new _.com.github.andrewoma.react.Property();
+              this.readOnly$delegate = new _.com.github.andrewoma.react.Property();
+              this.required$delegate = new _.com.github.andrewoma.react.Property();
+              this.size$delegate = new _.com.github.andrewoma.react.Property();
+              this.src$delegate = new _.com.github.andrewoma.react.Property();
+              this.step$delegate = new _.com.github.andrewoma.react.Property();
+              this.type$delegate = new _.com.github.andrewoma.react.Property();
+              this.value$delegate = new _.com.github.andrewoma.react.Property();
+              this.width$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.InputProperties.prototype */ {
               accept: {
                 get: function () {
                   return this.accept$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('accept'));
@@ -2086,18 +3995,18 @@
                 }
               }
             }),
-            IframeAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.HTMLGlobalAttributes];
+            IframeProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.HtmlGlobalProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.allowFullScreen$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.allowTransparency$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.frameBorder$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.height$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.name$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.src$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.width$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.IframeAttributes.prototype */ {
+              this.allowFullScreen$delegate = new _.com.github.andrewoma.react.Property();
+              this.allowTransparency$delegate = new _.com.github.andrewoma.react.Property();
+              this.frameBorder$delegate = new _.com.github.andrewoma.react.Property();
+              this.height$delegate = new _.com.github.andrewoma.react.Property();
+              this.name$delegate = new _.com.github.andrewoma.react.Property();
+              this.src$delegate = new _.com.github.andrewoma.react.Property();
+              this.width$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.IframeProperties.prototype */ {
               allowFullScreen: {
                 get: function () {
                   return this.allowFullScreen$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('allowFullScreen'));
@@ -2155,12 +4064,12 @@
                 }
               }
             }),
-            AppletAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.HTMLGlobalAttributes];
+            AppletProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.HtmlGlobalProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.alt$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.AppletAttributes.prototype */ {
+              this.alt$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.AppletProperties.prototype */ {
               alt: {
                 get: function () {
                   return this.alt$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('alt'));
@@ -2170,15 +4079,15 @@
                 }
               }
             }),
-            AreaAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.HTMLGlobalAttributes];
+            AreaProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.HtmlGlobalProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.alt$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.href$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.rel$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.target$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.AreaAttributes.prototype */ {
+              this.alt$delegate = new _.com.github.andrewoma.react.Property();
+              this.href$delegate = new _.com.github.andrewoma.react.Property();
+              this.rel$delegate = new _.com.github.andrewoma.react.Property();
+              this.target$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.AreaProperties.prototype */ {
               alt: {
                 get: function () {
                   return this.alt$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('alt'));
@@ -2212,15 +4121,15 @@
                 }
               }
             }),
-            ImgAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.HTMLGlobalAttributes];
+            ImgProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.HtmlGlobalProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.alt$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.height$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.src$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.width$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.ImgAttributes.prototype */ {
+              this.alt$delegate = new _.com.github.andrewoma.react.Property();
+              this.height$delegate = new _.com.github.andrewoma.react.Property();
+              this.src$delegate = new _.com.github.andrewoma.react.Property();
+              this.width$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.ImgProperties.prototype */ {
               alt: {
                 get: function () {
                   return this.alt$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('alt'));
@@ -2254,17 +4163,17 @@
                 }
               }
             }),
-            ButtonAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.HTMLGlobalAttributes];
+            ButtonProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.HtmlGlobalProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.autoFocus$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.disabled$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.form$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.name$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.type$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.value$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.ButtonAttributes.prototype */ {
+              this.autoFocus$delegate = new _.com.github.andrewoma.react.Property();
+              this.disabled$delegate = new _.com.github.andrewoma.react.Property();
+              this.form$delegate = new _.com.github.andrewoma.react.Property();
+              this.name$delegate = new _.com.github.andrewoma.react.Property();
+              this.type$delegate = new _.com.github.andrewoma.react.Property();
+              this.value$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.ButtonProperties.prototype */ {
               autoFocus: {
                 get: function () {
                   return this.autoFocus$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('autoFocus'));
@@ -2314,14 +4223,14 @@
                 }
               }
             }),
-            KeygenAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.HTMLGlobalAttributes];
+            KeygenProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.HtmlGlobalProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.autoFocus$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.form$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.name$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.KeygenAttributes.prototype */ {
+              this.autoFocus$delegate = new _.com.github.andrewoma.react.Property();
+              this.form$delegate = new _.com.github.andrewoma.react.Property();
+              this.name$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.KeygenProperties.prototype */ {
               autoFocus: {
                 get: function () {
                   return this.autoFocus$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('autoFocus'));
@@ -2347,18 +4256,18 @@
                 }
               }
             }),
-            SelectAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.HTMLGlobalAttributes];
+            SelectProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.HtmlGlobalProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.autoFocus$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.disabled$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.form$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.multiple$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.name$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.required$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.size$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.SelectAttributes.prototype */ {
+              this.autoFocus$delegate = new _.com.github.andrewoma.react.Property();
+              this.disabled$delegate = new _.com.github.andrewoma.react.Property();
+              this.form$delegate = new _.com.github.andrewoma.react.Property();
+              this.multiple$delegate = new _.com.github.andrewoma.react.Property();
+              this.name$delegate = new _.com.github.andrewoma.react.Property();
+              this.required$delegate = new _.com.github.andrewoma.react.Property();
+              this.size$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.SelectProperties.prototype */ {
               autoFocus: {
                 get: function () {
                   return this.autoFocus$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('autoFocus'));
@@ -2416,18 +4325,18 @@
                 }
               }
             }),
-            TextareaAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.HTMLGlobalAttributes];
+            TextareaProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.HtmlGlobalProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.autoFocus$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.form$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.maxLength$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.name$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.placeholder$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.readOnly$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.required$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.TextareaAttributes.prototype */ {
+              this.autoFocus$delegate = new _.com.github.andrewoma.react.Property();
+              this.form$delegate = new _.com.github.andrewoma.react.Property();
+              this.maxLength$delegate = new _.com.github.andrewoma.react.Property();
+              this.name$delegate = new _.com.github.andrewoma.react.Property();
+              this.placeholder$delegate = new _.com.github.andrewoma.react.Property();
+              this.readOnly$delegate = new _.com.github.andrewoma.react.Property();
+              this.required$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.TextareaProperties.prototype */ {
               autoFocus: {
                 get: function () {
                   return this.autoFocus$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('autoFocus'));
@@ -2485,16 +4394,16 @@
                 }
               }
             }),
-            AudioAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.HTMLGlobalAttributes];
+            AudioProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.HtmlGlobalProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.autoPlay$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.controls$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.loop$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.preload$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.src$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.AudioAttributes.prototype */ {
+              this.autoPlay$delegate = new _.com.github.andrewoma.react.Property();
+              this.controls$delegate = new _.com.github.andrewoma.react.Property();
+              this.loop$delegate = new _.com.github.andrewoma.react.Property();
+              this.preload$delegate = new _.com.github.andrewoma.react.Property();
+              this.src$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.AudioProperties.prototype */ {
               autoPlay: {
                 get: function () {
                   return this.autoPlay$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('autoPlay'));
@@ -2536,19 +4445,19 @@
                 }
               }
             }),
-            VideoAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.HTMLGlobalAttributes];
+            VideoProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.HtmlGlobalProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.autoPlay$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.controls$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.height$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.loop$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.poster$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.preload$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.src$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.width$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.VideoAttributes.prototype */ {
+              this.autoPlay$delegate = new _.com.github.andrewoma.react.Property();
+              this.controls$delegate = new _.com.github.andrewoma.react.Property();
+              this.height$delegate = new _.com.github.andrewoma.react.Property();
+              this.loop$delegate = new _.com.github.andrewoma.react.Property();
+              this.poster$delegate = new _.com.github.andrewoma.react.Property();
+              this.preload$delegate = new _.com.github.andrewoma.react.Property();
+              this.src$delegate = new _.com.github.andrewoma.react.Property();
+              this.width$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.VideoProperties.prototype */ {
               autoPlay: {
                 get: function () {
                   return this.autoPlay$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('autoPlay'));
@@ -2614,13 +4523,13 @@
                 }
               }
             }),
-            TableAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.HTMLGlobalAttributes];
+            TableProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.HtmlGlobalProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.cellPadding$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.cellSpacing$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.TableAttributes.prototype */ {
+              this.cellPadding$delegate = new _.com.github.andrewoma.react.Property();
+              this.cellSpacing$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.TableProperties.prototype */ {
               cellPadding: {
                 get: function () {
                   return this.cellPadding$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('cellPadding'));
@@ -2638,15 +4547,15 @@
                 }
               }
             }),
-            MetaAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.HTMLGlobalAttributes];
+            MetaProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.HtmlGlobalProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.charSet$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.content$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.httpEquiv$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.name$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.MetaAttributes.prototype */ {
+              this.charSet$delegate = new _.com.github.andrewoma.react.Property();
+              this.content$delegate = new _.com.github.andrewoma.react.Property();
+              this.httpEquiv$delegate = new _.com.github.andrewoma.react.Property();
+              this.name$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.MetaProperties.prototype */ {
               charSet: {
                 get: function () {
                   return this.charSet$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('charSet'));
@@ -2680,14 +4589,14 @@
                 }
               }
             }),
-            ScriptAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.HTMLGlobalAttributes];
+            ScriptProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.HtmlGlobalProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.charSet$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.src$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.type$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.ScriptAttributes.prototype */ {
+              this.charSet$delegate = new _.com.github.andrewoma.react.Property();
+              this.src$delegate = new _.com.github.andrewoma.react.Property();
+              this.type$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.ScriptProperties.prototype */ {
               charSet: {
                 get: function () {
                   return this.charSet$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('charSet'));
@@ -2713,15 +4622,15 @@
                 }
               }
             }),
-            CommandAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.HTMLGlobalAttributes];
+            CommandProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.HtmlGlobalProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.checked$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.icon$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.radioGroup$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.type$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.CommandAttributes.prototype */ {
+              this.checked$delegate = new _.com.github.andrewoma.react.Property();
+              this.icon$delegate = new _.com.github.andrewoma.react.Property();
+              this.radioGroup$delegate = new _.com.github.andrewoma.react.Property();
+              this.type$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.CommandProperties.prototype */ {
               checked: {
                 get: function () {
                   return this.checked$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('checked'));
@@ -2755,13 +4664,13 @@
                 }
               }
             }),
-            TdAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.HTMLGlobalAttributes];
+            TdProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.HtmlGlobalProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.colSpan$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.rowSpan$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.TdAttributes.prototype */ {
+              this.colSpan$delegate = new _.com.github.andrewoma.react.Property();
+              this.rowSpan$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.TdProperties.prototype */ {
               colSpan: {
                 get: function () {
                   return this.colSpan$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('colSpan'));
@@ -2779,13 +4688,13 @@
                 }
               }
             }),
-            ThAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.HTMLGlobalAttributes];
+            ThProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.HtmlGlobalProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.colSpan$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.rowSpan$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.ThAttributes.prototype */ {
+              this.colSpan$delegate = new _.com.github.andrewoma.react.Property();
+              this.rowSpan$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.ThProperties.prototype */ {
               colSpan: {
                 get: function () {
                   return this.colSpan$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('colSpan'));
@@ -2803,18 +4712,18 @@
                 }
               }
             }),
-            ObjectAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.HTMLGlobalAttributes];
+            ObjectProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.HtmlGlobalProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.data$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.form$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.height$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.name$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.type$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.width$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.wmode$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.ObjectAttributes.prototype */ {
+              this.data$delegate = new _.com.github.andrewoma.react.Property();
+              this.form$delegate = new _.com.github.andrewoma.react.Property();
+              this.height$delegate = new _.com.github.andrewoma.react.Property();
+              this.name$delegate = new _.com.github.andrewoma.react.Property();
+              this.type$delegate = new _.com.github.andrewoma.react.Property();
+              this.width$delegate = new _.com.github.andrewoma.react.Property();
+              this.wmode$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.ObjectProperties.prototype */ {
               data: {
                 get: function () {
                   return this.data$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('data'));
@@ -2872,12 +4781,12 @@
                 }
               }
             }),
-            DelAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.HTMLGlobalAttributes];
+            DelProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.HtmlGlobalProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.dateTime$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.DelAttributes.prototype */ {
+              this.dateTime$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.DelProperties.prototype */ {
               dateTime: {
                 get: function () {
                   return this.dateTime$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('dateTime'));
@@ -2887,12 +4796,12 @@
                 }
               }
             }),
-            InsAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.HTMLGlobalAttributes];
+            InsProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.HtmlGlobalProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.dateTime$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.InsAttributes.prototype */ {
+              this.dateTime$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.InsProperties.prototype */ {
               dateTime: {
                 get: function () {
                   return this.dateTime$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('dateTime'));
@@ -2902,12 +4811,12 @@
                 }
               }
             }),
-            TimeAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.HTMLGlobalAttributes];
+            TimeProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.HtmlGlobalProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.dateTime$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.TimeAttributes.prototype */ {
+              this.dateTime$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.TimeProperties.prototype */ {
               dateTime: {
                 get: function () {
                   return this.dateTime$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('dateTime'));
@@ -2917,13 +4826,13 @@
                 }
               }
             }),
-            FieldsetAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.HTMLGlobalAttributes];
+            FieldsetProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.HtmlGlobalProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.form$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.name$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.FieldsetAttributes.prototype */ {
+              this.form$delegate = new _.com.github.andrewoma.react.Property();
+              this.name$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.FieldsetProperties.prototype */ {
               form: {
                 get: function () {
                   return this.form$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('form'));
@@ -2941,13 +4850,13 @@
                 }
               }
             }),
-            LabelAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.HTMLGlobalAttributes];
+            LabelProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.HtmlGlobalProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.form$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.htmlFor$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.LabelAttributes.prototype */ {
+              this.form$delegate = new _.com.github.andrewoma.react.Property();
+              this.htmlFor$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.LabelProperties.prototype */ {
               form: {
                 get: function () {
                   return this.form$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('form'));
@@ -2965,15 +4874,15 @@
                 }
               }
             }),
-            MeterAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.HTMLGlobalAttributes];
+            MeterProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.HtmlGlobalProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.form$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.max$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.min$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.value$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.MeterAttributes.prototype */ {
+              this.form$delegate = new _.com.github.andrewoma.react.Property();
+              this.max$delegate = new _.com.github.andrewoma.react.Property();
+              this.min$delegate = new _.com.github.andrewoma.react.Property();
+              this.value$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.MeterProperties.prototype */ {
               form: {
                 get: function () {
                   return this.form$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('form'));
@@ -3007,14 +4916,14 @@
                 }
               }
             }),
-            OutputAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.HTMLGlobalAttributes];
+            OutputProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.HtmlGlobalProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.form$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.htmlFor$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.name$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.OutputAttributes.prototype */ {
+              this.form$delegate = new _.com.github.andrewoma.react.Property();
+              this.htmlFor$delegate = new _.com.github.andrewoma.react.Property();
+              this.name$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.OutputProperties.prototype */ {
               form: {
                 get: function () {
                   return this.form$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('form'));
@@ -3040,14 +4949,14 @@
                 }
               }
             }),
-            ProgressAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.HTMLGlobalAttributes];
+            ProgressProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.HtmlGlobalProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.form$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.max$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.value$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.ProgressAttributes.prototype */ {
+              this.form$delegate = new _.com.github.andrewoma.react.Property();
+              this.max$delegate = new _.com.github.andrewoma.react.Property();
+              this.value$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.ProgressProperties.prototype */ {
               form: {
                 get: function () {
                   return this.form$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('form'));
@@ -3073,13 +4982,13 @@
                 }
               }
             }),
-            CanvasAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.HTMLGlobalAttributes];
+            CanvasProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.HtmlGlobalProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.height$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.width$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.CanvasAttributes.prototype */ {
+              this.height$delegate = new _.com.github.andrewoma.react.Property();
+              this.width$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.CanvasProperties.prototype */ {
               height: {
                 get: function () {
                   return this.height$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('height'));
@@ -3097,15 +5006,15 @@
                 }
               }
             }),
-            EmbedAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.HTMLGlobalAttributes];
+            EmbedProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.HtmlGlobalProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.height$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.src$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.type$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.width$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.EmbedAttributes.prototype */ {
+              this.height$delegate = new _.com.github.andrewoma.react.Property();
+              this.src$delegate = new _.com.github.andrewoma.react.Property();
+              this.type$delegate = new _.com.github.andrewoma.react.Property();
+              this.width$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.EmbedProperties.prototype */ {
               height: {
                 get: function () {
                   return this.height$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('height'));
@@ -3139,14 +5048,14 @@
                 }
               }
             }),
-            AAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.HTMLGlobalAttributes];
+            AProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.HtmlGlobalProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.href$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.rel$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.target$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.AAttributes.prototype */ {
+              this.href$delegate = new _.com.github.andrewoma.react.Property();
+              this.rel$delegate = new _.com.github.andrewoma.react.Property();
+              this.target$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.AProperties.prototype */ {
               href: {
                 get: function () {
                   return this.href$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('href'));
@@ -3172,13 +5081,13 @@
                 }
               }
             }),
-            BaseAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.HTMLGlobalAttributes];
+            BaseProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.HtmlGlobalProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.href$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.target$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.BaseAttributes.prototype */ {
+              this.href$delegate = new _.com.github.andrewoma.react.Property();
+              this.target$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.BaseProperties.prototype */ {
               href: {
                 get: function () {
                   return this.href$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('href'));
@@ -3196,13 +5105,13 @@
                 }
               }
             }),
-            LinkAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.HTMLGlobalAttributes];
+            LinkProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.HtmlGlobalProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.href$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.rel$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.LinkAttributes.prototype */ {
+              this.href$delegate = new _.com.github.andrewoma.react.Property();
+              this.rel$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.LinkProperties.prototype */ {
               href: {
                 get: function () {
                   return this.href$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('href'));
@@ -3220,13 +5129,13 @@
                 }
               }
             }),
-            TrackAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.HTMLGlobalAttributes];
+            TrackProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.HtmlGlobalProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.label$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.src$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.TrackAttributes.prototype */ {
+              this.label$delegate = new _.com.github.andrewoma.react.Property();
+              this.src$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.TrackProperties.prototype */ {
               label: {
                 get: function () {
                   return this.label$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('label'));
@@ -3244,12 +5153,12 @@
                 }
               }
             }),
-            BgsoundAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.HTMLGlobalAttributes];
+            BgsoundProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.HtmlGlobalProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.loop$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.BgsoundAttributes.prototype */ {
+              this.loop$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.BgsoundProperties.prototype */ {
               loop: {
                 get: function () {
                   return this.loop$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('loop'));
@@ -3259,12 +5168,12 @@
                 }
               }
             }),
-            MarqueeAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.HTMLGlobalAttributes];
+            MarqueeProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.HtmlGlobalProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.loop$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.MarqueeAttributes.prototype */ {
+              this.loop$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.MarqueeProperties.prototype */ {
               loop: {
                 get: function () {
                   return this.loop$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('loop'));
@@ -3274,12 +5183,12 @@
                 }
               }
             }),
-            MapAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.HTMLGlobalAttributes];
+            MapProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.HtmlGlobalProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.name$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.MapAttributes.prototype */ {
+              this.name$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.MapProperties.prototype */ {
               name: {
                 get: function () {
                   return this.name$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('name'));
@@ -3289,13 +5198,13 @@
                 }
               }
             }),
-            ParamAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.HTMLGlobalAttributes];
+            ParamProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.HtmlGlobalProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.name$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.value$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.ParamAttributes.prototype */ {
+              this.name$delegate = new _.com.github.andrewoma.react.Property();
+              this.value$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.ParamProperties.prototype */ {
               name: {
                 get: function () {
                   return this.name$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('name'));
@@ -3313,13 +5222,13 @@
                 }
               }
             }),
-            OptionAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.HTMLGlobalAttributes];
+            OptionProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.HtmlGlobalProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.selected$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.value$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.OptionAttributes.prototype */ {
+              this.selected$delegate = new _.com.github.andrewoma.react.Property();
+              this.value$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.OptionProperties.prototype */ {
               selected: {
                 get: function () {
                   return this.selected$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('selected'));
@@ -3337,13 +5246,13 @@
                 }
               }
             }),
-            SourceAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.HTMLGlobalAttributes];
+            SourceProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.HtmlGlobalProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.src$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.type$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.SourceAttributes.prototype */ {
+              this.src$delegate = new _.com.github.andrewoma.react.Property();
+              this.type$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.SourceProperties.prototype */ {
               src: {
                 get: function () {
                   return this.src$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('src'));
@@ -3361,12 +5270,12 @@
                 }
               }
             }),
-            StyleAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.HTMLGlobalAttributes];
+            StyleProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.HtmlGlobalProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.type$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.StyleAttributes.prototype */ {
+              this.type$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.StyleProperties.prototype */ {
               type: {
                 get: function () {
                   return this.type$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('type'));
@@ -3376,12 +5285,12 @@
                 }
               }
             }),
-            MenuAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.HTMLGlobalAttributes];
+            MenuProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.HtmlGlobalProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.type$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.MenuAttributes.prototype */ {
+              this.type$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.MenuProperties.prototype */ {
               type: {
                 get: function () {
                   return this.type$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('type'));
@@ -3391,12 +5300,12 @@
                 }
               }
             }),
-            LiAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.HTMLGlobalAttributes];
+            LiProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.HtmlGlobalProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.value$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.LiAttributes.prototype */ {
+              this.value$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.LiProperties.prototype */ {
               value: {
                 get: function () {
                   return this.value$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('value'));
@@ -3406,40 +5315,40 @@
                 }
               }
             }),
-            SVGAttributes: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.ReactAttributes];
+            SvgProperties: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.ReactProperties];
             }, function $fun() {
               $fun.baseInitializer.call(this);
-              this.id$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.cx$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.cy$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.d$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.fill$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.fx$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.fy$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.gradientTransform$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.gradientUnits$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.offset$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.points$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.r$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.rx$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.ry$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.spreadMethod$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.stopColor$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.stopOpacity$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.stroke$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.strokeLinecap$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.strokeWidth$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.transform$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.version$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.viewBox$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.x1$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.x2$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.x$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.y1$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.y2$delegate = new _.com.github.andrewoma.react.Attribute();
-              this.y$delegate = new _.com.github.andrewoma.react.Attribute();
-            }, /** @lends _.com.github.andrewoma.react.SVGAttributes.prototype */ {
+              this.id$delegate = new _.com.github.andrewoma.react.Property();
+              this.cx$delegate = new _.com.github.andrewoma.react.Property();
+              this.cy$delegate = new _.com.github.andrewoma.react.Property();
+              this.d$delegate = new _.com.github.andrewoma.react.Property();
+              this.fill$delegate = new _.com.github.andrewoma.react.Property();
+              this.fx$delegate = new _.com.github.andrewoma.react.Property();
+              this.fy$delegate = new _.com.github.andrewoma.react.Property();
+              this.gradientTransform$delegate = new _.com.github.andrewoma.react.Property();
+              this.gradientUnits$delegate = new _.com.github.andrewoma.react.Property();
+              this.offset$delegate = new _.com.github.andrewoma.react.Property();
+              this.points$delegate = new _.com.github.andrewoma.react.Property();
+              this.r$delegate = new _.com.github.andrewoma.react.Property();
+              this.rx$delegate = new _.com.github.andrewoma.react.Property();
+              this.ry$delegate = new _.com.github.andrewoma.react.Property();
+              this.spreadMethod$delegate = new _.com.github.andrewoma.react.Property();
+              this.stopColor$delegate = new _.com.github.andrewoma.react.Property();
+              this.stopOpacity$delegate = new _.com.github.andrewoma.react.Property();
+              this.stroke$delegate = new _.com.github.andrewoma.react.Property();
+              this.strokeLinecap$delegate = new _.com.github.andrewoma.react.Property();
+              this.strokeWidth$delegate = new _.com.github.andrewoma.react.Property();
+              this.transform$delegate = new _.com.github.andrewoma.react.Property();
+              this.version$delegate = new _.com.github.andrewoma.react.Property();
+              this.viewBox$delegate = new _.com.github.andrewoma.react.Property();
+              this.x1$delegate = new _.com.github.andrewoma.react.Property();
+              this.x2$delegate = new _.com.github.andrewoma.react.Property();
+              this.x$delegate = new _.com.github.andrewoma.react.Property();
+              this.y1$delegate = new _.com.github.andrewoma.react.Property();
+              this.y2$delegate = new _.com.github.andrewoma.react.Property();
+              this.y$delegate = new _.com.github.andrewoma.react.Property();
+            }, /** @lends _.com.github.andrewoma.react.SvgProperties.prototype */ {
               id: {
                 get: function () {
                   return this.id$delegate.get_1tsekc$(this, new Kotlin.PropertyMetadata('id'));
@@ -3673,1926 +5582,6 @@
                 }
               }
             }),
-            initProps: function (properties, init) {
-              init.call(properties);
-              return Reakt.flattenProperties(properties);
-            },
-            text_8z0lzh$f: function () {
-            },
-            text_8z0lzh$f_0: function (value) {
-              return function (it) {
-                return value;
-              };
-            },
-            text_8z0lzh$: function ($receiver, value, init) {
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.text_8z0lzh$f;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.text_8z0lzh$f_0(value)), init);
-            },
-            a_cntk9n$f: function () {
-            },
-            a_cntk9n$f_0: function () {
-            },
-            a_cntk9n$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.a.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.AAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            a_cntk9n$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.a_cntk9n$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.a_cntk9n$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.a_cntk9n$f_1(properties)), init);
-            },
-            abbr_cnsq9w$f: function () {
-            },
-            abbr_cnsq9w$f_0: function () {
-            },
-            abbr_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.abbr.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            abbr_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.abbr_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.abbr_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.abbr_cnsq9w$f_1(properties)), init);
-            },
-            address_cnsq9w$f: function () {
-            },
-            address_cnsq9w$f_0: function () {
-            },
-            address_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.address.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            address_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.address_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.address_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.address_cnsq9w$f_1(properties)), init);
-            },
-            area_tevlel$f: function () {
-            },
-            area_tevlel$f_0: function () {
-            },
-            area_tevlel$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.area.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.AreaAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            area_tevlel$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.area_tevlel$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.area_tevlel$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.area_tevlel$f_1(properties)), init);
-            },
-            article_cnsq9w$f: function () {
-            },
-            article_cnsq9w$f_0: function () {
-            },
-            article_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.article.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            article_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.article_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.article_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.article_cnsq9w$f_1(properties)), init);
-            },
-            aside_cnsq9w$f: function () {
-            },
-            aside_cnsq9w$f_0: function () {
-            },
-            aside_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.aside.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            aside_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.aside_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.aside_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.aside_cnsq9w$f_1(properties)), init);
-            },
-            audio_ureqdi$f: function () {
-            },
-            audio_ureqdi$f_0: function () {
-            },
-            audio_ureqdi$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.audio.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.AudioAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            audio_ureqdi$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.audio_ureqdi$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.audio_ureqdi$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.audio_ureqdi$f_1(properties)), init);
-            },
-            b_cnsq9w$f: function () {
-            },
-            b_cnsq9w$f_0: function () {
-            },
-            b_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.b.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            b_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.b_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.b_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.b_cnsq9w$f_1(properties)), init);
-            },
-            base_z5yiqh$f: function () {
-            },
-            base_z5yiqh$f_0: function () {
-            },
-            base_z5yiqh$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.base.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.BaseAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            base_z5yiqh$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.base_z5yiqh$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.base_z5yiqh$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.base_z5yiqh$f_1(properties)), init);
-            },
-            bdi_cnsq9w$f: function () {
-            },
-            bdi_cnsq9w$f_0: function () {
-            },
-            bdi_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.bdi.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            bdi_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.bdi_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.bdi_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.bdi_cnsq9w$f_1(properties)), init);
-            },
-            bdo_cnsq9w$f: function () {
-            },
-            bdo_cnsq9w$f_0: function () {
-            },
-            bdo_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.bdo.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            bdo_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.bdo_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.bdo_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.bdo_cnsq9w$f_1(properties)), init);
-            },
-            big_cnsq9w$f: function () {
-            },
-            big_cnsq9w$f_0: function () {
-            },
-            big_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.big.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            big_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.big_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.big_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.big_cnsq9w$f_1(properties)), init);
-            },
-            blockquote_cnsq9w$f: function () {
-            },
-            blockquote_cnsq9w$f_0: function () {
-            },
-            blockquote_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.blockquote.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            blockquote_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.blockquote_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.blockquote_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.blockquote_cnsq9w$f_1(properties)), init);
-            },
-            body_cnsq9w$f: function () {
-            },
-            body_cnsq9w$f_0: function () {
-            },
-            body_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.body.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            body_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.body_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.body_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.body_cnsq9w$f_1(properties)), init);
-            },
-            br_cnsq9w$f: function () {
-            },
-            br_cnsq9w$f_0: function () {
-            },
-            br_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.br.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            br_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.br_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.br_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.br_cnsq9w$f_1(properties)), init);
-            },
-            button_zacx7s$f: function () {
-            },
-            button_zacx7s$f_0: function () {
-            },
-            button_zacx7s$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.button.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.ButtonAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            button_zacx7s$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.button_zacx7s$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.button_zacx7s$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.button_zacx7s$f_1(properties)), init);
-            },
-            canvas_n7gpe6$f: function () {
-            },
-            canvas_n7gpe6$f_0: function () {
-            },
-            canvas_n7gpe6$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.canvas.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.CanvasAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            canvas_n7gpe6$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.canvas_n7gpe6$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.canvas_n7gpe6$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.canvas_n7gpe6$f_1(properties)), init);
-            },
-            caption_cnsq9w$f: function () {
-            },
-            caption_cnsq9w$f_0: function () {
-            },
-            caption_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.caption.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            caption_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.caption_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.caption_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.caption_cnsq9w$f_1(properties)), init);
-            },
-            cite_cnsq9w$f: function () {
-            },
-            cite_cnsq9w$f_0: function () {
-            },
-            cite_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.cite.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            cite_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.cite_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.cite_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.cite_cnsq9w$f_1(properties)), init);
-            },
-            code_cnsq9w$f: function () {
-            },
-            code_cnsq9w$f_0: function () {
-            },
-            code_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.code.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            code_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.code_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.code_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.code_cnsq9w$f_1(properties)), init);
-            },
-            col_cnsq9w$f: function () {
-            },
-            col_cnsq9w$f_0: function () {
-            },
-            col_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.col.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            col_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.col_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.col_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.col_cnsq9w$f_1(properties)), init);
-            },
-            colgroup_cnsq9w$f: function () {
-            },
-            colgroup_cnsq9w$f_0: function () {
-            },
-            colgroup_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.colgroup.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            colgroup_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.colgroup_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.colgroup_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.colgroup_cnsq9w$f_1(properties)), init);
-            },
-            data_cnsq9w$f: function () {
-            },
-            data_cnsq9w$f_0: function () {
-            },
-            data_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.data.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            data_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.data_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.data_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.data_cnsq9w$f_1(properties)), init);
-            },
-            datalist_cnsq9w$f: function () {
-            },
-            datalist_cnsq9w$f_0: function () {
-            },
-            datalist_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.datalist.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            datalist_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.datalist_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.datalist_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.datalist_cnsq9w$f_1(properties)), init);
-            },
-            dd_cnsq9w$f: function () {
-            },
-            dd_cnsq9w$f_0: function () {
-            },
-            dd_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.dd.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            dd_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.dd_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.dd_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.dd_cnsq9w$f_1(properties)), init);
-            },
-            del_o5obw1$f: function () {
-            },
-            del_o5obw1$f_0: function () {
-            },
-            del_o5obw1$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.del.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.DelAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            del_o5obw1$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.del_o5obw1$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.del_o5obw1$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.del_o5obw1$f_1(properties)), init);
-            },
-            details_cnsq9w$f: function () {
-            },
-            details_cnsq9w$f_0: function () {
-            },
-            details_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.details.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            details_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.details_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.details_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.details_cnsq9w$f_1(properties)), init);
-            },
-            dfn_cnsq9w$f: function () {
-            },
-            dfn_cnsq9w$f_0: function () {
-            },
-            dfn_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.dfn.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            dfn_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.dfn_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.dfn_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.dfn_cnsq9w$f_1(properties)), init);
-            },
-            div_cnsq9w$f: function () {
-            },
-            div_cnsq9w$f_0: function () {
-            },
-            div_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.div.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            div_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.div_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.div_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.div_cnsq9w$f_1(properties)), init);
-            },
-            dl_cnsq9w$f: function () {
-            },
-            dl_cnsq9w$f_0: function () {
-            },
-            dl_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.dl.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            dl_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.dl_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.dl_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.dl_cnsq9w$f_1(properties)), init);
-            },
-            dt_cnsq9w$f: function () {
-            },
-            dt_cnsq9w$f_0: function () {
-            },
-            dt_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.dt.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            dt_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.dt_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.dt_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.dt_cnsq9w$f_1(properties)), init);
-            },
-            em_cnsq9w$f: function () {
-            },
-            em_cnsq9w$f_0: function () {
-            },
-            em_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.em.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            em_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.em_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.em_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.em_cnsq9w$f_1(properties)), init);
-            },
-            embed_3al6n7$f: function () {
-            },
-            embed_3al6n7$f_0: function () {
-            },
-            embed_3al6n7$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.embed.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.EmbedAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            embed_3al6n7$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.embed_3al6n7$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.embed_3al6n7$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.embed_3al6n7$f_1(properties)), init);
-            },
-            fieldset_a6m50i$f: function () {
-            },
-            fieldset_a6m50i$f_0: function () {
-            },
-            fieldset_a6m50i$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.fieldset.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.FieldsetAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            fieldset_a6m50i$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.fieldset_a6m50i$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.fieldset_a6m50i$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.fieldset_a6m50i$f_1(properties)), init);
-            },
-            figcaption_cnsq9w$f: function () {
-            },
-            figcaption_cnsq9w$f_0: function () {
-            },
-            figcaption_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.figcaption.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            figcaption_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.figcaption_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.figcaption_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.figcaption_cnsq9w$f_1(properties)), init);
-            },
-            figure_cnsq9w$f: function () {
-            },
-            figure_cnsq9w$f_0: function () {
-            },
-            figure_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.figure.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            figure_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.figure_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.figure_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.figure_cnsq9w$f_1(properties)), init);
-            },
-            footer_cnsq9w$f: function () {
-            },
-            footer_cnsq9w$f_0: function () {
-            },
-            footer_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.footer.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            footer_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.footer_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.footer_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.footer_cnsq9w$f_1(properties)), init);
-            },
-            form_davfei$f: function () {
-            },
-            form_davfei$f_0: function () {
-            },
-            form_davfei$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.form.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.FormAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            form_davfei$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.form_davfei$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.form_davfei$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.form_davfei$f_1(properties)), init);
-            },
-            h1_cnsq9w$f: function () {
-            },
-            h1_cnsq9w$f_0: function () {
-            },
-            h1_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.h1.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            h1_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.h1_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.h1_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.h1_cnsq9w$f_1(properties)), init);
-            },
-            h2_cnsq9w$f: function () {
-            },
-            h2_cnsq9w$f_0: function () {
-            },
-            h2_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.h2.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            h2_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.h2_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.h2_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.h2_cnsq9w$f_1(properties)), init);
-            },
-            h3_cnsq9w$f: function () {
-            },
-            h3_cnsq9w$f_0: function () {
-            },
-            h3_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.h3.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            h3_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.h3_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.h3_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.h3_cnsq9w$f_1(properties)), init);
-            },
-            h4_cnsq9w$f: function () {
-            },
-            h4_cnsq9w$f_0: function () {
-            },
-            h4_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.h4.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            h4_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.h4_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.h4_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.h4_cnsq9w$f_1(properties)), init);
-            },
-            h5_cnsq9w$f: function () {
-            },
-            h5_cnsq9w$f_0: function () {
-            },
-            h5_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.h5.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            h5_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.h5_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.h5_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.h5_cnsq9w$f_1(properties)), init);
-            },
-            h6_cnsq9w$f: function () {
-            },
-            h6_cnsq9w$f_0: function () {
-            },
-            h6_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.h6.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            h6_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.h6_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.h6_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.h6_cnsq9w$f_1(properties)), init);
-            },
-            head_cnsq9w$f: function () {
-            },
-            head_cnsq9w$f_0: function () {
-            },
-            head_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.head.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            head_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.head_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.head_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.head_cnsq9w$f_1(properties)), init);
-            },
-            header_cnsq9w$f: function () {
-            },
-            header_cnsq9w$f_0: function () {
-            },
-            header_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.header.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            header_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.header_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.header_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.header_cnsq9w$f_1(properties)), init);
-            },
-            hr_cnsq9w$f: function () {
-            },
-            hr_cnsq9w$f_0: function () {
-            },
-            hr_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.hr.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            hr_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.hr_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.hr_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.hr_cnsq9w$f_1(properties)), init);
-            },
-            html_cnsq9w$f: function () {
-            },
-            html_cnsq9w$f_0: function () {
-            },
-            html_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.html.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            html_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.html_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.html_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.html_cnsq9w$f_1(properties)), init);
-            },
-            i_cnsq9w$f: function () {
-            },
-            i_cnsq9w$f_0: function () {
-            },
-            i_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.i.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            i_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.i_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.i_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.i_cnsq9w$f_1(properties)), init);
-            },
-            iframe_cf852e$f: function () {
-            },
-            iframe_cf852e$f_0: function () {
-            },
-            iframe_cf852e$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.iframe.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.IframeAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            iframe_cf852e$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.iframe_cf852e$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.iframe_cf852e$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.iframe_cf852e$f_1(properties)), init);
-            },
-            img_o9i5q1$f: function () {
-            },
-            img_o9i5q1$f_0: function () {
-            },
-            img_o9i5q1$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.img.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.ImgAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            img_o9i5q1$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.img_o9i5q1$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.img_o9i5q1$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.img_o9i5q1$f_1(properties)), init);
-            },
-            input_gcvk32$f: function () {
-            },
-            input_gcvk32$f_0: function () {
-            },
-            input_gcvk32$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.input.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.InputAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            input_gcvk32$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.input_gcvk32$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.input_gcvk32$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.input_gcvk32$f_1(properties)), init);
-            },
-            ins_7dbki$f: function () {
-            },
-            ins_7dbki$f_0: function () {
-            },
-            ins_7dbki$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.ins.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.InsAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            ins_7dbki$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.ins_7dbki$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.ins_7dbki$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.ins_7dbki$f_1(properties)), init);
-            },
-            kbd_cnsq9w$f: function () {
-            },
-            kbd_cnsq9w$f_0: function () {
-            },
-            kbd_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.kbd.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            kbd_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.kbd_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.kbd_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.kbd_cnsq9w$f_1(properties)), init);
-            },
-            keygen_i0j17d$f: function () {
-            },
-            keygen_i0j17d$f_0: function () {
-            },
-            keygen_i0j17d$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.keygen.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.KeygenAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            keygen_i0j17d$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.keygen_i0j17d$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.keygen_i0j17d$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.keygen_i0j17d$f_1(properties)), init);
-            },
-            label_9jwnu0$f: function () {
-            },
-            label_9jwnu0$f_0: function () {
-            },
-            label_9jwnu0$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.label.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.LabelAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            label_9jwnu0$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.label_9jwnu0$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.label_9jwnu0$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.label_9jwnu0$f_1(properties)), init);
-            },
-            legend_cnsq9w$f: function () {
-            },
-            legend_cnsq9w$f_0: function () {
-            },
-            legend_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.legend.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            legend_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.legend_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.legend_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.legend_cnsq9w$f_1(properties)), init);
-            },
-            li_nvwzjh$f: function () {
-            },
-            li_nvwzjh$f_0: function () {
-            },
-            li_nvwzjh$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.li.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.LiAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            li_nvwzjh$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.li_nvwzjh$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.li_nvwzjh$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.li_nvwzjh$f_1(properties)), init);
-            },
-            link_lrvnps$f: function () {
-            },
-            link_lrvnps$f_0: function () {
-            },
-            link_lrvnps$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.link.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.LinkAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            link_lrvnps$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.link_lrvnps$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.link_lrvnps$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.link_lrvnps$f_1(properties)), init);
-            },
-            main_cnsq9w$f: function () {
-            },
-            main_cnsq9w$f_0: function () {
-            },
-            main_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.main.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            main_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.main_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.main_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.main_cnsq9w$f_1(properties)), init);
-            },
-            map_8zw800$f: function () {
-            },
-            map_8zw800$f_0: function () {
-            },
-            map_8zw800$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.map.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.MapAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            map_8zw800$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.map_8zw800$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.map_8zw800$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.map_8zw800$f_1(properties)), init);
-            },
-            mark_cnsq9w$f: function () {
-            },
-            mark_cnsq9w$f_0: function () {
-            },
-            mark_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.mark.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            mark_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.mark_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.mark_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.mark_cnsq9w$f_1(properties)), init);
-            },
-            menu_zhvxpx$f: function () {
-            },
-            menu_zhvxpx$f_0: function () {
-            },
-            menu_zhvxpx$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.menu.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.MenuAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            menu_zhvxpx$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.menu_zhvxpx$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.menu_zhvxpx$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.menu_zhvxpx$f_1(properties)), init);
-            },
-            menuitem_cnsq9w$f: function () {
-            },
-            menuitem_cnsq9w$f_0: function () {
-            },
-            menuitem_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.menuitem.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            menuitem_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.menuitem_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.menuitem_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.menuitem_cnsq9w$f_1(properties)), init);
-            },
-            meta_u9wbz9$f: function () {
-            },
-            meta_u9wbz9$f_0: function () {
-            },
-            meta_u9wbz9$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.meta.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.MetaAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            meta_u9wbz9$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.meta_u9wbz9$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.meta_u9wbz9$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.meta_u9wbz9$f_1(properties)), init);
-            },
-            meter_fxwnjn$f: function () {
-            },
-            meter_fxwnjn$f_0: function () {
-            },
-            meter_fxwnjn$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.meter.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.MeterAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            meter_fxwnjn$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.meter_fxwnjn$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.meter_fxwnjn$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.meter_fxwnjn$f_1(properties)), init);
-            },
-            nav_cnsq9w$f: function () {
-            },
-            nav_cnsq9w$f_0: function () {
-            },
-            nav_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.nav.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            nav_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.nav_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.nav_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.nav_cnsq9w$f_1(properties)), init);
-            },
-            noscript_cnsq9w$f: function () {
-            },
-            noscript_cnsq9w$f_0: function () {
-            },
-            noscript_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.noscript.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            noscript_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.noscript_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.noscript_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.noscript_cnsq9w$f_1(properties)), init);
-            },
-            obj_rh5onp$f: function () {
-            },
-            obj_rh5onp$f_0: function () {
-            },
-            obj_rh5onp$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.object.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.ObjectAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            obj_rh5onp$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.obj_rh5onp$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.obj_rh5onp$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.obj_rh5onp$f_1(properties)), init);
-            },
-            ol_cnsq9w$f: function () {
-            },
-            ol_cnsq9w$f_0: function () {
-            },
-            ol_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.ol.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            ol_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.ol_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.ol_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.ol_cnsq9w$f_1(properties)), init);
-            },
-            optgroup_cnsq9w$f: function () {
-            },
-            optgroup_cnsq9w$f_0: function () {
-            },
-            optgroup_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.optgroup.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            optgroup_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.optgroup_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.optgroup_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.optgroup_cnsq9w$f_1(properties)), init);
-            },
-            option_az9cwb$f: function () {
-            },
-            option_az9cwb$f_0: function () {
-            },
-            option_az9cwb$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.option.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.OptionAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            option_az9cwb$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.option_az9cwb$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.option_az9cwb$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.option_az9cwb$f_1(properties)), init);
-            },
-            output_rqrq09$f: function () {
-            },
-            output_rqrq09$f_0: function () {
-            },
-            output_rqrq09$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.output.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.OutputAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            output_rqrq09$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.output_rqrq09$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.output_rqrq09$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.output_rqrq09$f_1(properties)), init);
-            },
-            p_cnsq9w$f: function () {
-            },
-            p_cnsq9w$f_0: function () {
-            },
-            p_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.p.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            p_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.p_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.p_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.p_cnsq9w$f_1(properties)), init);
-            },
-            param_bh5tin$f: function () {
-            },
-            param_bh5tin$f_0: function () {
-            },
-            param_bh5tin$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.param.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.ParamAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            param_bh5tin$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.param_bh5tin$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.param_bh5tin$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.param_bh5tin$f_1(properties)), init);
-            },
-            pre_cnsq9w$f: function () {
-            },
-            pre_cnsq9w$f_0: function () {
-            },
-            pre_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.pre.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            pre_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.pre_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.pre_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.pre_cnsq9w$f_1(properties)), init);
-            },
-            progress_4um9dp$f: function () {
-            },
-            progress_4um9dp$f_0: function () {
-            },
-            progress_4um9dp$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.progress.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.ProgressAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            progress_4um9dp$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.progress_4um9dp$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.progress_4um9dp$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.progress_4um9dp$f_1(properties)), init);
-            },
-            q_cnsq9w$f: function () {
-            },
-            q_cnsq9w$f_0: function () {
-            },
-            q_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.q.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            q_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.q_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.q_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.q_cnsq9w$f_1(properties)), init);
-            },
-            rp_cnsq9w$f: function () {
-            },
-            rp_cnsq9w$f_0: function () {
-            },
-            rp_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.rp.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            rp_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.rp_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.rp_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.rp_cnsq9w$f_1(properties)), init);
-            },
-            rt_cnsq9w$f: function () {
-            },
-            rt_cnsq9w$f_0: function () {
-            },
-            rt_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.rt.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            rt_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.rt_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.rt_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.rt_cnsq9w$f_1(properties)), init);
-            },
-            ruby_cnsq9w$f: function () {
-            },
-            ruby_cnsq9w$f_0: function () {
-            },
-            ruby_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.ruby.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            ruby_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.ruby_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.ruby_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.ruby_cnsq9w$f_1(properties)), init);
-            },
-            s_cnsq9w$f: function () {
-            },
-            s_cnsq9w$f_0: function () {
-            },
-            s_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.s.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            s_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.s_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.s_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.s_cnsq9w$f_1(properties)), init);
-            },
-            samp_cnsq9w$f: function () {
-            },
-            samp_cnsq9w$f_0: function () {
-            },
-            samp_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.samp.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            samp_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.samp_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.samp_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.samp_cnsq9w$f_1(properties)), init);
-            },
-            script_fulpzz$f: function () {
-            },
-            script_fulpzz$f_0: function () {
-            },
-            script_fulpzz$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.script.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.ScriptAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            script_fulpzz$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.script_fulpzz$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.script_fulpzz$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.script_fulpzz$f_1(properties)), init);
-            },
-            section_cnsq9w$f: function () {
-            },
-            section_cnsq9w$f_0: function () {
-            },
-            section_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.section.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            section_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.section_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.section_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.section_cnsq9w$f_1(properties)), init);
-            },
-            select_5a0mnm$f: function () {
-            },
-            select_5a0mnm$f_0: function () {
-            },
-            select_5a0mnm$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.select.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.SelectAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            select_5a0mnm$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.select_5a0mnm$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.select_5a0mnm$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.select_5a0mnm$f_1(properties)), init);
-            },
-            small_cnsq9w$f: function () {
-            },
-            small_cnsq9w$f_0: function () {
-            },
-            small_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.small.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            small_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.small_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.small_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.small_cnsq9w$f_1(properties)), init);
-            },
-            source_m9s775$f: function () {
-            },
-            source_m9s775$f_0: function () {
-            },
-            source_m9s775$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.source.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.SourceAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            source_m9s775$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.source_m9s775$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.source_m9s775$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.source_m9s775$f_1(properties)), init);
-            },
-            span_cnsq9w$f: function () {
-            },
-            span_cnsq9w$f_0: function () {
-            },
-            span_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.span.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            span_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.span_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.span_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.span_cnsq9w$f_1(properties)), init);
-            },
-            strong_cnsq9w$f: function () {
-            },
-            strong_cnsq9w$f_0: function () {
-            },
-            strong_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.strong.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            strong_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.strong_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.strong_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.strong_cnsq9w$f_1(properties)), init);
-            },
-            style_xkk93f$f: function () {
-            },
-            style_xkk93f$f_0: function () {
-            },
-            style_xkk93f$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.style.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.StyleAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            style_xkk93f$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.style_xkk93f$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.style_xkk93f$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.style_xkk93f$f_1(properties)), init);
-            },
-            sub_cnsq9w$f: function () {
-            },
-            sub_cnsq9w$f_0: function () {
-            },
-            sub_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.sub.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            sub_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.sub_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.sub_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.sub_cnsq9w$f_1(properties)), init);
-            },
-            summary_cnsq9w$f: function () {
-            },
-            summary_cnsq9w$f_0: function () {
-            },
-            summary_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.summary.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            summary_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.summary_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.summary_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.summary_cnsq9w$f_1(properties)), init);
-            },
-            sup_cnsq9w$f: function () {
-            },
-            sup_cnsq9w$f_0: function () {
-            },
-            sup_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.sup.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            sup_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.sup_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.sup_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.sup_cnsq9w$f_1(properties)), init);
-            },
-            table_5t7x82$f: function () {
-            },
-            table_5t7x82$f_0: function () {
-            },
-            table_5t7x82$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.table.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.TableAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            table_5t7x82$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.table_5t7x82$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.table_5t7x82$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.table_5t7x82$f_1(properties)), init);
-            },
-            tbody_cnsq9w$f: function () {
-            },
-            tbody_cnsq9w$f_0: function () {
-            },
-            tbody_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.tbody.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            tbody_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.tbody_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.tbody_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.tbody_cnsq9w$f_1(properties)), init);
-            },
-            td_xg4nxi$f: function () {
-            },
-            td_xg4nxi$f_0: function () {
-            },
-            td_xg4nxi$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.td.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.TdAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            td_xg4nxi$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.td_xg4nxi$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.td_xg4nxi$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.td_xg4nxi$f_1(properties)), init);
-            },
-            textarea_xwjpxs$f: function () {
-            },
-            textarea_xwjpxs$f_0: function () {
-            },
-            textarea_xwjpxs$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.textarea.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.TextareaAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            textarea_xwjpxs$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.textarea_xwjpxs$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.textarea_xwjpxs$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.textarea_xwjpxs$f_1(properties)), init);
-            },
-            tfoot_cnsq9w$f: function () {
-            },
-            tfoot_cnsq9w$f_0: function () {
-            },
-            tfoot_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.tfoot.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            tfoot_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.tfoot_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.tfoot_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.tfoot_cnsq9w$f_1(properties)), init);
-            },
-            th_o5sp7u$f: function () {
-            },
-            th_o5sp7u$f_0: function () {
-            },
-            th_o5sp7u$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.th.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.ThAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            th_o5sp7u$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.th_o5sp7u$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.th_o5sp7u$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.th_o5sp7u$f_1(properties)), init);
-            },
-            thead_cnsq9w$f: function () {
-            },
-            thead_cnsq9w$f_0: function () {
-            },
-            thead_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.thead.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            thead_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.thead_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.thead_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.thead_cnsq9w$f_1(properties)), init);
-            },
-            time_whri71$f: function () {
-            },
-            time_whri71$f_0: function () {
-            },
-            time_whri71$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.time.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.TimeAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            time_whri71$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.time_whri71$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.time_whri71$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.time_whri71$f_1(properties)), init);
-            },
-            title_cnsq9w$f: function () {
-            },
-            title_cnsq9w$f_0: function () {
-            },
-            title_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.title.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            title_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.title_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.title_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.title_cnsq9w$f_1(properties)), init);
-            },
-            tr_cnsq9w$f: function () {
-            },
-            tr_cnsq9w$f_0: function () {
-            },
-            tr_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.tr.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            tr_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.tr_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.tr_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.tr_cnsq9w$f_1(properties)), init);
-            },
-            track_mjpj1t$f: function () {
-            },
-            track_mjpj1t$f_0: function () {
-            },
-            track_mjpj1t$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.track.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.TrackAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            track_mjpj1t$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.track_mjpj1t$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.track_mjpj1t$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.track_mjpj1t$f_1(properties)), init);
-            },
-            u_cnsq9w$f: function () {
-            },
-            u_cnsq9w$f_0: function () {
-            },
-            u_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.u.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            u_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.u_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.u_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.u_cnsq9w$f_1(properties)), init);
-            },
-            ul_cnsq9w$f: function () {
-            },
-            ul_cnsq9w$f_0: function () {
-            },
-            ul_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.ul.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            ul_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.ul_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.ul_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.ul_cnsq9w$f_1(properties)), init);
-            },
-            variable_cnsq9w$f: function () {
-            },
-            variable_cnsq9w$f_0: function () {
-            },
-            variable_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.var.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            variable_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.variable_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.variable_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.variable_cnsq9w$f_1(properties)), init);
-            },
-            video_djq1s1$f: function () {
-            },
-            video_djq1s1$f_0: function () {
-            },
-            video_djq1s1$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.video.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.VideoAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            video_djq1s1$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.video_djq1s1$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.video_djq1s1$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.video_djq1s1$f_1(properties)), init);
-            },
-            wbr_cnsq9w$f: function () {
-            },
-            wbr_cnsq9w$f_0: function () {
-            },
-            wbr_cnsq9w$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.wbr.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.HTMLGlobalAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            wbr_cnsq9w$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.wbr_cnsq9w$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.wbr_cnsq9w$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.wbr_cnsq9w$f_1(properties)), init);
-            },
-            circle_a4e008$f: function () {
-            },
-            circle_a4e008$f_0: function () {
-            },
-            circle_a4e008$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.circle.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.SVGAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            circle_a4e008$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.circle_a4e008$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.circle_a4e008$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.circle_a4e008$f_1(properties)), init);
-            },
-            g_a4e008$f: function () {
-            },
-            g_a4e008$f_0: function () {
-            },
-            g_a4e008$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.g.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.SVGAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            g_a4e008$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.g_a4e008$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.g_a4e008$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.g_a4e008$f_1(properties)), init);
-            },
-            line_a4e008$f: function () {
-            },
-            line_a4e008$f_0: function () {
-            },
-            line_a4e008$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.line.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.SVGAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            line_a4e008$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.line_a4e008$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.line_a4e008$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.line_a4e008$f_1(properties)), init);
-            },
-            path_a4e008$f: function () {
-            },
-            path_a4e008$f_0: function () {
-            },
-            path_a4e008$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.path.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.SVGAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            path_a4e008$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.path_a4e008$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.path_a4e008$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.path_a4e008$f_1(properties)), init);
-            },
-            polygon_a4e008$f: function () {
-            },
-            polygon_a4e008$f_0: function () {
-            },
-            polygon_a4e008$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.polygon.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.SVGAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            polygon_a4e008$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.polygon_a4e008$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.polygon_a4e008$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.polygon_a4e008$f_1(properties)), init);
-            },
-            polyline_a4e008$f: function () {
-            },
-            polyline_a4e008$f_0: function () {
-            },
-            polyline_a4e008$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.polyline.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.SVGAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            polyline_a4e008$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.polyline_a4e008$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.polyline_a4e008$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.polyline_a4e008$f_1(properties)), init);
-            },
-            rect_a4e008$f: function () {
-            },
-            rect_a4e008$f_0: function () {
-            },
-            rect_a4e008$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.rect.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.SVGAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            rect_a4e008$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.rect_a4e008$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.rect_a4e008$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.rect_a4e008$f_1(properties)), init);
-            },
-            svg_a4e008$f: function () {
-            },
-            svg_a4e008$f_0: function () {
-            },
-            svg_a4e008$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.svg.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.SVGAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            svg_a4e008$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.svg_a4e008$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.svg_a4e008$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.svg_a4e008$f_1(properties)), init);
-            },
-            text_a4e008$f: function () {
-            },
-            text_a4e008$f_0: function () {
-            },
-            text_a4e008$f_1: function (properties) {
-              return function (it) {
-                return React.DOM.text.apply(null, [_.com.github.andrewoma.react.initProps(new _.com.github.andrewoma.react.SVGAttributes(), properties)].concat(it.transformChildren()));
-              };
-            },
-            text_a4e008$: function ($receiver, properties, init) {
-              if (properties === void 0)
-                properties = _.com.github.andrewoma.react.text_a4e008$f;
-              if (init === void 0)
-                init = _.com.github.andrewoma.react.text_a4e008$f_0;
-              return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.text_a4e008$f_1(properties)), init);
-            },
             classSet: function (classes) {
               var tmp$0, tmp$1, tmp$2;
               var sb = new Kotlin.StringBuilder();
@@ -5694,6 +5683,17 @@
               }
               return _.com.github.andrewoma.react.LogLevel.object.none;
             },
+            ReadWriteProperty: Kotlin.createTrait(null),
+            Property: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.ReadWriteProperty];
+            }, null, /** @lends _.com.github.andrewoma.react.Property.prototype */ {
+              get_1tsekc$: function (thisRef, desc) {
+                return Reakt.getProperty(thisRef, desc.name);
+              },
+              set_1z3uih$: function (thisRef, desc, value) {
+                Reakt.setProperty(thisRef, desc.name, value);
+              }
+            }),
             React: Kotlin.createClass(null, null, /** @lends _.com.github.andrewoma.react.React.prototype */ {
               createFactory_oqkx6a$: function (spec) {
                 return Reakt.createClass(spec);
