@@ -2,7 +2,7 @@ package todo.components
 
 import com.github.andrewoma.react.*
 
-class TodoTextInputProps(
+class TodoTextInputProperties(
         val className: String? = null,
         val id: String? = null,
         val placeHolder: String? = null,
@@ -10,7 +10,7 @@ class TodoTextInputProps(
         val onSave: (String) -> Unit
 )
 
-class TodoTextInput : ComponentSpec<TodoTextInputProps, String>() {
+class TodoTextInput : ComponentSpec<TodoTextInputProperties, String>() {
     class object {
         val enterKeyCode = 13
         val factory = react.createFactory(TodoTextInput())
@@ -51,6 +51,6 @@ class TodoTextInput : ComponentSpec<TodoTextInputProps, String>() {
     }
 }
 
-fun Component.todoTextInput(props: TodoTextInputProps): Component {
+fun Component.todoTextInput(props: TodoTextInputProperties): Component {
     return construct(Component({ TodoTextInput.factory(Ref(props)) }))
 }

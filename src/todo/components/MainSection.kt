@@ -4,9 +4,9 @@ import com.github.andrewoma.react.*
 import todo.stores.*
 import todo.actions.todoActions
 
-data class MainSectionProps(val todos: Collection<Todo>)
+data class MainSectionProperties(val todos: Collection<Todo>)
 
-class MainSection : ComponentSpec<MainSectionProps, Unit>() {
+class MainSection : ComponentSpec<MainSectionProperties, Unit>() {
     class object {
         val factory = react.createFactory(MainSection())
     }
@@ -28,7 +28,7 @@ class MainSection : ComponentSpec<MainSectionProps, Unit>() {
 
             ul({ id = "todo-list" }) {
                 for (todo in props.todos) {
-                    todoItem(TodoItemProps(key = todo.id, todo = todo))
+                    todoItem(TodoItemProperties(key = todo.id, todo = todo))
                 }
             }
         }
@@ -39,6 +39,6 @@ class MainSection : ComponentSpec<MainSectionProps, Unit>() {
     }
 }
 
-fun Component.todoMainSection(props: MainSectionProps): Component {
+fun Component.todoMainSection(props: MainSectionProperties): Component {
     return construct(Component({ MainSection.factory(Ref(props)) }))
 }

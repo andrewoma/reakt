@@ -4,10 +4,10 @@ import com.github.andrewoma.react.*
 import todo.stores.*
 import todo.actions.todoActions
 
-data class TodoItemProps(val key: String, val todo: Todo)
+data class TodoItemProperties(val key: String, val todo: Todo)
 data class TodoItemState(val isEditing: Boolean = false)
 
-class TodoItem : ComponentSpec<TodoItemProps, TodoItemState>() {
+class TodoItem : ComponentSpec<TodoItemProperties, TodoItemState>() {
     class object {
         val factory = react.createFactory(TodoItem())
     }
@@ -44,7 +44,7 @@ class TodoItem : ComponentSpec<TodoItemProps, TodoItemState>() {
             }
 
             if (state.isEditing) {
-                todoTextInput(TodoTextInputProps(
+                todoTextInput(TodoTextInputProperties(
                         className = "edit",
                         onSave = { onSave(it) },
                         value = props.todo.text))
@@ -69,11 +69,11 @@ class TodoItem : ComponentSpec<TodoItemProps, TodoItemState>() {
         todoActions.destroy(props.todo.id)
     }
 
-    override fun shouldComponentUpdate(nextProps: TodoItemProps, nextState: TodoItemState): Boolean {
+    override fun shouldComponentUpdate(nextProps: TodoItemProperties, nextState: TodoItemState): Boolean {
         return !(props.todo.identityEquals(nextProps.todo) && state.identityEquals(nextState))
     }
 }
 
-fun Component.todoItem(props: TodoItemProps): Component {
+fun Component.todoItem(props: TodoItemProperties): Component {
     return construct(Component({ TodoItem.factory(Ref(props)) }))
 }

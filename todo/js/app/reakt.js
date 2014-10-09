@@ -73,20 +73,20 @@
         })
       }),
       components: Kotlin.definePackage(null, /** @lends _.todo.components */ {
-        FooterProps: Kotlin.createClass(null, function (todos) {
+        FooterProperties: Kotlin.createClass(null, function (todos) {
           this.todos = todos;
-        }, /** @lends _.todo.components.FooterProps.prototype */ {
+        }, /** @lends _.todo.components.FooterProperties.prototype */ {
           component1: function () {
             return this.todos;
           },
           copy: function (todos) {
-            return new _.todo.components.FooterProps(todos === void 0 ? this.todos : todos);
+            return new _.todo.components.FooterProperties(todos === void 0 ? this.todos : todos);
           },
           toString: function () {
-            return 'FooterProps(todos=' + Kotlin.toString(this.todos) + ')';
+            return 'FooterProperties(todos=' + Kotlin.toString(this.todos) + ')';
           },
           hashCode: function () {
-            var result = -1249464522;
+            var result = -1190309075;
             result = result * 31 + Kotlin.hashCode(this.todos) | 0;
             return result;
           },
@@ -200,7 +200,7 @@
           render_sx5o3u$f_0: function (this$Header) {
             return function () {
               _.com.github.andrewoma.react.h1_yckneo$(this, void 0, _.todo.components.Header.f);
-              _.todo.components.todoTextInput(this, new _.todo.components.TodoTextInputProps(void 0, 'new-todo', 'What needs to be done?', void 0, _.todo.components.Header.f_0(this$Header)));
+              _.todo.components.todoTextInput(this, new _.todo.components.TodoTextInputProperties(void 0, 'new-todo', 'What needs to be done?', void 0, _.todo.components.Header.f_0(this$Header)));
             };
           }
         }),
@@ -210,20 +210,20 @@
         todoHeader: function ($receiver) {
           return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.todo.components.todoHeader$f));
         },
-        MainSectionProps: Kotlin.createClass(null, function (todos) {
+        MainSectionProperties: Kotlin.createClass(null, function (todos) {
           this.todos = todos;
-        }, /** @lends _.todo.components.MainSectionProps.prototype */ {
+        }, /** @lends _.todo.components.MainSectionProperties.prototype */ {
           component1: function () {
             return this.todos;
           },
           copy: function (todos) {
-            return new _.todo.components.MainSectionProps(todos === void 0 ? this.todos : todos);
+            return new _.todo.components.MainSectionProperties(todos === void 0 ? this.todos : todos);
           },
           toString: function () {
-            return 'MainSectionProps(todos=' + Kotlin.toString(this.todos) + ')';
+            return 'MainSectionProperties(todos=' + Kotlin.toString(this.todos) + ')';
           },
           hashCode: function () {
-            var result = -1326077981;
+            var result = 191872672;
             result = result * 31 + Kotlin.hashCode(this.todos) | 0;
             return result;
           },
@@ -282,7 +282,7 @@
               tmp$0 = this$MainSection.props.todos.iterator();
               while (tmp$0.hasNext()) {
                 var todo = tmp$0.next();
-                _.todo.components.todoItem(this, new _.todo.components.TodoItemProps(todo.id, todo));
+                _.todo.components.todoItem(this, new _.todo.components.TodoItemProperties(todo.id, todo));
               }
             };
           },
@@ -358,18 +358,18 @@
           render_sx5o3u$f: function (this$TodoApp) {
             return function () {
               _.todo.components.todoHeader(this);
-              _.todo.components.todoMainSection(this, new _.todo.components.MainSectionProps(this$TodoApp.state.todos));
-              _.todo.components.todoFooter(this, new _.todo.components.FooterProps(this$TodoApp.state.todos));
+              _.todo.components.todoMainSection(this, new _.todo.components.MainSectionProperties(this$TodoApp.state.todos));
+              _.todo.components.todoFooter(this, new _.todo.components.FooterProperties(this$TodoApp.state.todos));
             };
           }
         }),
         createTodoApp: function () {
           return _.todo.components.TodoApp.object.factory.invoke(new _.com.github.andrewoma.react.Ref(null));
         },
-        TodoItemProps: Kotlin.createClass(null, function (key, todo) {
+        TodoItemProperties: Kotlin.createClass(null, function (key, todo) {
           this.key = key;
           this.todo = todo;
-        }, /** @lends _.todo.components.TodoItemProps.prototype */ {
+        }, /** @lends _.todo.components.TodoItemProperties.prototype */ {
           component1: function () {
             return this.key;
           },
@@ -377,13 +377,13 @@
             return this.todo;
           },
           copy: function (key, todo) {
-            return new _.todo.components.TodoItemProps(key === void 0 ? this.key : key, todo === void 0 ? this.todo : todo);
+            return new _.todo.components.TodoItemProperties(key === void 0 ? this.key : key, todo === void 0 ? this.todo : todo);
           },
           toString: function () {
-            return 'TodoItemProps(key=' + Kotlin.toString(this.key) + (', todo=' + Kotlin.toString(this.todo)) + ')';
+            return 'TodoItemProperties(key=' + Kotlin.toString(this.key) + (', todo=' + Kotlin.toString(this.todo)) + ')';
           },
           hashCode: function () {
-            var result = 862721752;
+            var result = -102670133;
             result = result * 31 + Kotlin.hashCode(this.key) | 0;
             result = result * 31 + Kotlin.hashCode(this.todo) | 0;
             return result;
@@ -514,7 +514,7 @@
             return function () {
               _.com.github.andrewoma.react.div_yckneo$(this, _.todo.components.TodoItem.f, _.todo.components.TodoItem.f_7(this$TodoItem));
               if (this$TodoItem.state.isEditing) {
-                _.todo.components.todoTextInput(this, new _.todo.components.TodoTextInputProps('edit', void 0, void 0, this$TodoItem.props.todo.text, _.todo.components.TodoItem.f_8(this$TodoItem)));
+                _.todo.components.todoTextInput(this, new _.todo.components.TodoTextInputProperties('edit', void 0, void 0, this$TodoItem.props.todo.text, _.todo.components.TodoItem.f_8(this$TodoItem)));
               }
             };
           }
@@ -527,7 +527,7 @@
         todoItem: function ($receiver, props) {
           return $receiver.construct_jol6v7$(new _.com.github.andrewoma.react.Component(_.todo.components.todoItem$f(props)));
         },
-        TodoTextInputProps: Kotlin.createClass(null, function (className, id, placeHolder, value, onSave) {
+        TodoTextInputProperties: Kotlin.createClass(null, function (className, id, placeHolder, value, onSave) {
           if (className === void 0)
             className = null;
           if (id === void 0)

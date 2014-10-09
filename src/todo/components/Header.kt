@@ -13,7 +13,7 @@ class Header : ComponentSpec<Unit, Unit>() {
 
         header({ id = "header" }) {
             h1 { text("todos") }
-            todoTextInput(TodoTextInputProps(
+            todoTextInput(TodoTextInputProperties(
                     id = "new-todo",
                     placeHolder = "What needs to be done?",
                     onSave = { onSave(it) })

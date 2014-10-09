@@ -27,8 +27,8 @@ class TodoApp : ComponentSpec<Unit, TodoAppState>() {
     override fun Component.render() {
         div {
             todoHeader()
-            todoMainSection(MainSectionProps(state.todos))
-            todoFooter(FooterProps(state.todos))
+            todoMainSection(MainSectionProperties(state.todos))
+            todoFooter(FooterProperties(state.todos))
         }
     }
 

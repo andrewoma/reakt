@@ -4,9 +4,9 @@ import com.github.andrewoma.react.*
 import todo.stores.*
 import todo.actions.todoActions
 
-data class FooterProps(val todos: Collection<Todo>)
+data class FooterProperties(val todos: Collection<Todo>)
 
-class Footer : ComponentSpec<FooterProps, Unit>() {
+class Footer : ComponentSpec<FooterProperties, Unit>() {
     class object {
         val factory = react.createFactory(Footer())
     }
@@ -40,6 +40,6 @@ class Footer : ComponentSpec<FooterProps, Unit>() {
     }
 }
 
-fun Component.todoFooter(props: FooterProps): Component {
+fun Component.todoFooter(props: FooterProperties): Component {
     return construct(Component({ Footer.factory(Ref(props)) }))
 }
