@@ -1,13 +1,14 @@
 package todo.components
 
 import com.github.andrewoma.react.*
-import todo.stores.*
 import todo.actions.todoActions
+import todo.stores.Todo
+import todo.stores.completedCount
 
 data class FooterProperties(val todos: Collection<Todo>)
 
 class Footer : ComponentSpec<FooterProperties, Unit>() {
-    class object {
+    companion object {
         val factory = react.createFactory(Footer())
     }
 

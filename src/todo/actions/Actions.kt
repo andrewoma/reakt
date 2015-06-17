@@ -1,10 +1,10 @@
 package todo.actions
 
-import todo.stores.Todo
-import todo.dispatcher.todoDispatcher
 import com.github.andrewoma.react.log
+import todo.dispatcher.todoDispatcher
+import todo.stores.Todo
 
-trait TodoAction
+interface TodoAction
 class Create(val text: String) : TodoAction
 class Update(val id: String, val text: String) : TodoAction
 class UndoComplete(val id: String) : TodoAction
@@ -37,5 +37,6 @@ class TodoActions {
 
     fun destroyCompleted() = viewAction(DestroyCompleted())
 }
+
 val todoActions = TodoActions()
 

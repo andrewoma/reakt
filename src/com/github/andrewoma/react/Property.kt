@@ -1,6 +1,6 @@
 package com.github.andrewoma.react
 
-public trait ReadWriteProperty<in R, T> {
+public interface ReadWriteProperty<in R, T> {
     public fun get(thisRef: R, desc: PropertyMetadata): T
     public fun set(thisRef: R, desc: PropertyMetadata, value: T)
 }
@@ -13,6 +13,7 @@ public class Property<in R, T> : ReadWriteProperty<R, T> {
     override fun get(thisRef: R, desc: PropertyMetadata): T {
         return getProperty(thisRef, desc.name)
     }
+
     override fun set(thisRef: R, desc: PropertyMetadata, value: T) {
         setProperty(thisRef, desc.name, value)
     }

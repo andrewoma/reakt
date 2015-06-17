@@ -12,6 +12,7 @@ public class React {
     public fun <C : ReactComponent<*, *>> renderComponent(component: C, container: Element, callback: () -> Unit = {}): C
             = reactRenderComponent(component, container, callback)
 }
+
 public val react: React = React()
 
 // Can't seem to nest these inside a class

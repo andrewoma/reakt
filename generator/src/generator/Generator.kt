@@ -24,7 +24,7 @@ data class Kind(val name: String, val properties: List<Property>, val extends: L
 
     override fun toString(): String {
 
-        val prefix = if (extends.empty) "" else ": "
+        val prefix = if (extends.isEmpty()) "" else ": "
         val classType = if (isClass && isOpen) "open class" else if (isClass) "class" else "trait"
         val extendsConstructors = extends.map { if (it.contains("Properties")) it + "()" else it }
 
@@ -123,9 +123,9 @@ fun extractKinds(lines: List<String>): MutableMap<String, Kind> {
             }
 
             if (line.contains("}")) {
-                val parents = extends?.split(",")?.map { it.trim() }?.filter { !it.isEmpty() } ?: arrayListOf()
-                val kind = Kind(name!!, properties, parents, name?.contains("Attribute"))
-                kinds[name!!] = kind
+                val parents = extends?.let { it.split(",".toRegex()) }?.map { it.trim() }?.filter { !it.isEmpty() } ?: arrayListOf()
+                val kind = Kind(name, properties, parents, name.contains("Attribute"))
+                kinds[name] = kind
                 properties = arrayListOf()
                 name = null
             }
@@ -161,9 +161,9 @@ class Style {
     }
 }
 
-fun rename(name: String) = name.replaceAll("Attributes", "Properties")
-        .replaceAll("HTML", "Html")
-        .replaceAll("SVG", "Svg")
+fun rename(name: String) = name.replace("Attributes".toRegex(), "Properties")
+        .replace("HTML".toRegex(), "Html")
+        .replace("SVG".toRegex(), "Svg")
 
 fun mungeClasses(kinds: MutableMap<String, Kind>) {
     val events = kinds.remove("ReactEvents")!!
@@ -190,7 +190,7 @@ fun mungeClasses(kinds: MutableMap<String, Kind>) {
 }
 
 fun translateKind(kind: String): String {
-    var result = kind.replaceAll("^any", "Any").replaceAll(" void", " Unit").replaceAll("=>", "->")
+    var result = kind.replace("^any".toRegex(), "Any").replace(" void".toRegex(), " Unit").replace("=>".toRegex(), "->")
     result = if (result.contains("(")) "($result)" else result
     return when (result) {
         "boolean" -> "Boolean"

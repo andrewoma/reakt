@@ -5,7 +5,7 @@ package com.github.andrewoma.react
  */
 import org.w3c.dom.Element
 
-trait ReactMixin<P, S> {
+interface ReactMixin<P, S> {
 
     /**
      * Invoked immediately before rendering occurs.
@@ -87,7 +87,7 @@ abstract class ReactComponentSpec<P : Any, S : Any>() : ReactMixin<P, S> {
     /**
      * The mixins array allows you to use mixins to share behavior among multiple components.
      */
-    var mixins: Array<ReactMixin<Any, Any>> = array()
+    var mixins: Array<ReactMixin<Any, Any>> = arrayOf()
 
     /**
      * The displayName string is used in debugging messages. JSX sets this value automatically.
@@ -147,7 +147,7 @@ abstract class ReactComponentSpec<P : Any, S : Any>() : ReactMixin<P, S> {
  * Most of the time when you're using React you're either creating or consuming these component objects.
  */
 native
-trait ReactComponent<P, S> {
+interface ReactComponent<P, S> {
 
     //refs: { [ref: string]: ReactComponent<any, any> }
 
@@ -219,6 +219,6 @@ trait ReactComponent<P, S> {
 }
 
 native
-trait ReactComponentFactory<P : Any, S : Any> {
+interface ReactComponentFactory<P : Any, S : Any> {
     fun invoke(properties: Ref<P>?, vararg children: Any?): ReactComponent<Ref<P>, Ref<S>>
 }

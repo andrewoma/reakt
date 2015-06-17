@@ -3,7 +3,7 @@ package com.github.andrewoma.react
 /**
  * A trait to allow rendering of React components using the Component builders
  */
-trait ComponentRenderer {
+interface ComponentRenderer {
     suppress("UNCHECKED_CAST")
     fun render(): ReactComponent<Any, Any>? {
         // This bit of trickery makes root an instance of Component so that the scoped render method is visible
@@ -18,7 +18,7 @@ trait ComponentRenderer {
         return root.children[0].transform() as ReactComponent<Any, Any>?
     }
 
-    // Stolen from the Kara. This allows a component to create an extension function to Component
+    // Stolen from Kara. This allows a component to create an extension function to Component
     // that is scoped to this component
     fun Component.render()
 }

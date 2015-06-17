@@ -1,14 +1,14 @@
 package todo.components
 
 import com.github.andrewoma.react.*
-import todo.stores.*
 import todo.actions.todoActions
+import todo.stores.Todo
 
 data class TodoItemProperties(val key: String, val todo: Todo)
 data class TodoItemState(val isEditing: Boolean = false)
 
 class TodoItem : ComponentSpec<TodoItemProperties, TodoItemState>() {
-    class object {
+    companion object {
         val factory = react.createFactory(TodoItem())
     }
 

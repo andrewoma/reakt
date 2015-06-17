@@ -4,7 +4,7 @@ import com.github.andrewoma.react.*
 import todo.actions.todoActions
 
 class Header : ComponentSpec<Unit, Unit>() {
-    class object {
+    companion object {
         val factory = react.createFactory(Header())
     }
 

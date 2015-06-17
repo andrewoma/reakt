@@ -1,20 +1,19 @@
 package todo.stores
 
-import com.github.andrewoma.react.*
-
-import java.util.LinkedHashMap
-import java.util.HashSet
-
+import com.github.andrewoma.react.log
 import todo.actions.*
-import todo.dispatcher.*
+import todo.dispatcher.TodoDispatcher
+import todo.dispatcher.todoDispatcher
+import java.util.HashSet
+import java.util.LinkedHashMap
 
-data class Todo (
+data class Todo(
         val id: String,
         val text: String,
         val complete: Boolean = false
 )
 
-trait Event
+interface Event
 class ChangeEvent : Event
 
 fun Collection<Todo>.areAllCompleted() = this.size() == completedCount()
@@ -49,14 +48,14 @@ class TodoStore {
     }
 
     fun destroyCompleted() {
-        for (todo in todos.values().copyToArray()) {
+        for (todo in todos.values().toTypedArray()) {
             if (todo.complete) todos.remove(todo.id)
         }
     }
 
     inline fun updateAll(update: (Todo) -> Todo) {
         // Obey Java contract of not updating while iterating?
-        for (todo in todos.values().copyToArray()) {
+        for (todo in todos.values().toTypedArray()) {
             val updated = update(todo)
             if (!updated.identityEquals(todo)) {
                 // Only put if actually changed
@@ -85,7 +84,7 @@ class TodoStore {
  * The action handler acts as a mediator between the view and store
  */
 class TodoStoreActionHandler(val store: TodoStore, dispatcher: TodoDispatcher) {
-    {
+    init {
         dispatcher.register { onAction(it) }
     }
 

@@ -1,13 +1,14 @@
 package todo.components
 
 import com.github.andrewoma.react.*
-import todo.stores.*
 import todo.actions.todoActions
+import todo.stores.Todo
+import todo.stores.areAllCompleted
 
 data class MainSectionProperties(val todos: Collection<Todo>)
 
 class MainSection : ComponentSpec<MainSectionProperties, Unit>() {
-    class object {
+    companion object {
         val factory = react.createFactory(MainSection())
     }
 

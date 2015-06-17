@@ -1,23 +1,22 @@
 package com.github.andrewoma.react
 
-import kotlin.js.dom.html.Window
-import kotlin.js.dom.html.Event
-import com.github.andrewoma.react.Property
+import org.w3c.dom.Window
+import org.w3c.dom.events.Event
 
 // TODO
-trait EventTarget {
+interface EventTarget {
     val value: String
 }
 
 // TODO
-trait DataTransfer {
+interface DataTransfer {
 }
 
 // TODO
 class Style {
 }
 
-trait SyntheticEvent  {
+interface SyntheticEvent {
     var bubbles: Boolean
     var cancelable: Boolean
     var currentTarget: EventTarget
@@ -30,11 +29,11 @@ trait SyntheticEvent  {
     fun stopPropagation(): Unit
 }
 
-trait ClipboardEvent : SyntheticEvent {
+interface ClipboardEvent : SyntheticEvent {
     var clipboardData: DataTransfer
 }
 
-trait KeyboardEvent : SyntheticEvent {
+interface KeyboardEvent : SyntheticEvent {
     var altKey: Boolean
     var ctrlKey: Boolean
     var charCode: Int
@@ -48,14 +47,14 @@ trait KeyboardEvent : SyntheticEvent {
     var which: Int
 }
 
-trait FocusEvent : SyntheticEvent {
+interface FocusEvent : SyntheticEvent {
     var relatedTarget: EventTarget
 }
 
-trait FormEvent : SyntheticEvent {
+interface FormEvent : SyntheticEvent {
 }
 
-trait MouseEvent : SyntheticEvent {
+interface MouseEvent : SyntheticEvent {
     var altKey: Boolean
     var button: Int
     var buttons: Int
@@ -70,7 +69,7 @@ trait MouseEvent : SyntheticEvent {
     var shiftKey: Boolean
 }
 
-trait TouchEvent : SyntheticEvent {
+interface TouchEvent : SyntheticEvent {
     var altKey: Boolean
     var changedTouches: TouchEvent
     var ctrlKey: Boolean
@@ -80,19 +79,19 @@ trait TouchEvent : SyntheticEvent {
     var touches: Any//DOMTouchList
 }
 
-trait UIEvent : SyntheticEvent {
+interface UIEvent : SyntheticEvent {
     var detail: Int
     var view: Window
 }
 
-trait WheelEvent  {
+interface WheelEvent {
     var deltaX: Int
     var deltaMode: Int
     var deltaY: Int
     var deltaZ: Int
 }
 
-open class ReactProperties  {
+open class ReactProperties {
     open var key: String? by Property()
     open var ref: String? by Property()
     var onCopy: ((event: ClipboardEvent) -> Unit)? by Property()

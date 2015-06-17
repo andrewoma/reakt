@@ -11,7 +11,7 @@ class TodoTextInputProperties(
 )
 
 class TodoTextInput : ComponentSpec<TodoTextInputProperties, String>() {
-    class object {
+    companion object {
         val enterKeyCode = 13
         val factory = react.createFactory(TodoTextInput())
     }

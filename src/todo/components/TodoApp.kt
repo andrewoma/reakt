@@ -1,12 +1,14 @@
 package todo.components
 
 import com.github.andrewoma.react.*
-import todo.stores.*
+import todo.stores.Event
+import todo.stores.Todo
+import todo.stores.todoStore
 
 data class TodoAppState(val todos: Collection<Todo>)
 
 class TodoApp : ComponentSpec<Unit, TodoAppState>() {
-    class object {
+    companion object {
         val factory = react.createFactory(TodoApp())
     }
 
