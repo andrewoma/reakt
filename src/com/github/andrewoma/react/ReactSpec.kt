@@ -146,7 +146,7 @@ abstract class ReactComponentSpec<P : Any, S : Any>() : ReactMixin<P, S> {
  * Component classses created by createClass() return instances of ReactComponent when called.
  * Most of the time when you're using React you're either creating or consuming these component objects.
  */
-native
+@native
 interface ReactComponent<P, S> {
 
     //refs: { [ref: string]: ReactComponent<any, any> }
@@ -218,7 +218,7 @@ interface ReactComponent<P, S> {
     fun forceUpdate(callback: () -> Unit): Unit
 }
 
-native
+@native
 interface ReactComponentFactory<P : Any, S : Any> {
     fun invoke(properties: Ref<P>?, vararg children: Any?): ReactComponent<Ref<P>, Ref<S>>
 }

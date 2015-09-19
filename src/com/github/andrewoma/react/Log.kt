@@ -35,7 +35,7 @@ public class Log(val logLevel: LogLevel) {
     }
 }
 
-native("document.location.search")
+@native("document.location.search")
 private val urlParameters: String = noImpl
 
 private fun logLevelFromLocation(location: String): LogLevel {

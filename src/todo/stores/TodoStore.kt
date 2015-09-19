@@ -36,7 +36,7 @@ class TodoStore {
         todos.put(id, Todo(id, text, complete = false))
     }
 
-    inline fun update(id: String, update: (Todo) -> Todo) {
+    fun update(id: String, update: (Todo) -> Todo) {
         val existing = todos.get(id)
         if (existing != null) {
             todos.put(id, update(existing))
@@ -53,7 +53,7 @@ class TodoStore {
         }
     }
 
-    inline fun updateAll(update: (Todo) -> Todo) {
+    fun updateAll(update: (Todo) -> Todo) {
         // Obey Java contract of not updating while iterating?
         for (todo in todos.values().toTypedArray()) {
             val updated = update(todo)

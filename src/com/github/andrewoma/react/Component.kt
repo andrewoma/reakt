@@ -4,7 +4,7 @@ package com.github.andrewoma.react
  * A trait to allow rendering of React components using the Component builders
  */
 interface ComponentRenderer {
-    suppress("UNCHECKED_CAST")
+    @Suppress("UNCHECKED_CAST")
     fun render(): ReactComponent<Any, Any>? {
         // This bit of trickery makes root an instance of Component so that the scoped render method is visible
         val root = object : Component({ null }) {}
@@ -26,7 +26,7 @@ interface ComponentRenderer {
 /**
  * The standard base class for Kotlin components that use the Component builder
  */
-abstract class ComponentSpec<S, P> : ReactComponentSpec<S, P>(), ComponentRenderer
+abstract class ComponentSpec<S:Any, P:Any> : ReactComponentSpec<S, P>(), ComponentRenderer
 
 /**
  * The base Component type
