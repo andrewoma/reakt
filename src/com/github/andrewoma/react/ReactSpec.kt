@@ -220,5 +220,5 @@ interface ReactComponent<P, S> {
 
 @native
 interface ReactComponentFactory<P : Any, S : Any> {
-    fun invoke(properties: Ref<P>?, vararg children: Any?): ReactComponent<Ref<P>, Ref<S>>
+    operator fun invoke(properties: Ref<P>?, vararg children: Any?): ReactComponent<Ref<P>, Ref<S>>
 }

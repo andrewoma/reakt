@@ -57,7 +57,7 @@ class TodoStore {
         // Obey Java contract of not updating while iterating?
         for (todo in todos.values().toTypedArray()) {
             val updated = update(todo)
-            if (!updated.identityEquals(todo)) {
+            if (updated !== todo) {
                 // Only put if actually changed
                 todos.put(updated.id, updated)
             }

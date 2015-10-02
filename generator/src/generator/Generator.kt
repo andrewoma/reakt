@@ -40,8 +40,10 @@ data class Kind(val name: String, val properties: List<Property>, val extends: L
     }
 }
 
-data class Dom(val name: String, attributes: String) {
-    val attributes: String = rename(attributes)
+data class Dom(val name: String, var attributes: String) {
+    init {
+        attributes = rename(attributes)
+    }
     val initialCapName: String
         get() = Character.toUpperCase(name[0]) + name.substring(1)
 

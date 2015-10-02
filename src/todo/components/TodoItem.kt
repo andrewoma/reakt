@@ -70,7 +70,7 @@ class TodoItem : ComponentSpec<TodoItemProperties, TodoItemState>() {
     }
 
     override fun shouldComponentUpdate(nextProps: TodoItemProperties, nextState: TodoItemState): Boolean {
-        return !(props.todo.identityEquals(nextProps.todo) && state.identityEquals(nextState))
+        return !(props.todo === nextProps.todo && state === nextState)
     }
 }
 
