@@ -28,7 +28,7 @@ data class Kind(val name: String, val properties: List<Property>, val extends: L
         val classType = if (isClass && isOpen) "open class" else if (isClass) "class" else "trait"
         val extendsConstructors = extends.map { if (it.contains("Properties")) it + "()" else it }
 
-        val sb = StringBuilder("$classType $name ${extendsConstructors.join(", ", prefix)} {\n")
+        val sb = StringBuilder("$classType $name ${extendsConstructors.joinToString(", ", prefix)} {\n")
         for (property in properties) {
             sb.append("\t${property.propertyType()} ${property}")
             if (isClass) sb.append(" by Property()\n") else sb.append("\n")
@@ -173,7 +173,7 @@ fun mungeClasses(kinds: MutableMap<String, Kind>) {
 
     kinds.put(attributes.name, attributes.copy(properties = attributes.properties + events.properties))
 
-    for (kind in kinds.values().toList()) {
+    for (kind in kinds.values) {
         var result = kind
         if (kind.extends == listOf("ReactAttributes", "ReactEvents")) {
             result = result.copy(extends = listOf("ReactAttributes"))

@@ -16,7 +16,7 @@ data class Todo(
 interface Event
 class ChangeEvent : Event
 
-fun Collection<Todo>.areAllCompleted() = this.size() == completedCount()
+fun Collection<Todo>.areAllCompleted() = this.size == completedCount()
 fun Collection<Todo>.completedCount(): Int {
     var completed = 0
     for (t in this) if (t.complete) completed += 1
@@ -27,7 +27,7 @@ class TodoStore {
     private val todos = LinkedHashMap<String, Todo>()
     private val listeners = HashSet<(Event) -> Unit>()
 
-    fun getAll(): Collection<Todo> = todos.values()
+    fun getAll(): Collection<Todo> = todos.values
 
     fun get(id: String) = todos[id]
 
@@ -48,14 +48,14 @@ class TodoStore {
     }
 
     fun destroyCompleted() {
-        for (todo in todos.values().toTypedArray()) {
+        for (todo in todos.values) {
             if (todo.complete) todos.remove(todo.id)
         }
     }
 
     fun updateAll(update: (Todo) -> Todo) {
         // Obey Java contract of not updating while iterating?
-        for (todo in todos.values().toTypedArray()) {
+        for (todo in todos.values) {
             val updated = update(todo)
             if (updated !== todo) {
                 // Only put if actually changed
@@ -64,7 +64,7 @@ class TodoStore {
         }
     }
 
-    fun areAllComplete() = todos.values().areAllCompleted()
+    fun areAllComplete() = todos.values.areAllCompleted()
 
     fun addChangeListener(callback: (Event) -> Unit) {
         listeners.add(callback)

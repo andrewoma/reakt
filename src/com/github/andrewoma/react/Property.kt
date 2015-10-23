@@ -1,8 +1,10 @@
 package com.github.andrewoma.react
 
+import kotlin.reflect.KProperty
+
 public interface ReadWriteProperty<in R, T> {
-    public fun get(thisRef: R, desc: PropertyMetadata): T
-    public fun set(thisRef: R, desc: PropertyMetadata, value: T)
+    public operator fun getValue(thisRef: R, property: KProperty<*>): T
+    public operator fun setValue(thisRef: R, property: KProperty<*>, value: T)
 }
 
 /**
@@ -10,12 +12,12 @@ public interface ReadWriteProperty<in R, T> {
  * React doesn't find properties declared via a prototype, so this works around that limitation.
  */
 public class Property<in R, T> : ReadWriteProperty<R, T> {
-    override fun get(thisRef: R, desc: PropertyMetadata): T {
-        return getProperty(thisRef as Any, desc.name)
+    override fun getValue(thisRef: R, property: KProperty<*>): T {
+        return getProperty(thisRef as Any, property.name)
     }
 
-    override fun set(thisRef: R, desc: PropertyMetadata, value: T) {
-        setProperty(thisRef as Any, desc.name, value)
+    override fun setValue(thisRef: R, property: KProperty<*>, value: T) {
+        setProperty(thisRef as Any, property.name, value)
     }
 }
 

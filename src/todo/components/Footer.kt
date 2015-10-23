@@ -18,12 +18,12 @@ class Footer : ComponentSpec<FooterProperties, Unit>() {
         if (props.todos.isEmpty()) return
 
         val completed = props.todos.completedCount()
-        val itemsLeft = props.todos.size() - completed
+        val itemsLeft = props.todos.size - completed
         val itemsLeftPhrase = (if (itemsLeft == 1) " item " else " items ") + "left"
 
         footer({ id = "footer" }) {
             span({ id = "todo-count" }) {
-                strong { text("$itemsLeft") } text(itemsLeftPhrase)
+                strong { text("$itemsLeft") }.text(itemsLeftPhrase)
             }
             if (completed != 0) {
                 button({

@@ -15,7 +15,7 @@ class MainSection : ComponentSpec<MainSectionProperties, Unit>() {
     override fun Component.render() {
         log.debug("MainSection.render", props)
 
-        if (props.todos.size() < 1) return
+        if (props.todos.size < 1) return
 
         section({ id = "main" }) {
             input({

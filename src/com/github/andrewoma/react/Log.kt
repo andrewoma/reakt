@@ -42,7 +42,7 @@ private fun logLevelFromLocation(location: String): LogLevel {
     // Doesn't seem to be regex support for capturing groups, so hack away
     val prefix = "log-level="
     for (token in location.split("[?&]".toRegex()).toTypedArray()) {
-        if (token.startsWith(prefix)) return LogLevel.parse(token.substring(prefix.length()))
+        if (token.startsWith(prefix)) return LogLevel.parse(token.substring(prefix.length))
     }
     return LogLevel.none
 }

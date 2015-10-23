@@ -9,7 +9,7 @@ interface ComponentRenderer {
         // This bit of trickery makes root an instance of Component so that the scoped render method is visible
         val root = object : Component({ null }) {}
         root.render()
-        check(root.children.size() <= 1, "React only supports one (or zero) root components")
+        check(root.children.size <= 1, "React only supports one (or zero) root components")
 
         // Can't check instance type when native
         // check(root.children[0] is ReactComponent<*, *>, "Root must be a Component or null")
@@ -44,5 +44,5 @@ open class Component(val transformer: (Component) -> Any?) {
         return transformer(this)
     }
 
-    public fun transformChildren(): Array<Any?> = Array(children.size(), { children[it].transform() })
+    public fun transformChildren(): Array<Any?> = Array(children.size, { children[it].transform() })
 }
