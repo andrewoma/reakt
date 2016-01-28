@@ -4,6 +4,7 @@ package com.github.andrewoma.react
  * Interface describing ReactComponentSpec
  */
 import org.w3c.dom.Element
+import org.w3c.dom.HTMLElement
 
 interface ReactMixin<P, S> {
 
@@ -81,6 +82,11 @@ interface ReactMixin<P, S> {
 
 class Ref<T : Any>(val value: T?)
 
+class RefContent(val realRef: dynamic) {
+    fun asComponent(): ReactComponent<Any, Any> = realRef
+    fun asDomNode(): HTMLElement = realRef
+}
+
 abstract class ReactComponentSpec<P : Any, S : Any>() : ReactMixin<P, S> {
     var component: ReactComponent<Ref<P>, Ref<S>>? = null
 
@@ -93,6 +99,10 @@ abstract class ReactComponentSpec<P : Any, S : Any>() : ReactMixin<P, S> {
      * The displayName string is used in debugging messages. JSX sets this value automatically.
      */
     var displayName: String = ""
+
+    fun refs(refName: String): RefContent {
+        return RefContent(component!!.refs[refName]!!)
+    }
 
     var state: S
         get() = component!!.state.value!!
@@ -149,7 +159,7 @@ abstract class ReactComponentSpec<P : Any, S : Any>() : ReactMixin<P, S> {
 @native
 interface ReactComponent<P, S> {
 
-    //refs: { [ref: string]: ReactComponent<any, any> }
+    val refs: dynamic
 
     val state: S
 

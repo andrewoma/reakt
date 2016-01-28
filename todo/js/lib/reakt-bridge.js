@@ -36,7 +36,8 @@ Reakt.createClass = function (spec) {
     };
 
     // Wrap raw factory function into an object that we can provide an interface to
-    var factory = React.createClass(spec);
+    var reactClass = React.createClass(spec);
+    var factory = React.createFactory(reactClass);
     return {
         invoke: function (props, children) {
             return factory(props, children);
