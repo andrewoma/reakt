@@ -23,7 +23,7 @@ interface SyntheticEvent {
     var defaultPrevented: Boolean
     var eventPhase: Int
     var nativeEvent: Event
-    var `type`: String
+    var type: String
     var timeStamp: Date
     fun preventDefault(): Unit
     fun stopPropagation(): Unit
@@ -93,7 +93,10 @@ interface WheelEvent {
 
 open class ReactProperties {
     open var key: String? by Property()
-    open var ref: String? by Property()
+
+    // it can be String or (DOM|ReactComponent<Any, Any>) -> Unit
+    open var ref: dynamic by Property()
+
     var onCopy: ((event: ClipboardEvent) -> Unit)? by Property()
     var onCut: ((event: ClipboardEvent) -> Unit)? by Property()
     var onPaste: ((event: ClipboardEvent) -> Unit)? by Property()
@@ -181,9 +184,13 @@ class InputProperties : HtmlGlobalProperties() {
     var size: Int? by Property()
     var src: String? by Property()
     var step: Int? by Property()
-    var `type`: String? by Property()
+    var type: String? by Property()
     var value: String? by Property()
     var width: Int? by Property()
+    var formAction: String? by Property()
+    var formEncType: String? by Property()
+    var formMethod: String? by Property()
+    var formTarget: String? by Property()
 }
 
 class IframeProperties : HtmlGlobalProperties() {
@@ -194,6 +201,8 @@ class IframeProperties : HtmlGlobalProperties() {
     var name: String? by Property()
     var src: String? by Property()
     var width: Int? by Property()
+    var marginHeight: String? by Property()
+    var marginWidth: String? by Property()
 }
 
 class AppletProperties : HtmlGlobalProperties() {
@@ -219,7 +228,7 @@ class ButtonProperties : HtmlGlobalProperties() {
     var disabled: Boolean? by Property()
     var form: String? by Property()
     var name: String? by Property()
-    var `type`: String? by Property()
+    var type: String? by Property()
     var value: String? by Property()
 }
 
@@ -283,14 +292,14 @@ class MetaProperties : HtmlGlobalProperties() {
 class ScriptProperties : HtmlGlobalProperties() {
     var charSet: String? by Property()
     var src: String? by Property()
-    var `type`: String? by Property()
+    var type: String? by Property()
 }
 
 class CommandProperties : HtmlGlobalProperties() {
     var checked: Boolean? by Property()
     var icon: String? by Property()
     var radioGroup: String? by Property()
-    var `type`: String? by Property()
+    var type: String? by Property()
 }
 
 class TdProperties : HtmlGlobalProperties() {
@@ -308,7 +317,7 @@ class ObjectProperties : HtmlGlobalProperties() {
     var form: String? by Property()
     var height: Int? by Property()
     var name: String? by Property()
-    var `type`: String? by Property()
+    var type: String? by Property()
     var width: Int? by Property()
     var wmode: String? by Property()
 }
@@ -340,6 +349,9 @@ class MeterProperties : HtmlGlobalProperties() {
     var max: Int? by Property()
     var min: Int? by Property()
     var value: Int? by Property()
+    var high: Int? by Property()
+    var low: Int? by Property()
+    var optimum: Int? by Property()
 }
 
 class OutputProperties : HtmlGlobalProperties() {
@@ -362,7 +374,7 @@ class CanvasProperties : HtmlGlobalProperties() {
 class EmbedProperties : HtmlGlobalProperties() {
     var height: Int? by Property()
     var src: String? by Property()
-    var `type`: String? by Property()
+    var type: String? by Property()
     var width: Int? by Property()
 }
 
@@ -411,15 +423,16 @@ class OptionProperties : HtmlGlobalProperties() {
 
 class SourceProperties : HtmlGlobalProperties() {
     var src: String? by Property()
-    var `type`: String? by Property()
+    var type: String? by Property()
 }
 
 class StyleProperties : HtmlGlobalProperties() {
-    var `type`: String? by Property()
+    var type: String? by Property()
+    var scoped: Boolean? by Property()
 }
 
 class MenuProperties : HtmlGlobalProperties() {
-    var `type`: String? by Property()
+    var type: String? by Property()
 }
 
 class LiProperties : HtmlGlobalProperties() {

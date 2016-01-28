@@ -7,5 +7,5 @@ import kotlin.browser.document
 
 fun main(args: Array<String>) {
     log.info("Starting Todo app")
-    react.renderComponent(createTodoApp(), document.getElementById("todoapp")!!)
+    react.render(createTodoApp(), document.getElementById("todoapp")!!)
 }

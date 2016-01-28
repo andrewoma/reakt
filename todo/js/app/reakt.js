@@ -5,8 +5,197 @@
       main_kand9s$: function (args) {
         var tmp$0;
         _.com.github.andrewoma.react.log.info_9mqe4v$(['Starting Todo app']);
-        _.com.github.andrewoma.react.react.renderComponent_vbpb6g$(_.todo.components.createTodoApp(), (tmp$0 = document.getElementById('todoapp')) != null ? tmp$0 : Kotlin.throwNPE());
+        _.com.github.andrewoma.react.react.render_vbpb6g$(_.todo.components.createTodoApp(), (tmp$0 = document.getElementById('todoapp')) != null ? tmp$0 : Kotlin.throwNPE());
       },
+      stores: Kotlin.definePackage(function () {
+        this.todoStore = new _.todo.stores.TodoStore();
+        this.todoStoreActionHandler = new _.todo.stores.TodoStoreActionHandler(_.todo.stores.todoStore, _.todo.dispatcher.todoDispatcher);
+      }, /** @lends _.todo.stores */ {
+        Todo: Kotlin.createClass(null, function (id, text, complete) {
+          if (complete === void 0)
+            complete = false;
+          this.id = id;
+          this.text = text;
+          this.complete = complete;
+        }, /** @lends _.todo.stores.Todo.prototype */ {
+          component1: function () {
+            return this.id;
+          },
+          component2: function () {
+            return this.text;
+          },
+          component3: function () {
+            return this.complete;
+          },
+          copy_qz9155$: function (id, text, complete) {
+            return new _.todo.stores.Todo(id === void 0 ? this.id : id, text === void 0 ? this.text : text, complete === void 0 ? this.complete : complete);
+          },
+          toString: function () {
+            return 'Todo(id=' + Kotlin.toString(this.id) + (', text=' + Kotlin.toString(this.text)) + (', complete=' + Kotlin.toString(this.complete)) + ')';
+          },
+          hashCode: function () {
+            var result = 0;
+            result = result * 31 + Kotlin.hashCode(this.id) | 0;
+            result = result * 31 + Kotlin.hashCode(this.text) | 0;
+            result = result * 31 + Kotlin.hashCode(this.complete) | 0;
+            return result;
+          },
+          equals_za3rmp$: function (other) {
+            return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.id, other.id) && Kotlin.equals(this.text, other.text) && Kotlin.equals(this.complete, other.complete)))));
+          }
+        }),
+        Event: Kotlin.createTrait(null),
+        ChangeEvent: Kotlin.createClass(function () {
+          return [_.todo.stores.Event];
+        }, null),
+        areAllCompleted_oze285$: function ($receiver) {
+          return $receiver.size === _.todo.stores.completedCount_oze285$($receiver);
+        },
+        completedCount_oze285$: function ($receiver) {
+          var tmp$0;
+          var completed = 0;
+          tmp$0 = $receiver.iterator();
+          while (tmp$0.hasNext()) {
+            var t = tmp$0.next();
+            if (t.complete)
+              completed += 1;
+          }
+          return completed;
+        },
+        TodoStore: Kotlin.createClass(null, function () {
+          this.todos_91fe12$ = new Kotlin.LinkedHashMap();
+          this.listeners_k2bw4o$ = new Kotlin.ComplexHashSet();
+        }, /** @lends _.todo.stores.TodoStore.prototype */ {
+          getAll: function () {
+            return this.todos_91fe12$.values;
+          },
+          get_61zpoe$: function (id) {
+            return this.todos_91fe12$.get_za3rmp$(id);
+          },
+          create_61zpoe$: function (text) {
+            var id = ((new Date()).getTime() + Math.floor(Math.random() * 999999)).toString().toString();
+            this.todos_91fe12$.put_wn2jw4$(id, new _.todo.stores.Todo(id, text, false));
+          },
+          update_b2pvf8$: function (id, update) {
+            var existing = this.todos_91fe12$.get_za3rmp$(id);
+            if (existing != null) {
+              this.todos_91fe12$.put_wn2jw4$(id, update(existing));
+            }
+          },
+          destroy_61zpoe$: function (id) {
+            this.todos_91fe12$.remove_za3rmp$(id);
+          },
+          destroyCompleted: function () {
+            var tmp$0;
+            tmp$0 = this.todos_91fe12$.values.iterator();
+            while (tmp$0.hasNext()) {
+              var todo = tmp$0.next();
+              if (todo.complete)
+                this.todos_91fe12$.remove_za3rmp$(todo.id);
+            }
+          },
+          updateAll_2qbbu$: function (update) {
+            var tmp$0;
+            tmp$0 = this.todos_91fe12$.values.iterator();
+            while (tmp$0.hasNext()) {
+              var todo = tmp$0.next();
+              var updated = update(todo);
+              if (updated !== todo) {
+                this.todos_91fe12$.put_wn2jw4$(updated.id, updated);
+              }
+            }
+          },
+          areAllComplete: function () {
+            return _.todo.stores.areAllCompleted_oze285$(this.todos_91fe12$.values);
+          },
+          addChangeListener_kxl949$: function (callback) {
+            this.listeners_k2bw4o$.add_za3rmp$(callback);
+          },
+          removeChangeListener_kxl949$: function (callback) {
+            this.listeners_k2bw4o$.remove_za3rmp$(callback);
+          },
+          emitChange: function () {
+            var tmp$0;
+            var event = new _.todo.stores.ChangeEvent();
+            tmp$0 = this.listeners_k2bw4o$.iterator();
+            while (tmp$0.hasNext()) {
+              var l = tmp$0.next();
+              l(event);
+            }
+          }
+        }),
+        TodoStoreActionHandler: Kotlin.createClass(null, function (store, dispatcher) {
+          this.store = store;
+          dispatcher.register_luzt2e$(_.todo.stores.TodoStoreActionHandler.TodoStoreActionHandler$f(this));
+        }, /** @lends _.todo.stores.TodoStoreActionHandler.prototype */ {
+          withNonEmpty_fqkxi5$: Kotlin.defineInlineFunction('reakt.todo.stores.TodoStoreActionHandler.withNonEmpty_fqkxi5$', function (text, onNonEmpty) {
+            var trimmed = Kotlin.modules['stdlib'].kotlin.text.trim_pdl1w0$(text);
+            if (!Kotlin.modules['stdlib'].kotlin.text.isEmpty_gw00vq$(trimmed))
+              onNonEmpty(trimmed);
+          }),
+          onAction_37dhth$: function (action) {
+            if (Kotlin.isType(action, _.todo.actions.Create)) {
+              var onNonEmpty = _.todo.stores.TodoStoreActionHandler.onAction_37dhth$f(this);
+              var trimmed = Kotlin.modules['stdlib'].kotlin.text.trim_pdl1w0$(action.text);
+              if (!Kotlin.modules['stdlib'].kotlin.text.isEmpty_gw00vq$(trimmed))
+                onNonEmpty(trimmed);
+            }
+             else if (Kotlin.isType(action, _.todo.actions.ToggleCompleteAll)) {
+              var complete = !this.store.areAllComplete();
+              this.store.updateAll_2qbbu$(_.todo.stores.TodoStoreActionHandler.onAction_37dhth$f_0(complete));
+            }
+             else if (Kotlin.isType(action, _.todo.actions.UndoComplete))
+              this.store.update_b2pvf8$(action.id, _.todo.stores.TodoStoreActionHandler.onAction_37dhth$f_1);
+            else if (Kotlin.isType(action, _.todo.actions.Complete))
+              this.store.update_b2pvf8$(action.id, _.todo.stores.TodoStoreActionHandler.onAction_37dhth$f_2);
+            else if (Kotlin.isType(action, _.todo.actions.Update)) {
+              var onNonEmpty_0 = _.todo.stores.TodoStoreActionHandler.onAction_37dhth$f_3(this, action);
+              var trimmed_0 = Kotlin.modules['stdlib'].kotlin.text.trim_pdl1w0$(action.text);
+              if (!Kotlin.modules['stdlib'].kotlin.text.isEmpty_gw00vq$(trimmed_0))
+                onNonEmpty_0(trimmed_0);
+            }
+             else if (Kotlin.isType(action, _.todo.actions.Destroy))
+              this.store.destroy_61zpoe$(action.id);
+            else if (Kotlin.isType(action, _.todo.actions.DestroyCompleted))
+              this.store.destroyCompleted();
+            else
+              _.com.github.andrewoma.react.log.error_9mqe4v$(['Unknown action', action]);
+            this.store.emitChange();
+          }
+        }, /** @lends _.todo.stores.TodoStoreActionHandler */ {
+          TodoStoreActionHandler$f: function (this$TodoStoreActionHandler) {
+            return function (it) {
+              this$TodoStoreActionHandler.onAction_37dhth$(it);
+            };
+          },
+          onAction_37dhth$f: function (this$TodoStoreActionHandler) {
+            return function (it) {
+              this$TodoStoreActionHandler.store.create_61zpoe$(it);
+            };
+          },
+          onAction_37dhth$f_0: function (complete) {
+            return function (it) {
+              return Kotlin.equals(it.complete, complete) ? it : it.copy_qz9155$(void 0, void 0, complete);
+            };
+          },
+          onAction_37dhth$f_1: function (it) {
+            return it.copy_qz9155$(void 0, void 0, false);
+          },
+          onAction_37dhth$f_2: function (it) {
+            return it.copy_qz9155$(void 0, void 0, true);
+          },
+          f: function (text) {
+            return function (it) {
+              return it.copy_qz9155$(void 0, text);
+            };
+          },
+          onAction_37dhth$f_3: function (this$TodoStoreActionHandler, action) {
+            return function (text) {
+              this$TodoStoreActionHandler.store.update_b2pvf8$(action.id, _.todo.stores.TodoStoreActionHandler.f(text));
+            };
+          }
+        })
+      }),
       actions: Kotlin.definePackage(function () {
         this.todoActions = new _.todo.actions.TodoActions();
       }, /** @lends _.todo.actions */ {
@@ -74,17 +263,17 @@
         })
       }),
       components: Kotlin.definePackage(null, /** @lends _.todo.components */ {
-        FooterProperties: Kotlin.createClass(null, function (todos) {
+        TodoAppState: Kotlin.createClass(null, function (todos) {
           this.todos = todos;
-        }, /** @lends _.todo.components.FooterProperties.prototype */ {
+        }, /** @lends _.todo.components.TodoAppState.prototype */ {
           component1: function () {
             return this.todos;
           },
           copy_t0gbx$: function (todos) {
-            return new _.todo.components.FooterProperties(todos === void 0 ? this.todos : todos);
+            return new _.todo.components.TodoAppState(todos === void 0 ? this.todos : todos);
           },
           toString: function () {
-            return 'FooterProperties(todos=' + Kotlin.toString(this.todos) + ')';
+            return 'TodoAppState(todos=' + Kotlin.toString(this.todos) + ')';
           },
           hashCode: function () {
             var result = 0;
@@ -95,121 +284,131 @@
             return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.todos, other.todos))));
           }
         }),
-        Footer: Kotlin.createClass(function () {
+        TodoApp: Kotlin.createClass(function () {
           return [_.com.github.andrewoma.react.ComponentSpec];
         }, function $fun() {
           $fun.baseInitializer.call(this);
-        }, /** @lends _.todo.components.Footer.prototype */ {
-          render_sx5o3u$: function ($receiver) {
-            _.com.github.andrewoma.react.log.debug_9mqe4v$(['Footer.render', this.props]);
-            if (this.props.todos.isEmpty())
-              return;
-            var completed = _.todo.stores.completedCount_oze285$(this.props.todos);
-            var itemsLeft = this.props.todos.size - completed;
-            var itemsLeftPhrase = (itemsLeft === 1 ? ' item ' : ' items ') + 'left';
-            _.com.github.andrewoma.react.footer_w5u0dm$($receiver, _.todo.components.Footer.render_sx5o3u$f, _.todo.components.Footer.render_sx5o3u$f_0(itemsLeft, itemsLeftPhrase, completed, this));
+          this.listener = _.todo.components.TodoApp.listener$f(this);
+        }, /** @lends _.todo.components.TodoApp.prototype */ {
+          initialState: function () {
+            return new _.todo.components.TodoAppState(_.todo.stores.todoStore.getAll());
           },
-          onClearCompletedClick: function () {
-            _.todo.actions.todoActions.destroyCompleted();
+          componentDidMount: function () {
+            _.todo.stores.todoStore.addChangeListener_kxl949$(this.listener);
+          },
+          componentWillMount: function () {
+            _.todo.stores.todoStore.removeChangeListener_kxl949$(this.listener);
+          },
+          render_sx5o3u$: function ($receiver) {
+            _.com.github.andrewoma.react.div_w5u0dm$($receiver, void 0, _.todo.components.TodoApp.render_sx5o3u$f(this));
+          },
+          onChange: function () {
+            this.state = new _.todo.components.TodoAppState(_.todo.stores.todoStore.getAll());
           }
-        }, /** @lends _.todo.components.Footer */ {
+        }, /** @lends _.todo.components.TodoApp */ {
+          listener$f: function (this$TodoApp) {
+            return function (it) {
+              this$TodoApp.onChange();
+            };
+          },
           object_initializer$: function () {
             return Kotlin.createObject(null, function () {
-              this.factory = _.com.github.andrewoma.react.react.createFactory_oqkx6a$(new _.todo.components.Footer());
+              this.factory = _.com.github.andrewoma.react.react.createFactory_oqkx6a$(new _.todo.components.TodoApp());
             });
           },
-          render_sx5o3u$f: function () {
-            this.id = 'footer';
-          },
-          f: function () {
-            this.id = 'todo-count';
-          },
-          f_0: function (itemsLeft) {
+          render_sx5o3u$f: function (this$TodoApp) {
             return function () {
-              _.com.github.andrewoma.react.text_3pk7xh$(this, itemsLeft.toString());
-            };
-          },
-          f_1: function (itemsLeft, itemsLeftPhrase) {
-            return function () {
-              _.com.github.andrewoma.react.text_3pk7xh$(_.com.github.andrewoma.react.strong_w5u0dm$(this, void 0, _.todo.components.Footer.f_0(itemsLeft)), itemsLeftPhrase);
-            };
-          },
-          f_2: function (this$Footer) {
-            return function (it) {
-              this$Footer.onClearCompletedClick();
-            };
-          },
-          f_3: function (this$Footer) {
-            return function () {
-              this.id = 'clear-completed';
-              this.onClick = _.todo.components.Footer.f_2(this$Footer);
-            };
-          },
-          f_4: function (completed) {
-            return function () {
-              _.com.github.andrewoma.react.text_3pk7xh$(this, 'Clear completed (' + completed + ')');
-            };
-          },
-          render_sx5o3u$f_0: function (itemsLeft, itemsLeftPhrase, completed, this$Footer) {
-            return function () {
-              _.com.github.andrewoma.react.span_w5u0dm$(this, _.todo.components.Footer.f, _.todo.components.Footer.f_1(itemsLeft, itemsLeftPhrase));
-              if (completed !== 0) {
-                _.com.github.andrewoma.react.button_7a8emq$(this, _.todo.components.Footer.f_3(this$Footer), _.todo.components.Footer.f_4(completed));
-              }
+              _.todo.components.todoHeader_sx5o3u$(this);
+              _.todo.components.todoMainSection_8kskxl$(this, new _.todo.components.MainSectionProperties(this$TodoApp.state.todos));
+              _.todo.components.todoFooter_ufne8c$(this, new _.todo.components.FooterProperties(this$TodoApp.state.todos));
             };
           }
         }),
-        todoFooter_ufne8c$f: function (props) {
-          return function (it) {
-            return _.todo.components.Footer.object.factory.invoke(new _.com.github.andrewoma.react.Ref(props));
-          };
+        createTodoApp: function () {
+          return _.todo.components.TodoApp.object.factory.invoke(new _.com.github.andrewoma.react.Ref(null));
         },
-        todoFooter_ufne8c$: function ($receiver, props) {
-          return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.todo.components.todoFooter_ufne8c$f(props)));
-        },
-        Header: Kotlin.createClass(function () {
+        TodoTextInputProperties: Kotlin.createClass(null, function (className, id, placeHolder, value, onSave) {
+          if (className === void 0)
+            className = null;
+          if (id === void 0)
+            id = null;
+          if (placeHolder === void 0)
+            placeHolder = null;
+          if (value === void 0)
+            value = null;
+          this.className = className;
+          this.id = id;
+          this.placeHolder = placeHolder;
+          this.value = value;
+          this.onSave = onSave;
+        }),
+        TodoTextInput: Kotlin.createClass(function () {
           return [_.com.github.andrewoma.react.ComponentSpec];
         }, function $fun() {
           $fun.baseInitializer.call(this);
-        }, /** @lends _.todo.components.Header.prototype */ {
-          render_sx5o3u$: function ($receiver) {
-            _.com.github.andrewoma.react.log.debug_9mqe4v$(['Header.render']);
-            _.com.github.andrewoma.react.header_w5u0dm$($receiver, _.todo.components.Header.render_sx5o3u$f, _.todo.components.Header.render_sx5o3u$f_0(this));
+        }, /** @lends _.todo.components.TodoTextInput.prototype */ {
+          initialState: function () {
+            var tmp$0;
+            return (tmp$0 = this.props.value) != null ? tmp$0 : '';
           },
-          onSave_61zpoe$: function (text) {
-            if (!Kotlin.modules['stdlib'].kotlin.isEmpty_pdl1w0$(Kotlin.modules['stdlib'].kotlin.trim_pdl1w0$(text))) {
-              _.todo.actions.todoActions.create_61zpoe$(text);
+          render_sx5o3u$: function ($receiver) {
+            _.com.github.andrewoma.react.log.debug_9mqe4v$(['TodoTextInput.render', this.props, this.state]);
+            _.com.github.andrewoma.react.input_ehra6o$($receiver, _.todo.components.TodoTextInput.render_sx5o3u$f(this));
+          },
+          save: function () {
+            this.props.onSave(this.state);
+            this.state = '';
+          },
+          onChange_uqgllb$: function (event) {
+            this.state = event.currentTarget.value;
+          },
+          onKeyDown_pt5yb2$: function (event) {
+            if (event.keyCode === _.todo.components.TodoTextInput.object.enterKeyCode) {
+              this.save();
             }
           }
-        }, /** @lends _.todo.components.Header */ {
+        }, /** @lends _.todo.components.TodoTextInput */ {
           object_initializer$: function () {
             return Kotlin.createObject(null, function () {
-              this.factory = _.com.github.andrewoma.react.react.createFactory_oqkx6a$(new _.todo.components.Header());
+              this.enterKeyCode = 13;
+              this.factory = _.com.github.andrewoma.react.react.createFactory_oqkx6a$(new _.todo.components.TodoTextInput());
             });
           },
-          render_sx5o3u$f: function () {
-            this.id = 'header';
-          },
-          f: function () {
-            _.com.github.andrewoma.react.text_3pk7xh$(this, 'todos');
-          },
-          f_0: function (this$Header) {
+          f: function (this$TodoTextInput) {
             return function (it) {
-              this$Header.onSave_61zpoe$(it);
+              this$TodoTextInput.save();
             };
           },
-          render_sx5o3u$f_0: function (this$Header) {
+          f_0: function (this$TodoTextInput) {
+            return function (it) {
+              this$TodoTextInput.onChange_uqgllb$(it);
+            };
+          },
+          f_1: function (this$TodoTextInput) {
+            return function (it) {
+              this$TodoTextInput.onKeyDown_pt5yb2$(it);
+            };
+          },
+          render_sx5o3u$f: function (this$TodoTextInput) {
             return function () {
-              _.com.github.andrewoma.react.h1_w5u0dm$(this, void 0, _.todo.components.Header.f);
-              _.todo.components.todoTextInput_o29w70$(this, new _.todo.components.TodoTextInputProperties(void 0, 'new-todo', 'What needs to be done?', void 0, _.todo.components.Header.f_0(this$Header)));
+              this.className = this$TodoTextInput.props.className;
+              this.id = this$TodoTextInput.props.id;
+              this.placeholder = this$TodoTextInput.props.placeHolder;
+              this.onBlur = _.todo.components.TodoTextInput.f(this$TodoTextInput);
+              this.onChange = _.todo.components.TodoTextInput.f_0(this$TodoTextInput);
+              this.onKeyDown = _.todo.components.TodoTextInput.f_1(this$TodoTextInput);
+              this.value = this$TodoTextInput.state;
+              this.autoFocus = true;
             };
           }
         }),
-        todoHeader_sx5o3u$f: function (it) {
-          return _.todo.components.Header.object.factory.invoke(new _.com.github.andrewoma.react.Ref(null));
+        todoTextInput_o29w70$f: function (props) {
+          return function (it) {
+            return _.todo.components.TodoTextInput.object.factory.invoke(new _.com.github.andrewoma.react.Ref(props));
+          };
         },
-        todoHeader_sx5o3u$: function ($receiver) {
-          return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.todo.components.todoHeader_sx5o3u$f));
+        todoTextInput_o29w70$: function ($receiver, props) {
+          return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.todo.components.todoTextInput_o29w70$f(props)));
         },
         MainSectionProperties: Kotlin.createClass(null, function (todos) {
           this.todos = todos;
@@ -302,70 +501,6 @@
         },
         todoMainSection_8kskxl$: function ($receiver, props) {
           return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.todo.components.todoMainSection_8kskxl$f(props)));
-        },
-        TodoAppState: Kotlin.createClass(null, function (todos) {
-          this.todos = todos;
-        }, /** @lends _.todo.components.TodoAppState.prototype */ {
-          component1: function () {
-            return this.todos;
-          },
-          copy_t0gbx$: function (todos) {
-            return new _.todo.components.TodoAppState(todos === void 0 ? this.todos : todos);
-          },
-          toString: function () {
-            return 'TodoAppState(todos=' + Kotlin.toString(this.todos) + ')';
-          },
-          hashCode: function () {
-            var result = 0;
-            result = result * 31 + Kotlin.hashCode(this.todos) | 0;
-            return result;
-          },
-          equals_za3rmp$: function (other) {
-            return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.todos, other.todos))));
-          }
-        }),
-        TodoApp: Kotlin.createClass(function () {
-          return [_.com.github.andrewoma.react.ComponentSpec];
-        }, function $fun() {
-          $fun.baseInitializer.call(this);
-          this.listener = _.todo.components.TodoApp.listener$f(this);
-        }, /** @lends _.todo.components.TodoApp.prototype */ {
-          initialState: function () {
-            return new _.todo.components.TodoAppState(_.todo.stores.todoStore.getAll());
-          },
-          componentDidMount: function () {
-            _.todo.stores.todoStore.addChangeListener_kxl949$(this.listener);
-          },
-          componentWillMount: function () {
-            _.todo.stores.todoStore.removeChangeListener_kxl949$(this.listener);
-          },
-          render_sx5o3u$: function ($receiver) {
-            _.com.github.andrewoma.react.div_w5u0dm$($receiver, void 0, _.todo.components.TodoApp.render_sx5o3u$f(this));
-          },
-          onChange: function () {
-            this.state = new _.todo.components.TodoAppState(_.todo.stores.todoStore.getAll());
-          }
-        }, /** @lends _.todo.components.TodoApp */ {
-          listener$f: function (this$TodoApp) {
-            return function (it) {
-              this$TodoApp.onChange();
-            };
-          },
-          object_initializer$: function () {
-            return Kotlin.createObject(null, function () {
-              this.factory = _.com.github.andrewoma.react.react.createFactory_oqkx6a$(new _.todo.components.TodoApp());
-            });
-          },
-          render_sx5o3u$f: function (this$TodoApp) {
-            return function () {
-              _.todo.components.todoHeader_sx5o3u$(this);
-              _.todo.components.todoMainSection_8kskxl$(this, new _.todo.components.MainSectionProperties(this$TodoApp.state.todos));
-              _.todo.components.todoFooter_ufne8c$(this, new _.todo.components.FooterProperties(this$TodoApp.state.todos));
-            };
-          }
-        }),
-        createTodoApp: function () {
-          return _.todo.components.TodoApp.object.factory.invoke(new _.com.github.andrewoma.react.Ref(null));
         },
         TodoItemProperties: Kotlin.createClass(null, function (key, todo) {
           this.key = key;
@@ -528,88 +663,142 @@
         todoItem_w6isj2$: function ($receiver, props) {
           return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.todo.components.todoItem_w6isj2$f(props)));
         },
-        TodoTextInputProperties: Kotlin.createClass(null, function (className, id, placeHolder, value, onSave) {
-          if (className === void 0)
-            className = null;
-          if (id === void 0)
-            id = null;
-          if (placeHolder === void 0)
-            placeHolder = null;
-          if (value === void 0)
-            value = null;
-          this.className = className;
-          this.id = id;
-          this.placeHolder = placeHolder;
-          this.value = value;
-          this.onSave = onSave;
-        }),
-        TodoTextInput: Kotlin.createClass(function () {
+        Header: Kotlin.createClass(function () {
           return [_.com.github.andrewoma.react.ComponentSpec];
         }, function $fun() {
           $fun.baseInitializer.call(this);
-        }, /** @lends _.todo.components.TodoTextInput.prototype */ {
-          initialState: function () {
-            var tmp$0;
-            return (tmp$0 = this.props.value) != null ? tmp$0 : '';
-          },
+        }, /** @lends _.todo.components.Header.prototype */ {
           render_sx5o3u$: function ($receiver) {
-            _.com.github.andrewoma.react.log.debug_9mqe4v$(['TodoTextInput.render', this.props, this.state]);
-            _.com.github.andrewoma.react.input_ehra6o$($receiver, _.todo.components.TodoTextInput.render_sx5o3u$f(this));
+            _.com.github.andrewoma.react.log.debug_9mqe4v$(['Header.render']);
+            _.com.github.andrewoma.react.header_w5u0dm$($receiver, _.todo.components.Header.render_sx5o3u$f, _.todo.components.Header.render_sx5o3u$f_0(this));
           },
-          save: function () {
-            this.props.onSave(this.state);
-            this.state = '';
-          },
-          onChange_uqgllb$: function (event) {
-            this.state = event.currentTarget.value;
-          },
-          onKeyDown_pt5yb2$: function (event) {
-            if (event.keyCode === _.todo.components.TodoTextInput.object.enterKeyCode) {
-              this.save();
+          onSave_61zpoe$: function (text) {
+            if (!Kotlin.modules['stdlib'].kotlin.text.isEmpty_gw00vq$(Kotlin.modules['stdlib'].kotlin.text.trim_pdl1w0$(text))) {
+              _.todo.actions.todoActions.create_61zpoe$(text);
             }
           }
-        }, /** @lends _.todo.components.TodoTextInput */ {
+        }, /** @lends _.todo.components.Header */ {
           object_initializer$: function () {
             return Kotlin.createObject(null, function () {
-              this.enterKeyCode = 13;
-              this.factory = _.com.github.andrewoma.react.react.createFactory_oqkx6a$(new _.todo.components.TodoTextInput());
+              this.factory = _.com.github.andrewoma.react.react.createFactory_oqkx6a$(new _.todo.components.Header());
             });
           },
-          f: function (this$TodoTextInput) {
+          render_sx5o3u$f: function () {
+            this.id = 'header';
+          },
+          f: function () {
+            _.com.github.andrewoma.react.text_3pk7xh$(this, 'todos');
+          },
+          f_0: function (this$Header) {
             return function (it) {
-              this$TodoTextInput.save();
+              this$Header.onSave_61zpoe$(it);
             };
           },
-          f_0: function (this$TodoTextInput) {
-            return function (it) {
-              this$TodoTextInput.onChange_uqgllb$(it);
-            };
-          },
-          f_1: function (this$TodoTextInput) {
-            return function (it) {
-              this$TodoTextInput.onKeyDown_pt5yb2$(it);
-            };
-          },
-          render_sx5o3u$f: function (this$TodoTextInput) {
+          render_sx5o3u$f_0: function (this$Header) {
             return function () {
-              this.className = this$TodoTextInput.props.className;
-              this.id = this$TodoTextInput.props.id;
-              this.placeholder = this$TodoTextInput.props.placeHolder;
-              this.onBlur = _.todo.components.TodoTextInput.f(this$TodoTextInput);
-              this.onChange = _.todo.components.TodoTextInput.f_0(this$TodoTextInput);
-              this.onKeyDown = _.todo.components.TodoTextInput.f_1(this$TodoTextInput);
-              this.value = this$TodoTextInput.state;
-              this.autoFocus = true;
+              _.com.github.andrewoma.react.h1_w5u0dm$(this, void 0, _.todo.components.Header.f);
+              _.todo.components.todoTextInput_o29w70$(this, new _.todo.components.TodoTextInputProperties(void 0, 'new-todo', 'What needs to be done?', void 0, _.todo.components.Header.f_0(this$Header)));
             };
           }
         }),
-        todoTextInput_o29w70$f: function (props) {
+        todoHeader_sx5o3u$f: function (it) {
+          return _.todo.components.Header.object.factory.invoke(new _.com.github.andrewoma.react.Ref(null));
+        },
+        todoHeader_sx5o3u$: function ($receiver) {
+          return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.todo.components.todoHeader_sx5o3u$f));
+        },
+        FooterProperties: Kotlin.createClass(null, function (todos) {
+          this.todos = todos;
+        }, /** @lends _.todo.components.FooterProperties.prototype */ {
+          component1: function () {
+            return this.todos;
+          },
+          copy_t0gbx$: function (todos) {
+            return new _.todo.components.FooterProperties(todos === void 0 ? this.todos : todos);
+          },
+          toString: function () {
+            return 'FooterProperties(todos=' + Kotlin.toString(this.todos) + ')';
+          },
+          hashCode: function () {
+            var result = 0;
+            result = result * 31 + Kotlin.hashCode(this.todos) | 0;
+            return result;
+          },
+          equals_za3rmp$: function (other) {
+            return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.todos, other.todos))));
+          }
+        }),
+        Footer: Kotlin.createClass(function () {
+          return [_.com.github.andrewoma.react.ComponentSpec];
+        }, function $fun() {
+          $fun.baseInitializer.call(this);
+        }, /** @lends _.todo.components.Footer.prototype */ {
+          render_sx5o3u$: function ($receiver) {
+            _.com.github.andrewoma.react.log.debug_9mqe4v$(['Footer.render', this.props]);
+            if (this.props.todos.isEmpty())
+              return;
+            var completed = _.todo.stores.completedCount_oze285$(this.props.todos);
+            var itemsLeft = this.props.todos.size - completed;
+            var itemsLeftPhrase = (itemsLeft === 1 ? ' item ' : ' items ') + 'left';
+            _.com.github.andrewoma.react.footer_w5u0dm$($receiver, _.todo.components.Footer.render_sx5o3u$f, _.todo.components.Footer.render_sx5o3u$f_0(itemsLeft, itemsLeftPhrase, completed, this));
+          },
+          onClearCompletedClick: function () {
+            _.todo.actions.todoActions.destroyCompleted();
+          }
+        }, /** @lends _.todo.components.Footer */ {
+          object_initializer$: function () {
+            return Kotlin.createObject(null, function () {
+              this.factory = _.com.github.andrewoma.react.react.createFactory_oqkx6a$(new _.todo.components.Footer());
+            });
+          },
+          render_sx5o3u$f: function () {
+            this.id = 'footer';
+          },
+          f: function () {
+            this.id = 'todo-count';
+          },
+          f_0: function (itemsLeft) {
+            return function () {
+              _.com.github.andrewoma.react.text_3pk7xh$(this, itemsLeft.toString());
+            };
+          },
+          f_1: function (itemsLeft, itemsLeftPhrase) {
+            return function () {
+              _.com.github.andrewoma.react.text_3pk7xh$(_.com.github.andrewoma.react.strong_w5u0dm$(this, void 0, _.todo.components.Footer.f_0(itemsLeft)), itemsLeftPhrase);
+            };
+          },
+          f_2: function (this$Footer) {
+            return function (it) {
+              this$Footer.onClearCompletedClick();
+            };
+          },
+          f_3: function (this$Footer) {
+            return function () {
+              this.id = 'clear-completed';
+              this.onClick = _.todo.components.Footer.f_2(this$Footer);
+            };
+          },
+          f_4: function (completed) {
+            return function () {
+              _.com.github.andrewoma.react.text_3pk7xh$(this, 'Clear completed (' + completed + ')');
+            };
+          },
+          render_sx5o3u$f_0: function (itemsLeft, itemsLeftPhrase, completed, this$Footer) {
+            return function () {
+              _.com.github.andrewoma.react.span_w5u0dm$(this, _.todo.components.Footer.f, _.todo.components.Footer.f_1(itemsLeft, itemsLeftPhrase));
+              if (completed !== 0) {
+                _.com.github.andrewoma.react.button_7a8emq$(this, _.todo.components.Footer.f_3(this$Footer), _.todo.components.Footer.f_4(completed));
+              }
+            };
+          }
+        }),
+        todoFooter_ufne8c$f: function (props) {
           return function (it) {
-            return _.todo.components.TodoTextInput.object.factory.invoke(new _.com.github.andrewoma.react.Ref(props));
+            return _.todo.components.Footer.object.factory.invoke(new _.com.github.andrewoma.react.Ref(props));
           };
         },
-        todoTextInput_o29w70$: function ($receiver, props) {
-          return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.todo.components.todoTextInput_o29w70$f(props)));
+        todoFooter_ufne8c$: function ($receiver, props) {
+          return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.todo.components.todoFooter_ufne8c$f(props)));
         }
       }),
       dispatcher: Kotlin.definePackage(function () {
@@ -630,195 +819,6 @@
             this.callbacks_srs2oc$.add_za3rmp$(callback);
           }
         })
-      }),
-      stores: Kotlin.definePackage(function () {
-        this.todoStore = new _.todo.stores.TodoStore();
-        this.todoStoreActionHandler = new _.todo.stores.TodoStoreActionHandler(_.todo.stores.todoStore, _.todo.dispatcher.todoDispatcher);
-      }, /** @lends _.todo.stores */ {
-        Todo: Kotlin.createClass(null, function (id, text, complete) {
-          if (complete === void 0)
-            complete = false;
-          this.id = id;
-          this.text = text;
-          this.complete = complete;
-        }, /** @lends _.todo.stores.Todo.prototype */ {
-          component1: function () {
-            return this.id;
-          },
-          component2: function () {
-            return this.text;
-          },
-          component3: function () {
-            return this.complete;
-          },
-          copy_qz9155$: function (id, text, complete) {
-            return new _.todo.stores.Todo(id === void 0 ? this.id : id, text === void 0 ? this.text : text, complete === void 0 ? this.complete : complete);
-          },
-          toString: function () {
-            return 'Todo(id=' + Kotlin.toString(this.id) + (', text=' + Kotlin.toString(this.text)) + (', complete=' + Kotlin.toString(this.complete)) + ')';
-          },
-          hashCode: function () {
-            var result = 0;
-            result = result * 31 + Kotlin.hashCode(this.id) | 0;
-            result = result * 31 + Kotlin.hashCode(this.text) | 0;
-            result = result * 31 + Kotlin.hashCode(this.complete) | 0;
-            return result;
-          },
-          equals_za3rmp$: function (other) {
-            return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.id, other.id) && Kotlin.equals(this.text, other.text) && Kotlin.equals(this.complete, other.complete)))));
-          }
-        }),
-        Event: Kotlin.createTrait(null),
-        ChangeEvent: Kotlin.createClass(function () {
-          return [_.todo.stores.Event];
-        }, null),
-        areAllCompleted_oze285$: function ($receiver) {
-          return $receiver.size === _.todo.stores.completedCount_oze285$($receiver);
-        },
-        completedCount_oze285$: function ($receiver) {
-          var tmp$0;
-          var completed = 0;
-          tmp$0 = $receiver.iterator();
-          while (tmp$0.hasNext()) {
-            var t = tmp$0.next();
-            if (t.complete)
-              completed += 1;
-          }
-          return completed;
-        },
-        TodoStore: Kotlin.createClass(null, function () {
-          this.todos_91fe12$ = new Kotlin.LinkedHashMap();
-          this.listeners_k2bw4o$ = new Kotlin.ComplexHashSet();
-        }, /** @lends _.todo.stores.TodoStore.prototype */ {
-          getAll: function () {
-            return this.todos_91fe12$.values;
-          },
-          get_61zpoe$: function (id) {
-            return this.todos_91fe12$.get_za3rmp$(id);
-          },
-          create_61zpoe$: function (text) {
-            var id = ((new Date()).getTime() + Math.floor(Math.random() * 999999)).toString().toString();
-            this.todos_91fe12$.put_wn2jw4$(id, new _.todo.stores.Todo(id, text, false));
-          },
-          update_b2pvf8$: function (id, update) {
-            var existing = this.todos_91fe12$.get_za3rmp$(id);
-            if (existing != null) {
-              this.todos_91fe12$.put_wn2jw4$(id, update(existing));
-            }
-          },
-          destroy_61zpoe$: function (id) {
-            this.todos_91fe12$.remove_za3rmp$(id);
-          },
-          destroyCompleted: function () {
-            var tmp$0;
-            tmp$0 = this.todos_91fe12$.values.iterator();
-            while (tmp$0.hasNext()) {
-              var todo = tmp$0.next();
-              if (todo.complete)
-                this.todos_91fe12$.remove_za3rmp$(todo.id);
-            }
-          },
-          updateAll_2qbbu$: function (update) {
-            var tmp$0;
-            tmp$0 = this.todos_91fe12$.values.iterator();
-            while (tmp$0.hasNext()) {
-              var todo = tmp$0.next();
-              var updated = update(todo);
-              if (updated !== todo) {
-                this.todos_91fe12$.put_wn2jw4$(updated.id, updated);
-              }
-            }
-          },
-          areAllComplete: function () {
-            return _.todo.stores.areAllCompleted_oze285$(this.todos_91fe12$.values);
-          },
-          addChangeListener_kxl949$: function (callback) {
-            this.listeners_k2bw4o$.add_za3rmp$(callback);
-          },
-          removeChangeListener_kxl949$: function (callback) {
-            this.listeners_k2bw4o$.remove_za3rmp$(callback);
-          },
-          emitChange: function () {
-            var tmp$0;
-            var event = new _.todo.stores.ChangeEvent();
-            tmp$0 = this.listeners_k2bw4o$.iterator();
-            while (tmp$0.hasNext()) {
-              var l = tmp$0.next();
-              l(event);
-            }
-          }
-        }),
-        TodoStoreActionHandler: Kotlin.createClass(null, function (store, dispatcher) {
-          this.store = store;
-          dispatcher.register_luzt2e$(_.todo.stores.TodoStoreActionHandler.TodoStoreActionHandler$f(this));
-        }, /** @lends _.todo.stores.TodoStoreActionHandler.prototype */ {
-          withNonEmpty_fqkxi5$: Kotlin.defineInlineFunction('reakt.todo.stores.TodoStoreActionHandler.withNonEmpty_fqkxi5$', function (text, onNonEmpty) {
-            var trimmed = Kotlin.modules['stdlib'].kotlin.trim_pdl1w0$(text);
-            if (!Kotlin.modules['stdlib'].kotlin.isEmpty_pdl1w0$(trimmed))
-              onNonEmpty(trimmed);
-          }),
-          onAction_37dhth$: function (action) {
-            if (Kotlin.isType(action, _.todo.actions.Create)) {
-              var onNonEmpty = _.todo.stores.TodoStoreActionHandler.onAction_37dhth$f(this);
-              var trimmed = Kotlin.modules['stdlib'].kotlin.trim_pdl1w0$(action.text);
-              if (!Kotlin.modules['stdlib'].kotlin.isEmpty_pdl1w0$(trimmed))
-                onNonEmpty(trimmed);
-            }
-             else if (Kotlin.isType(action, _.todo.actions.ToggleCompleteAll)) {
-              var complete = !this.store.areAllComplete();
-              this.store.updateAll_2qbbu$(_.todo.stores.TodoStoreActionHandler.onAction_37dhth$f_0(complete));
-            }
-             else if (Kotlin.isType(action, _.todo.actions.UndoComplete))
-              this.store.update_b2pvf8$(action.id, _.todo.stores.TodoStoreActionHandler.onAction_37dhth$f_1);
-            else if (Kotlin.isType(action, _.todo.actions.Complete))
-              this.store.update_b2pvf8$(action.id, _.todo.stores.TodoStoreActionHandler.onAction_37dhth$f_2);
-            else if (Kotlin.isType(action, _.todo.actions.Update)) {
-              var onNonEmpty_0 = _.todo.stores.TodoStoreActionHandler.onAction_37dhth$f_3(this, action);
-              var trimmed_0 = Kotlin.modules['stdlib'].kotlin.trim_pdl1w0$(action.text);
-              if (!Kotlin.modules['stdlib'].kotlin.isEmpty_pdl1w0$(trimmed_0))
-                onNonEmpty_0(trimmed_0);
-            }
-             else if (Kotlin.isType(action, _.todo.actions.Destroy))
-              this.store.destroy_61zpoe$(action.id);
-            else if (Kotlin.isType(action, _.todo.actions.DestroyCompleted))
-              this.store.destroyCompleted();
-            else
-              _.com.github.andrewoma.react.log.error_9mqe4v$(['Unknown action', action]);
-            this.store.emitChange();
-          }
-        }, /** @lends _.todo.stores.TodoStoreActionHandler */ {
-          TodoStoreActionHandler$f: function (this$TodoStoreActionHandler) {
-            return function (it) {
-              this$TodoStoreActionHandler.onAction_37dhth$(it);
-            };
-          },
-          onAction_37dhth$f: function (this$TodoStoreActionHandler) {
-            return function (it) {
-              this$TodoStoreActionHandler.store.create_61zpoe$(it);
-            };
-          },
-          onAction_37dhth$f_0: function (complete) {
-            return function (it) {
-              return Kotlin.equals(it.complete, complete) ? it : it.copy_qz9155$(void 0, void 0, complete);
-            };
-          },
-          onAction_37dhth$f_1: function (it) {
-            return it.copy_qz9155$(void 0, void 0, false);
-          },
-          onAction_37dhth$f_2: function (it) {
-            return it.copy_qz9155$(void 0, void 0, true);
-          },
-          f: function (text) {
-            return function (it) {
-              return it.copy_qz9155$(void 0, text);
-            };
-          },
-          onAction_37dhth$f_3: function (this$TodoStoreActionHandler, action) {
-            return function (text) {
-              this$TodoStoreActionHandler.store.update_b2pvf8$(action.id, _.todo.stores.TodoStoreActionHandler.f(text));
-            };
-          }
-        })
       })
     }),
     com: Kotlin.definePackage(null, /** @lends _.com */ {
@@ -828,64 +828,87 @@
             this.log = new _.com.github.andrewoma.react.Log(_.com.github.andrewoma.react.logLevelFromLocation(document.location.search));
             this.react = new _.com.github.andrewoma.react.React();
           }, /** @lends _.com.github.andrewoma.react */ {
-            ComponentRenderer: Kotlin.createTrait(null, /** @lends _.com.github.andrewoma.react.ComponentRenderer.prototype */ {
-              render: function () {
-                var root = _.com.github.andrewoma.react.ComponentRenderer.render$f();
-                this.render_sx5o3u$(root);
-                _.com.github.andrewoma.react.check_8kj6y5$(root.children.size <= 1, 'React only supports one (or zero) root components');
-                if (root.children.isEmpty())
-                  return null;
-                return root.children.get_za3lpa$(0).transform();
+            classSet_eoa9s7$: function (classes) {
+              var tmp$0, tmp$1, tmp$2;
+              var sb = new Kotlin.StringBuilder();
+              tmp$0 = classes, tmp$1 = tmp$0.length;
+              for (var tmp$2 = 0; tmp$2 !== tmp$1; ++tmp$2) {
+                var pair = tmp$0[tmp$2];
+                if (pair.second)
+                  sb.append(pair.first);
               }
-            }, /** @lends _.com.github.andrewoma.react.ComponentRenderer */ {
-              f: function (it) {
+              return sb.toString();
+            },
+            ReactMixin: Kotlin.createTrait(null, /** @lends _.com.github.andrewoma.react.ReactMixin.prototype */ {
+              componentWillMount: function () {
+              },
+              componentDidMount: function () {
+              },
+              componentWillReceiveProps_za3rmp$: function (nextProps) {
+              },
+              shouldComponentUpdate_wn2jw4$: function (nextProps, nextState) {
+                return true;
+              },
+              componentWillUpdate_wn2jw4$: function (nextProps, nextState) {
+              },
+              componentDidUpdate_wn2jw4$: function (nextProps, nextState) {
+              },
+              componentWillUnmount: function () {
+              }
+            }),
+            Ref: Kotlin.createClass(null, function (value) {
+              this.value = value;
+            }),
+            RefContent: Kotlin.createClass(null, function (realRef) {
+              this.realRef = realRef;
+            }, /** @lends _.com.github.andrewoma.react.RefContent.prototype */ {
+              asComponent: function () {
+                return this.realRef;
+              },
+              asDomNode: function () {
+                return this.realRef;
+              }
+            }),
+            ReactComponentSpec: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.ReactMixin];
+            }, function () {
+              this.component = null;
+              this.mixins = [];
+              this.displayName = '';
+            }, /** @lends _.com.github.andrewoma.react.ReactComponentSpec.prototype */ {
+              refs_61zpoe$: function (refName) {
+                var tmp$0;
+                return new _.com.github.andrewoma.react.RefContent(((tmp$0 = this.component) != null ? tmp$0 : Kotlin.throwNPE()).refs[refName]);
+              },
+              state: {
+                get: function () {
+                  var tmp$0, tmp$1;
+                  return (tmp$1 = ((tmp$0 = this.component) != null ? tmp$0 : Kotlin.throwNPE()).state.value) != null ? tmp$1 : Kotlin.throwNPE();
+                },
+                set: function (value) {
+                  var tmp$0;
+                  ((tmp$0 = this.component) != null ? tmp$0 : Kotlin.throwNPE()).setState(new _.com.github.andrewoma.react.Ref(value));
+                }
+              },
+              props: {
+                get: function () {
+                  var tmp$0, tmp$1;
+                  return (tmp$1 = ((tmp$0 = this.component) != null ? tmp$0 : Kotlin.throwNPE()).props.value) != null ? tmp$1 : Kotlin.throwNPE();
+                },
+                set: function (value) {
+                  var tmp$0;
+                  ((tmp$0 = this.component) != null ? tmp$0 : Kotlin.throwNPE()).setProps(new _.com.github.andrewoma.react.Ref(value), null);
+                }
+              },
+              getInitialState: function () {
+                var state = this.initialState();
+                return state == null ? null : new _.com.github.andrewoma.react.Ref(state);
+              },
+              initialState: function () {
                 return null;
               },
-              render$f: function () {
-                return Kotlin.createObject(function () {
-                  return [_.com.github.andrewoma.react.Component];
-                }, function $fun() {
-                  $fun.baseInitializer.call(this, _.com.github.andrewoma.react.ComponentRenderer.f);
-                });
-              }
-            }),
-            ComponentSpec: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.ComponentRenderer, _.com.github.andrewoma.react.ReactComponentSpec];
-            }, function $fun() {
-              $fun.baseInitializer.call(this);
-            }),
-            Component: Kotlin.createClass(null, function (transformer) {
-              this.transformer = transformer;
-              this.children = new Kotlin.ArrayList();
-            }, /** @lends _.com.github.andrewoma.react.Component.prototype */ {
-              construct_ad91at$: function (component, init) {
-                if (init === void 0)
-                  init = _.com.github.andrewoma.react.Component.construct_ad91at$f;
-                init.call(component);
-                this.children.add_za3rmp$(component);
-                return component;
-              },
-              transform: function () {
-                return this.transformer(this);
-              },
-              transformChildren: function () {
-                var size = this.children.size;
-                var init = _.com.github.andrewoma.react.Component.transformChildren$f(this);
-                var tmp$0;
-                var result = Kotlin.nullArray(size);
-                tmp$0 = size - 1;
-                for (var i = 0; i <= tmp$0; i++) {
-                  result[i] = init(i);
-                }
-                return result;
-              }
-            }, /** @lends _.com.github.andrewoma.react.Component */ {
-              construct_ad91at$f: function () {
-              },
-              transformChildren$f: function (this$Component) {
-                return function (it) {
-                  return this$Component.children.get_za3lpa$(it).transform();
-                };
+              getDefaultProps: function () {
+                return null;
               }
             }),
             initProps_febbmr$: function (properties, init) {
@@ -2808,6 +2831,84 @@
                 init = _.com.github.andrewoma.react.text_k62a52$f_0;
               return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.text_k62a52$f_1(properties)), init);
             },
+            ReadWriteProperty: Kotlin.createTrait(null),
+            Property: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.ReadWriteProperty];
+            }, null, /** @lends _.com.github.andrewoma.react.Property.prototype */ {
+              getValue_dsk1ci$: function (thisRef, property) {
+                return Reakt.getProperty(thisRef != null ? thisRef : Kotlin.throwNPE(), property.name);
+              },
+              setValue_w32e13$: function (thisRef, property, value) {
+                Reakt.setProperty(thisRef != null ? thisRef : Kotlin.throwNPE(), property.name, value);
+              }
+            }),
+            check_8kj6y5$: function (condition, message) {
+              if (message === void 0)
+                message = 'Assertion failed';
+              if (!condition) {
+                throw new Kotlin.Exception(message);
+              }
+            },
+            ComponentRenderer: Kotlin.createTrait(null, /** @lends _.com.github.andrewoma.react.ComponentRenderer.prototype */ {
+              render: function () {
+                var root = _.com.github.andrewoma.react.ComponentRenderer.render$f();
+                this.render_sx5o3u$(root);
+                _.com.github.andrewoma.react.check_8kj6y5$(root.children.size <= 1, 'React only supports one (or zero) root components');
+                if (root.children.isEmpty())
+                  return null;
+                return root.children.get_za3lpa$(0).transform();
+              }
+            }, /** @lends _.com.github.andrewoma.react.ComponentRenderer */ {
+              f: function (it) {
+                return null;
+              },
+              render$f: function () {
+                return Kotlin.createObject(function () {
+                  return [_.com.github.andrewoma.react.Component];
+                }, function $fun() {
+                  $fun.baseInitializer.call(this, _.com.github.andrewoma.react.ComponentRenderer.f);
+                });
+              }
+            }),
+            ComponentSpec: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.ComponentRenderer, _.com.github.andrewoma.react.ReactComponentSpec];
+            }, function $fun() {
+              $fun.baseInitializer.call(this);
+            }),
+            Component: Kotlin.createClass(null, function (transformer) {
+              this.transformer = transformer;
+              this.children = new Kotlin.ArrayList();
+            }, /** @lends _.com.github.andrewoma.react.Component.prototype */ {
+              construct_ad91at$: function (component, init) {
+                if (init === void 0)
+                  init = _.com.github.andrewoma.react.Component.construct_ad91at$f;
+                init.call(component);
+                this.children.add_za3rmp$(component);
+                return component;
+              },
+              transform: function () {
+                return this.transformer(this);
+              },
+              transformChildren: function () {
+                var size = this.children.size;
+                var init = _.com.github.andrewoma.react.Component.transformChildren$f(this);
+                var tmp$0;
+                var result = Kotlin.nullArray(size);
+                tmp$0 = size - 1;
+                for (var i = 0; i <= tmp$0; i++) {
+                  result[i] = init(i);
+                }
+                return result;
+              }
+            }, /** @lends _.com.github.andrewoma.react.Component */ {
+              construct_ad91at$f: function () {
+              },
+              transformChildren$f: function (this$Component) {
+                return function (it) {
+                  return this$Component.children.get_za3lpa$(it).transform();
+                };
+              }
+            }),
             EventTarget: Kotlin.createTrait(null),
             DataTransfer: Kotlin.createTrait(null),
             Style: Kotlin.createClass(null, null),
@@ -3392,6 +3493,10 @@
               this.type$delegate = new _.com.github.andrewoma.react.Property();
               this.value$delegate = new _.com.github.andrewoma.react.Property();
               this.width$delegate = new _.com.github.andrewoma.react.Property();
+              this.formAction$delegate = new _.com.github.andrewoma.react.Property();
+              this.formEncType$delegate = new _.com.github.andrewoma.react.Property();
+              this.formMethod$delegate = new _.com.github.andrewoma.react.Property();
+              this.formTarget$delegate = new _.com.github.andrewoma.react.Property();
             }, /** @lends _.com.github.andrewoma.react.InputProperties.prototype */ {
               accept: {
                 get: function () {
@@ -3600,6 +3705,38 @@
                 set: function (width) {
                   this.width$delegate.setValue_w32e13$(this, new Kotlin.PropertyMetadata('width'), width);
                 }
+              },
+              formAction: {
+                get: function () {
+                  return this.formAction$delegate.getValue_dsk1ci$(this, new Kotlin.PropertyMetadata('formAction'));
+                },
+                set: function (formAction) {
+                  this.formAction$delegate.setValue_w32e13$(this, new Kotlin.PropertyMetadata('formAction'), formAction);
+                }
+              },
+              formEncType: {
+                get: function () {
+                  return this.formEncType$delegate.getValue_dsk1ci$(this, new Kotlin.PropertyMetadata('formEncType'));
+                },
+                set: function (formEncType) {
+                  this.formEncType$delegate.setValue_w32e13$(this, new Kotlin.PropertyMetadata('formEncType'), formEncType);
+                }
+              },
+              formMethod: {
+                get: function () {
+                  return this.formMethod$delegate.getValue_dsk1ci$(this, new Kotlin.PropertyMetadata('formMethod'));
+                },
+                set: function (formMethod) {
+                  this.formMethod$delegate.setValue_w32e13$(this, new Kotlin.PropertyMetadata('formMethod'), formMethod);
+                }
+              },
+              formTarget: {
+                get: function () {
+                  return this.formTarget$delegate.getValue_dsk1ci$(this, new Kotlin.PropertyMetadata('formTarget'));
+                },
+                set: function (formTarget) {
+                  this.formTarget$delegate.setValue_w32e13$(this, new Kotlin.PropertyMetadata('formTarget'), formTarget);
+                }
               }
             }),
             IframeProperties: Kotlin.createClass(function () {
@@ -3613,6 +3750,8 @@
               this.name$delegate = new _.com.github.andrewoma.react.Property();
               this.src$delegate = new _.com.github.andrewoma.react.Property();
               this.width$delegate = new _.com.github.andrewoma.react.Property();
+              this.marginHeight$delegate = new _.com.github.andrewoma.react.Property();
+              this.marginWidth$delegate = new _.com.github.andrewoma.react.Property();
             }, /** @lends _.com.github.andrewoma.react.IframeProperties.prototype */ {
               allowFullScreen: {
                 get: function () {
@@ -3668,6 +3807,22 @@
                 },
                 set: function (width) {
                   this.width$delegate.setValue_w32e13$(this, new Kotlin.PropertyMetadata('width'), width);
+                }
+              },
+              marginHeight: {
+                get: function () {
+                  return this.marginHeight$delegate.getValue_dsk1ci$(this, new Kotlin.PropertyMetadata('marginHeight'));
+                },
+                set: function (marginHeight) {
+                  this.marginHeight$delegate.setValue_w32e13$(this, new Kotlin.PropertyMetadata('marginHeight'), marginHeight);
+                }
+              },
+              marginWidth: {
+                get: function () {
+                  return this.marginWidth$delegate.getValue_dsk1ci$(this, new Kotlin.PropertyMetadata('marginWidth'));
+                },
+                set: function (marginWidth) {
+                  this.marginWidth$delegate.setValue_w32e13$(this, new Kotlin.PropertyMetadata('marginWidth'), marginWidth);
                 }
               }
             }),
@@ -4489,6 +4644,9 @@
               this.max$delegate = new _.com.github.andrewoma.react.Property();
               this.min$delegate = new _.com.github.andrewoma.react.Property();
               this.value$delegate = new _.com.github.andrewoma.react.Property();
+              this.high$delegate = new _.com.github.andrewoma.react.Property();
+              this.low$delegate = new _.com.github.andrewoma.react.Property();
+              this.optimum$delegate = new _.com.github.andrewoma.react.Property();
             }, /** @lends _.com.github.andrewoma.react.MeterProperties.prototype */ {
               form: {
                 get: function () {
@@ -4520,6 +4678,30 @@
                 },
                 set: function (value) {
                   this.value$delegate.setValue_w32e13$(this, new Kotlin.PropertyMetadata('value'), value);
+                }
+              },
+              high: {
+                get: function () {
+                  return this.high$delegate.getValue_dsk1ci$(this, new Kotlin.PropertyMetadata('high'));
+                },
+                set: function (high) {
+                  this.high$delegate.setValue_w32e13$(this, new Kotlin.PropertyMetadata('high'), high);
+                }
+              },
+              low: {
+                get: function () {
+                  return this.low$delegate.getValue_dsk1ci$(this, new Kotlin.PropertyMetadata('low'));
+                },
+                set: function (low) {
+                  this.low$delegate.setValue_w32e13$(this, new Kotlin.PropertyMetadata('low'), low);
+                }
+              },
+              optimum: {
+                get: function () {
+                  return this.optimum$delegate.getValue_dsk1ci$(this, new Kotlin.PropertyMetadata('optimum'));
+                },
+                set: function (optimum) {
+                  this.optimum$delegate.setValue_w32e13$(this, new Kotlin.PropertyMetadata('optimum'), optimum);
                 }
               }
             }),
@@ -4882,6 +5064,7 @@
             }, function $fun() {
               $fun.baseInitializer.call(this);
               this.type$delegate = new _.com.github.andrewoma.react.Property();
+              this.scoped$delegate = new _.com.github.andrewoma.react.Property();
             }, /** @lends _.com.github.andrewoma.react.StyleProperties.prototype */ {
               type: {
                 get: function () {
@@ -4889,6 +5072,14 @@
                 },
                 set: function (type) {
                   this.type$delegate.setValue_w32e13$(this, new Kotlin.PropertyMetadata('type'), type);
+                }
+              },
+              scoped: {
+                get: function () {
+                  return this.scoped$delegate.getValue_dsk1ci$(this, new Kotlin.PropertyMetadata('scoped'));
+                },
+                set: function (scoped) {
+                  this.scoped$delegate.setValue_w32e13$(this, new Kotlin.PropertyMetadata('scoped'), scoped);
                 }
               }
             }),
@@ -5189,17 +5380,6 @@
                 }
               }
             }),
-            classSet_eoa9s7$: function (classes) {
-              var tmp$0, tmp$1, tmp$2;
-              var sb = new Kotlin.StringBuilder();
-              tmp$0 = classes, tmp$1 = tmp$0.length;
-              for (var tmp$2 = 0; tmp$2 !== tmp$1; ++tmp$2) {
-                var pair = tmp$0[tmp$2];
-                if (pair.second)
-                  sb.append(pair.first);
-              }
-              return sb.toString();
-            },
             LogLevel: Kotlin.createClass(null, function (ordinal) {
               this.ordinal = ordinal;
             }, null, /** @lends _.com.github.andrewoma.react.LogLevel */ {
@@ -5266,103 +5446,27 @@
             logLevelFromLocation: function (location) {
               var tmp$0, tmp$1, tmp$2;
               var prefix = 'log-level=';
-              tmp$0 = Kotlin.copyToArray(Kotlin.modules['stdlib'].kotlin.split_csixt7$(location, Kotlin.modules['stdlib'].kotlin.toRegex_pdl1w0$('[?&]'))), tmp$1 = tmp$0.length;
+              tmp$0 = Kotlin.copyToArray(Kotlin.modules['stdlib'].kotlin.text.split_nhz2th$(location, Kotlin.modules['stdlib'].kotlin.text.toRegex_pdl1w0$('[?&]'))), tmp$1 = tmp$0.length;
               for (var tmp$2 = 0; tmp$2 !== tmp$1; ++tmp$2) {
                 var token = tmp$0[tmp$2];
-                if (Kotlin.modules['stdlib'].kotlin.startsWith_41xvrb$(token, prefix))
+                if (Kotlin.modules['stdlib'].kotlin.text.startsWith_41xvrb$(token, prefix))
                   return _.com.github.andrewoma.react.LogLevel.object.parse_61zpoe$(token.substring(prefix.length));
               }
               return _.com.github.andrewoma.react.LogLevel.object.none;
             },
-            ReadWriteProperty: Kotlin.createTrait(null),
-            Property: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.ReadWriteProperty];
-            }, null, /** @lends _.com.github.andrewoma.react.Property.prototype */ {
-              getValue_dsk1ci$: function (thisRef, property) {
-                return Reakt.getProperty(thisRef != null ? thisRef : Kotlin.throwNPE(), property.name);
-              },
-              setValue_w32e13$: function (thisRef, property, value) {
-                Reakt.setProperty(thisRef != null ? thisRef : Kotlin.throwNPE(), property.name, value);
-              }
-            }),
             React: Kotlin.createClass(null, null, /** @lends _.com.github.andrewoma.react.React.prototype */ {
               createFactory_oqkx6a$: function (spec) {
                 return Reakt.createClass(spec);
               },
-              renderComponent_vbpb6g$: function (component, container, callback) {
+              render_vbpb6g$: function (component, container, callback) {
                 if (callback === void 0)
-                  callback = _.com.github.andrewoma.react.React.renderComponent_vbpb6g$f;
-                return React.renderComponent(component, container, callback);
+                  callback = _.com.github.andrewoma.react.React.render_vbpb6g$f;
+                return ReactDOM.render(component, container, callback);
               }
             }, /** @lends _.com.github.andrewoma.react.React */ {
-              renderComponent_vbpb6g$f: function () {
+              render_vbpb6g$f: function () {
               }
-            }),
-            ReactMixin: Kotlin.createTrait(null, /** @lends _.com.github.andrewoma.react.ReactMixin.prototype */ {
-              componentWillMount: function () {
-              },
-              componentDidMount: function () {
-              },
-              componentWillReceiveProps_za3rmp$: function (nextProps) {
-              },
-              shouldComponentUpdate_wn2jw4$: function (nextProps, nextState) {
-                return true;
-              },
-              componentWillUpdate_wn2jw4$: function (nextProps, nextState) {
-              },
-              componentDidUpdate_wn2jw4$: function (nextProps, nextState) {
-              },
-              componentWillUnmount: function () {
-              }
-            }),
-            Ref: Kotlin.createClass(null, function (value) {
-              this.value = value;
-            }),
-            ReactComponentSpec: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.ReactMixin];
-            }, function () {
-              this.component = null;
-              this.mixins = [];
-              this.displayName = '';
-            }, /** @lends _.com.github.andrewoma.react.ReactComponentSpec.prototype */ {
-              state: {
-                get: function () {
-                  var tmp$0, tmp$1;
-                  return (tmp$1 = ((tmp$0 = this.component) != null ? tmp$0 : Kotlin.throwNPE()).state.value) != null ? tmp$1 : Kotlin.throwNPE();
-                },
-                set: function (value) {
-                  var tmp$0;
-                  ((tmp$0 = this.component) != null ? tmp$0 : Kotlin.throwNPE()).setState(new _.com.github.andrewoma.react.Ref(value));
-                }
-              },
-              props: {
-                get: function () {
-                  var tmp$0, tmp$1;
-                  return (tmp$1 = ((tmp$0 = this.component) != null ? tmp$0 : Kotlin.throwNPE()).props.value) != null ? tmp$1 : Kotlin.throwNPE();
-                },
-                set: function (value) {
-                  var tmp$0;
-                  ((tmp$0 = this.component) != null ? tmp$0 : Kotlin.throwNPE()).setProps(new _.com.github.andrewoma.react.Ref(value), null);
-                }
-              },
-              getInitialState: function () {
-                var state = this.initialState();
-                return state == null ? null : new _.com.github.andrewoma.react.Ref(state);
-              },
-              initialState: function () {
-                return null;
-              },
-              getDefaultProps: function () {
-                return null;
-              }
-            }),
-            check_8kj6y5$: function (condition, message) {
-              if (message === void 0)
-                message = 'Assertion failed';
-              if (!condition) {
-                throw new Kotlin.Exception(message);
-              }
-            }
+            })
           })
         })
       })
@@ -5371,5 +5475,3 @@
   Kotlin.defineModule('reakt', _);
   _.todo.main_kand9s$([]);
 }(Kotlin));
-
-//@ sourceMappingURL=reakt.js.map
