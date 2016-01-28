@@ -50,7 +50,6 @@ kotlinc-js -output my-awesome-app.js src -library-files reakt.jar
 * Proof of concept
 
 #### Roadmap
-*
 * Clean up copyrights and licenses for derivative work
 * Review naming conventions (Actions/Events)
 * Add properties to the CSS Sytle class
