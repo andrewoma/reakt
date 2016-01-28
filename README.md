@@ -16,7 +16,30 @@ To run the example, clone the repository and open `index.html` from the `todo` d
 * Store: [Kotlin](https://github.com/andrewoma/reakt/blob/master/src/todo/stores/TodoStore.kt)  vs [JavaScript](https://github.com/facebook/flux/blob/master/examples/flux-todomvc/js/stores/TodoStore.js)
 
 #### Building
-* Currently, it can only be built using IntelliJ IDEA.
+* [Download](https://kotlinlang.org/docs/tutorials/command-line.html) a standalone Kotlin compiler
+```
+curl -s get.sdkman.io | bash
+sdk install kotlin
+```
+* [Compile](https://kotlinlang.org/docs/tutorials/command-line-library-js.html) the library into javascript files
+```
+git clone https://github.com/andrewoma/reakt reakt
+cd reakt
+kotlinc-js -output todo/js/app/reakt.js src -meta-info
+```
+* That's it. Now you can open todo/index.html to see the example Todo application.
+
+#### Using in your project as a library
+* Build (see previous point)
+* Create a jar from the compiled javascript files
+```
+jar cf reakt.jar todo/js/app/*.js
+```
+* In IntelliJ, you can add this jar as a dependency to your Kotlin(Javascript) project or
+* From command line
+```
+kotlinc-js -output my-awesome-app.js src -library-files reakt.jar
+```
 
 #### Credits
 * [wizzard0's](https://github.com/wizzard0) [React TypeScript Definitions](https://github.com/wizzard0/react-typescript-definitions).
@@ -27,6 +50,7 @@ To run the example, clone the repository and open `index.html` from the `todo` d
 * Proof of concept
 
 #### Roadmap
+*
 * Clean up copyrights and licenses for derivative work
 * Review naming conventions (Actions/Events)
 * Add properties to the CSS Sytle class
