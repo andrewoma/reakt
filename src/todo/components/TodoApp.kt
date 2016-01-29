@@ -1,7 +1,6 @@
 package todo.components
 
 import com.github.andrewoma.react.*
-import todo.stores.Event
 import todo.stores.Todo
 import todo.stores.todoStore
 
@@ -12,18 +11,18 @@ class TodoApp : ComponentSpec<Unit, TodoAppState>() {
         val factory = react.createFactory(TodoApp())
     }
 
-    val listener: (Event) -> Unit = { onChange() } // Create a val so the reference is stable for removal
-
     override fun initialState(): TodoAppState? {
         return TodoAppState(todoStore.getAll())
     }
 
     override fun componentDidMount() {
-        todoStore.addChangeListener(listener)
+        todoStore.addChangeListener(this) {
+            onChange()
+        }
     }
 
-    override fun componentWillMount() {
-        todoStore.removeChangeListener(listener)
+    override fun componentWillUnmount() {
+        todoStore.removeListener(this)
     }
 
     override fun Component.render() {

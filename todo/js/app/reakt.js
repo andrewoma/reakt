@@ -8,8 +8,8 @@
         _.com.github.andrewoma.react.react.render_vbpb6g$(_.todo.components.createTodoApp(), (tmp$0 = document.getElementById('todoapp')) != null ? tmp$0 : Kotlin.throwNPE());
       },
       stores: Kotlin.definePackage(function () {
+        this.todoDispatcher = new _.com.github.andrewoma.flux.Dispatcher();
         this.todoStore = new _.todo.stores.TodoStore();
-        this.todoStoreActionHandler = new _.todo.stores.TodoStoreActionHandler(_.todo.stores.todoStore, _.todo.dispatcher.todoDispatcher);
       }, /** @lends _.todo.stores */ {
         Todo: Kotlin.createClass(null, function (id, text, complete) {
           if (complete === void 0)
@@ -44,10 +44,6 @@
             return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.id, other.id) && Kotlin.equals(this.text, other.text) && Kotlin.equals(this.complete, other.complete)))));
           }
         }),
-        Event: Kotlin.createTrait(null),
-        ChangeEvent: Kotlin.createClass(function () {
-          return [_.todo.stores.Event];
-        }, null),
         areAllCompleted_oze285$: function ($receiver) {
           return $receiver.size === _.todo.stores.completedCount_oze285$($receiver);
         },
@@ -62,9 +58,18 @@
           }
           return completed;
         },
-        TodoStore: Kotlin.createClass(null, function () {
+        TodoStore: Kotlin.createClass(function () {
+          return [_.com.github.andrewoma.flux.Store];
+        }, function $fun() {
+          $fun.baseInitializer.call(this);
           this.todos_91fe12$ = new Kotlin.LinkedHashMap();
-          this.listeners_k2bw4o$ = new Kotlin.ComplexHashSet();
+          _.todo.stores.todoDispatcher.register_xztz3k$(this, _.todo.actions.TodoActions.create, _.todo.stores.TodoStore.TodoStore$f(this));
+          _.todo.stores.todoDispatcher.register_xztz3k$(this, _.todo.actions.TodoActions.toggleCompleteAll, _.todo.stores.TodoStore.TodoStore$f_0(this));
+          _.todo.stores.todoDispatcher.register_xztz3k$(this, _.todo.actions.TodoActions.undoComplete, _.todo.stores.TodoStore.TodoStore$f_1(this));
+          _.todo.stores.todoDispatcher.register_xztz3k$(this, _.todo.actions.TodoActions.complete, _.todo.stores.TodoStore.TodoStore$f_2(this));
+          _.todo.stores.todoDispatcher.register_xztz3k$(this, _.todo.actions.TodoActions.update, _.todo.stores.TodoStore.TodoStore$f_3(this));
+          _.todo.stores.todoDispatcher.register_xztz3k$(this, _.todo.actions.TodoActions.destroy, _.todo.stores.TodoStore.TodoStore$f_4(this));
+          _.todo.stores.todoDispatcher.register_xztz3k$(this, _.todo.actions.TodoActions.destroyCompleted, _.todo.stores.TodoStore.TodoStore$f_5(this));
         }, /** @lends _.todo.stores.TodoStore.prototype */ {
           getAll: function () {
             return this.todos_91fe12$.values;
@@ -108,158 +113,125 @@
           areAllComplete: function () {
             return _.todo.stores.areAllCompleted_oze285$(this.todos_91fe12$.values);
           },
-          addChangeListener_kxl949$: function (callback) {
-            this.listeners_k2bw4o$.add_za3rmp$(callback);
-          },
-          removeChangeListener_kxl949$: function (callback) {
-            this.listeners_k2bw4o$.remove_za3rmp$(callback);
-          },
-          emitChange: function () {
-            var tmp$0;
-            var event = new _.todo.stores.ChangeEvent();
-            tmp$0 = this.listeners_k2bw4o$.iterator();
-            while (tmp$0.hasNext()) {
-              var l = tmp$0.next();
-              l(event);
-            }
-          }
-        }),
-        TodoStoreActionHandler: Kotlin.createClass(null, function (store, dispatcher) {
-          this.store = store;
-          dispatcher.register_luzt2e$(_.todo.stores.TodoStoreActionHandler.TodoStoreActionHandler$f(this));
-        }, /** @lends _.todo.stores.TodoStoreActionHandler.prototype */ {
-          withNonEmpty_fqkxi5$: Kotlin.defineInlineFunction('reakt.todo.stores.TodoStoreActionHandler.withNonEmpty_fqkxi5$', function (text, onNonEmpty) {
+          withNonEmpty_fqkxi5$: Kotlin.defineInlineFunction('reakt.todo.stores.TodoStore.withNonEmpty_fqkxi5$', function (text, onNonEmpty) {
             var trimmed = Kotlin.modules['stdlib'].kotlin.text.trim_pdl1w0$(text);
             if (!Kotlin.modules['stdlib'].kotlin.text.isEmpty_gw00vq$(trimmed))
               onNonEmpty(trimmed);
-          }),
-          onAction_37dhth$: function (action) {
-            if (Kotlin.isType(action, _.todo.actions.Create)) {
-              var onNonEmpty = _.todo.stores.TodoStoreActionHandler.onAction_37dhth$f(this);
-              var trimmed = Kotlin.modules['stdlib'].kotlin.text.trim_pdl1w0$(action.text);
-              if (!Kotlin.modules['stdlib'].kotlin.text.isEmpty_gw00vq$(trimmed))
-                onNonEmpty(trimmed);
-            }
-             else if (Kotlin.isType(action, _.todo.actions.ToggleCompleteAll)) {
-              var complete = !this.store.areAllComplete();
-              this.store.updateAll_2qbbu$(_.todo.stores.TodoStoreActionHandler.onAction_37dhth$f_0(complete));
-            }
-             else if (Kotlin.isType(action, _.todo.actions.UndoComplete))
-              this.store.update_b2pvf8$(action.id, _.todo.stores.TodoStoreActionHandler.onAction_37dhth$f_1);
-            else if (Kotlin.isType(action, _.todo.actions.Complete))
-              this.store.update_b2pvf8$(action.id, _.todo.stores.TodoStoreActionHandler.onAction_37dhth$f_2);
-            else if (Kotlin.isType(action, _.todo.actions.Update)) {
-              var onNonEmpty_0 = _.todo.stores.TodoStoreActionHandler.onAction_37dhth$f_3(this, action);
-              var trimmed_0 = Kotlin.modules['stdlib'].kotlin.text.trim_pdl1w0$(action.text);
-              if (!Kotlin.modules['stdlib'].kotlin.text.isEmpty_gw00vq$(trimmed_0))
-                onNonEmpty_0(trimmed_0);
-            }
-             else if (Kotlin.isType(action, _.todo.actions.Destroy))
-              this.store.destroy_61zpoe$(action.id);
-            else if (Kotlin.isType(action, _.todo.actions.DestroyCompleted))
-              this.store.destroyCompleted();
-            else
-              _.com.github.andrewoma.react.log.error_9mqe4v$(['Unknown action', action]);
-            this.store.emitChange();
-          }
-        }, /** @lends _.todo.stores.TodoStoreActionHandler */ {
-          TodoStoreActionHandler$f: function (this$TodoStoreActionHandler) {
-            return function (it) {
-              this$TodoStoreActionHandler.onAction_37dhth$(it);
+          })
+        }, /** @lends _.todo.stores.TodoStore */ {
+          TodoStore$f: function (this$TodoStore) {
+            return function (payload) {
+              var trimmed = Kotlin.modules['stdlib'].kotlin.text.trim_pdl1w0$(payload.text);
+              if (!Kotlin.modules['stdlib'].kotlin.text.isEmpty_gw00vq$(trimmed)) {
+                this$TodoStore.create_61zpoe$(trimmed);
+                this$TodoStore.emitChange();
+              }
             };
           },
-          onAction_37dhth$f: function (this$TodoStoreActionHandler) {
-            return function (it) {
-              this$TodoStoreActionHandler.store.create_61zpoe$(it);
-            };
-          },
-          onAction_37dhth$f_0: function (complete) {
+          f_0: function (complete) {
             return function (it) {
               return Kotlin.equals(it.complete, complete) ? it : it.copy_qz9155$(void 0, void 0, complete);
             };
           },
-          onAction_37dhth$f_1: function (it) {
+          TodoStore$f_0: function (this$TodoStore) {
+            return function (payload) {
+              var complete = !this$TodoStore.areAllComplete();
+              this$TodoStore.updateAll_2qbbu$(_.todo.stores.TodoStore.f_0(complete));
+              this$TodoStore.emitChange();
+            };
+          },
+          f_1: function (it) {
             return it.copy_qz9155$(void 0, void 0, false);
           },
-          onAction_37dhth$f_2: function (it) {
+          TodoStore$f_1: function (this$TodoStore) {
+            return function (payload) {
+              this$TodoStore.update_b2pvf8$(payload.id, _.todo.stores.TodoStore.f_1);
+              this$TodoStore.emitChange();
+            };
+          },
+          f_2: function (it) {
             return it.copy_qz9155$(void 0, void 0, true);
           },
-          f: function (text) {
+          TodoStore$f_2: function (this$TodoStore) {
+            return function (payload) {
+              this$TodoStore.update_b2pvf8$(payload.id, _.todo.stores.TodoStore.f_2);
+              this$TodoStore.emitChange();
+            };
+          },
+          f_3: function (text) {
             return function (it) {
               return it.copy_qz9155$(void 0, text);
             };
           },
-          onAction_37dhth$f_3: function (this$TodoStoreActionHandler, action) {
-            return function (text) {
-              this$TodoStoreActionHandler.store.update_b2pvf8$(action.id, _.todo.stores.TodoStoreActionHandler.f(text));
+          TodoStore$f_3: function (this$TodoStore) {
+            return function (payload) {
+              var trimmed = Kotlin.modules['stdlib'].kotlin.text.trim_pdl1w0$(payload.text);
+              if (!Kotlin.modules['stdlib'].kotlin.text.isEmpty_gw00vq$(trimmed)) {
+                this$TodoStore.update_b2pvf8$(payload.id, _.todo.stores.TodoStore.f_3(trimmed));
+                this$TodoStore.emitChange();
+              }
+            };
+          },
+          TodoStore$f_4: function (this$TodoStore) {
+            return function (payload) {
+              this$TodoStore.destroy_61zpoe$(payload.id);
+              this$TodoStore.emitChange();
+            };
+          },
+          TodoStore$f_5: function (this$TodoStore) {
+            return function (payload) {
+              this$TodoStore.destroyCompleted();
+              this$TodoStore.emitChange();
             };
           }
         })
       }),
       actions: Kotlin.definePackage(function () {
-        this.todoActions = new _.todo.actions.TodoActions();
+        this.TodoActions = Kotlin.createObject(null, function () {
+          this.create = new _.com.github.andrewoma.flux.ActionDef(_.todo.stores.todoDispatcher);
+          this.update = new _.com.github.andrewoma.flux.ActionDef(_.todo.stores.todoDispatcher);
+          this.complete = new _.com.github.andrewoma.flux.ActionDef(_.todo.stores.todoDispatcher);
+          this.undoComplete = new _.com.github.andrewoma.flux.ActionDef(_.todo.stores.todoDispatcher);
+          this.toggleCompleteAll = new _.com.github.andrewoma.flux.ActionDef(_.todo.stores.todoDispatcher);
+          this.destroy = new _.com.github.andrewoma.flux.ActionDef(_.todo.stores.todoDispatcher);
+          this.destroyCompleted = new _.com.github.andrewoma.flux.ActionDef(_.todo.stores.todoDispatcher);
+        }, {
+          toggleComplete_1uphty$: function (todo) {
+            if (todo.complete) {
+              this.undoComplete.invoke_za3rmp$(new _.todo.actions.UndoCompletePayload(todo.id));
+            }
+             else {
+              this.complete.invoke_za3rmp$(new _.todo.actions.CompletePayload(todo.id));
+            }
+          }
+        });
       }, /** @lends _.todo.actions */ {
         TodoAction: Kotlin.createTrait(null),
-        Create: Kotlin.createClass(function () {
+        CreatePayload: Kotlin.createClass(function () {
           return [_.todo.actions.TodoAction];
         }, function (text) {
           this.text = text;
         }),
-        Update: Kotlin.createClass(function () {
+        UpdatePayload: Kotlin.createClass(function () {
           return [_.todo.actions.TodoAction];
         }, function (id, text) {
           this.id = id;
           this.text = text;
         }),
-        UndoComplete: Kotlin.createClass(function () {
+        UndoCompletePayload: Kotlin.createClass(function () {
           return [_.todo.actions.TodoAction];
         }, function (id) {
           this.id = id;
         }),
-        Complete: Kotlin.createClass(function () {
+        CompletePayload: Kotlin.createClass(function () {
           return [_.todo.actions.TodoAction];
         }, function (id) {
           this.id = id;
         }),
-        ToggleCompleteAll: Kotlin.createClass(function () {
-          return [_.todo.actions.TodoAction];
-        }, null),
-        Destroy: Kotlin.createClass(function () {
+        DestroyPayload: Kotlin.createClass(function () {
           return [_.todo.actions.TodoAction];
         }, function (id) {
           this.id = id;
-        }),
-        DestroyCompleted: Kotlin.createClass(function () {
-          return [_.todo.actions.TodoAction];
-        }, null),
-        TodoActions: Kotlin.createClass(null, null, /** @lends _.todo.actions.TodoActions.prototype */ {
-          viewAction: function (action) {
-            _.com.github.andrewoma.react.log.debug_9mqe4v$(['action', action]);
-            _.todo.dispatcher.todoDispatcher.dispatch_37dhth$(action);
-          },
-          create_61zpoe$: function (text) {
-            this.viewAction(new _.todo.actions.Create(text));
-          },
-          updateText_puj7f4$: function (id, text) {
-            this.viewAction(new _.todo.actions.Update(id, text));
-          },
-          toggleComplete_1uphty$: function (todo) {
-            if (todo.complete) {
-              this.viewAction(new _.todo.actions.UndoComplete(todo.id));
-            }
-             else {
-              this.viewAction(new _.todo.actions.Complete(todo.id));
-            }
-          },
-          toggleCompleteAll: function () {
-            this.viewAction(new _.todo.actions.ToggleCompleteAll());
-          },
-          destroy_61zpoe$: function (id) {
-            this.viewAction(new _.todo.actions.Destroy(id));
-          },
-          destroyCompleted: function () {
-            this.viewAction(new _.todo.actions.DestroyCompleted());
-          }
         })
       }),
       components: Kotlin.definePackage(null, /** @lends _.todo.components */ {
@@ -288,16 +260,15 @@
           return [_.com.github.andrewoma.react.ComponentSpec];
         }, function $fun() {
           $fun.baseInitializer.call(this);
-          this.listener = _.todo.components.TodoApp.listener$f(this);
         }, /** @lends _.todo.components.TodoApp.prototype */ {
           initialState: function () {
             return new _.todo.components.TodoAppState(_.todo.stores.todoStore.getAll());
           },
           componentDidMount: function () {
-            _.todo.stores.todoStore.addChangeListener_kxl949$(this.listener);
+            _.todo.stores.todoStore.addChangeListener_o7wwlr$(this, _.todo.components.TodoApp.componentDidMount$f(this));
           },
-          componentWillMount: function () {
-            _.todo.stores.todoStore.removeChangeListener_kxl949$(this.listener);
+          componentWillUnmount: function () {
+            _.todo.stores.todoStore.removeListener_za3rmp$(this);
           },
           render_sx5o3u$: function ($receiver) {
             _.com.github.andrewoma.react.div_w5u0dm$($receiver, void 0, _.todo.components.TodoApp.render_sx5o3u$f(this));
@@ -306,15 +277,15 @@
             this.state = new _.todo.components.TodoAppState(_.todo.stores.todoStore.getAll());
           }
         }, /** @lends _.todo.components.TodoApp */ {
-          listener$f: function (this$TodoApp) {
-            return function (it) {
-              this$TodoApp.onChange();
-            };
-          },
           object_initializer$: function () {
             return Kotlin.createObject(null, function () {
               this.factory = _.com.github.andrewoma.react.react.createFactory_oqkx6a$(new _.todo.components.TodoApp());
             });
+          },
+          componentDidMount$f: function (this$TodoApp) {
+            return function () {
+              this$TodoApp.onChange();
+            };
           },
           render_sx5o3u$f: function (this$TodoApp) {
             return function () {
@@ -408,7 +379,7 @@
           };
         },
         todoTextInput_o29w70$: function ($receiver, props) {
-          return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.todo.components.todoTextInput_o29w70$f(props)));
+          return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.todo.components.todoTextInput_o29w70$f(props)));
         },
         MainSectionProperties: Kotlin.createClass(null, function (todos) {
           this.todos = todos;
@@ -443,7 +414,7 @@
             _.com.github.andrewoma.react.section_w5u0dm$($receiver, _.todo.components.MainSection.render_sx5o3u$f, _.todo.components.MainSection.render_sx5o3u$f_0(this));
           },
           onToggleCompleteAll: function () {
-            _.todo.actions.todoActions.toggleCompleteAll();
+            _.todo.actions.TodoActions.toggleCompleteAll.invoke_za3rmp$(null);
           }
         }, /** @lends _.todo.components.MainSection */ {
           object_initializer$: function () {
@@ -500,7 +471,7 @@
           };
         },
         todoMainSection_8kskxl$: function ($receiver, props) {
-          return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.todo.components.todoMainSection_8kskxl$f(props)));
+          return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.todo.components.todoMainSection_8kskxl$f(props)));
         },
         TodoItemProperties: Kotlin.createClass(null, function (key, todo) {
           this.key = key;
@@ -565,17 +536,17 @@
             _.com.github.andrewoma.react.li_fv5cu1$($receiver, _.todo.components.TodoItem.render_sx5o3u$f(classes, this), _.todo.components.TodoItem.render_sx5o3u$f_0(this));
           },
           onToggleComplete: function () {
-            _.todo.actions.todoActions.toggleComplete_1uphty$(this.props.todo);
+            _.todo.actions.TodoActions.toggleComplete_1uphty$(this.props.todo);
           },
           onDoubleClick: function () {
             this.state = this.state.copy_6taknv$(true);
           },
           onSave_61zpoe$: function (value) {
-            _.todo.actions.todoActions.updateText_puj7f4$(this.props.todo.id, value);
+            _.todo.actions.TodoActions.update.invoke_za3rmp$(new _.todo.actions.UpdatePayload(this.props.todo.id, value));
             this.state = this.state.copy_6taknv$(false);
           },
           onDestroyClick: function () {
-            _.todo.actions.todoActions.destroy_61zpoe$(this.props.todo.id);
+            _.todo.actions.TodoActions.destroy.invoke_za3rmp$(new _.todo.actions.DestroyPayload(this.props.todo.id));
           },
           shouldComponentUpdate_wn2jw4$: function (nextProps, nextState) {
             return !(this.props.todo === nextProps.todo && this.state === nextState);
@@ -661,7 +632,7 @@
           };
         },
         todoItem_w6isj2$: function ($receiver, props) {
-          return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.todo.components.todoItem_w6isj2$f(props)));
+          return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.todo.components.todoItem_w6isj2$f(props)));
         },
         Header: Kotlin.createClass(function () {
           return [_.com.github.andrewoma.react.ComponentSpec];
@@ -674,7 +645,7 @@
           },
           onSave_61zpoe$: function (text) {
             if (!Kotlin.modules['stdlib'].kotlin.text.isEmpty_gw00vq$(Kotlin.modules['stdlib'].kotlin.text.trim_pdl1w0$(text))) {
-              _.todo.actions.todoActions.create_61zpoe$(text);
+              _.todo.actions.TodoActions.create.invoke_za3rmp$(new _.todo.actions.CreatePayload(text));
             }
           }
         }, /** @lends _.todo.components.Header */ {
@@ -705,7 +676,7 @@
           return _.todo.components.Header.object.factory.invoke(new _.com.github.andrewoma.react.Ref(null));
         },
         todoHeader_sx5o3u$: function ($receiver) {
-          return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.todo.components.todoHeader_sx5o3u$f));
+          return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.todo.components.todoHeader_sx5o3u$f));
         },
         FooterProperties: Kotlin.createClass(null, function (todos) {
           this.todos = todos;
@@ -743,7 +714,7 @@
             _.com.github.andrewoma.react.footer_w5u0dm$($receiver, _.todo.components.Footer.render_sx5o3u$f, _.todo.components.Footer.render_sx5o3u$f_0(itemsLeft, itemsLeftPhrase, completed, this));
           },
           onClearCompletedClick: function () {
-            _.todo.actions.todoActions.destroyCompleted();
+            _.todo.actions.TodoActions.destroyCompleted.invoke_za3rmp$(null);
           }
         }, /** @lends _.todo.components.Footer */ {
           object_initializer$: function () {
@@ -798,27 +769,8 @@
           };
         },
         todoFooter_ufne8c$: function ($receiver, props) {
-          return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.todo.components.todoFooter_ufne8c$f(props)));
+          return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.todo.components.todoFooter_ufne8c$f(props)));
         }
-      }),
-      dispatcher: Kotlin.definePackage(function () {
-        this.todoDispatcher = new _.todo.dispatcher.TodoDispatcher();
-      }, /** @lends _.todo.dispatcher */ {
-        TodoDispatcher: Kotlin.createClass(null, function () {
-          this.callbacks_srs2oc$ = new Kotlin.ComplexHashSet();
-        }, /** @lends _.todo.dispatcher.TodoDispatcher.prototype */ {
-          dispatch_37dhth$: function (action) {
-            var tmp$0;
-            tmp$0 = this.callbacks_srs2oc$.iterator();
-            while (tmp$0.hasNext()) {
-              var c = tmp$0.next();
-              c(action);
-            }
-          },
-          register_luzt2e$: function (callback) {
-            this.callbacks_srs2oc$.add_za3rmp$(callback);
-          }
-        })
       })
     }),
     com: Kotlin.definePackage(null, /** @lends _.com */ {
@@ -925,7 +877,7 @@
             text_3pk7xh$: function ($receiver, value, init) {
               if (init === void 0)
                 init = _.com.github.andrewoma.react.text_3pk7xh$f;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.text_3pk7xh$f_0(value)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.text_3pk7xh$f_0(value)), init);
             },
             a_z74dev$f: function () {
             },
@@ -941,7 +893,7 @@
                 properties = _.com.github.andrewoma.react.a_z74dev$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.a_z74dev$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.a_z74dev$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.a_z74dev$f_1(properties)), init);
             },
             abbr_w5u0dm$f: function () {
             },
@@ -957,7 +909,7 @@
                 properties = _.com.github.andrewoma.react.abbr_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.abbr_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.abbr_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.abbr_w5u0dm$f_1(properties)), init);
             },
             address_w5u0dm$f: function () {
             },
@@ -973,7 +925,7 @@
                 properties = _.com.github.andrewoma.react.address_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.address_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.address_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.address_w5u0dm$f_1(properties)), init);
             },
             area_5tulbr$f: function () {
             },
@@ -989,7 +941,7 @@
                 properties = _.com.github.andrewoma.react.area_5tulbr$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.area_5tulbr$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.area_5tulbr$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.area_5tulbr$f_1(properties)), init);
             },
             article_w5u0dm$f: function () {
             },
@@ -1005,7 +957,7 @@
                 properties = _.com.github.andrewoma.react.article_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.article_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.article_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.article_w5u0dm$f_1(properties)), init);
             },
             aside_w5u0dm$f: function () {
             },
@@ -1021,7 +973,7 @@
                 properties = _.com.github.andrewoma.react.aside_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.aside_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.aside_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.aside_w5u0dm$f_1(properties)), init);
             },
             audio_ih5qxw$f: function () {
             },
@@ -1037,7 +989,7 @@
                 properties = _.com.github.andrewoma.react.audio_ih5qxw$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.audio_ih5qxw$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.audio_ih5qxw$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.audio_ih5qxw$f_1(properties)), init);
             },
             b_w5u0dm$f: function () {
             },
@@ -1053,7 +1005,7 @@
                 properties = _.com.github.andrewoma.react.b_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.b_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.b_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.b_w5u0dm$f_1(properties)), init);
             },
             base_500i4t$f: function () {
             },
@@ -1069,7 +1021,7 @@
                 properties = _.com.github.andrewoma.react.base_500i4t$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.base_500i4t$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.base_500i4t$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.base_500i4t$f_1(properties)), init);
             },
             bdi_w5u0dm$f: function () {
             },
@@ -1085,7 +1037,7 @@
                 properties = _.com.github.andrewoma.react.bdi_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.bdi_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.bdi_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.bdi_w5u0dm$f_1(properties)), init);
             },
             bdo_w5u0dm$f: function () {
             },
@@ -1101,7 +1053,7 @@
                 properties = _.com.github.andrewoma.react.bdo_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.bdo_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.bdo_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.bdo_w5u0dm$f_1(properties)), init);
             },
             big_w5u0dm$f: function () {
             },
@@ -1117,7 +1069,7 @@
                 properties = _.com.github.andrewoma.react.big_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.big_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.big_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.big_w5u0dm$f_1(properties)), init);
             },
             blockquote_w5u0dm$f: function () {
             },
@@ -1133,7 +1085,7 @@
                 properties = _.com.github.andrewoma.react.blockquote_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.blockquote_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.blockquote_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.blockquote_w5u0dm$f_1(properties)), init);
             },
             body_w5u0dm$f: function () {
             },
@@ -1149,7 +1101,7 @@
                 properties = _.com.github.andrewoma.react.body_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.body_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.body_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.body_w5u0dm$f_1(properties)), init);
             },
             br_w5u0dm$f: function () {
             },
@@ -1165,7 +1117,7 @@
                 properties = _.com.github.andrewoma.react.br_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.br_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.br_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.br_w5u0dm$f_1(properties)), init);
             },
             button_7a8emq$f: function () {
             },
@@ -1181,7 +1133,7 @@
                 properties = _.com.github.andrewoma.react.button_7a8emq$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.button_7a8emq$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.button_7a8emq$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.button_7a8emq$f_1(properties)), init);
             },
             canvas_8v9clw$f: function () {
             },
@@ -1197,7 +1149,7 @@
                 properties = _.com.github.andrewoma.react.canvas_8v9clw$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.canvas_8v9clw$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.canvas_8v9clw$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.canvas_8v9clw$f_1(properties)), init);
             },
             caption_w5u0dm$f: function () {
             },
@@ -1213,7 +1165,7 @@
                 properties = _.com.github.andrewoma.react.caption_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.caption_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.caption_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.caption_w5u0dm$f_1(properties)), init);
             },
             cite_w5u0dm$f: function () {
             },
@@ -1229,7 +1181,7 @@
                 properties = _.com.github.andrewoma.react.cite_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.cite_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.cite_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.cite_w5u0dm$f_1(properties)), init);
             },
             code_w5u0dm$f: function () {
             },
@@ -1245,7 +1197,7 @@
                 properties = _.com.github.andrewoma.react.code_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.code_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.code_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.code_w5u0dm$f_1(properties)), init);
             },
             col_w5u0dm$f: function () {
             },
@@ -1261,7 +1213,7 @@
                 properties = _.com.github.andrewoma.react.col_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.col_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.col_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.col_w5u0dm$f_1(properties)), init);
             },
             colgroup_w5u0dm$f: function () {
             },
@@ -1277,7 +1229,7 @@
                 properties = _.com.github.andrewoma.react.colgroup_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.colgroup_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.colgroup_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.colgroup_w5u0dm$f_1(properties)), init);
             },
             data_w5u0dm$f: function () {
             },
@@ -1293,7 +1245,7 @@
                 properties = _.com.github.andrewoma.react.data_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.data_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.data_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.data_w5u0dm$f_1(properties)), init);
             },
             datalist_w5u0dm$f: function () {
             },
@@ -1309,7 +1261,7 @@
                 properties = _.com.github.andrewoma.react.datalist_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.datalist_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.datalist_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.datalist_w5u0dm$f_1(properties)), init);
             },
             dd_w5u0dm$f: function () {
             },
@@ -1325,7 +1277,7 @@
                 properties = _.com.github.andrewoma.react.dd_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.dd_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.dd_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.dd_w5u0dm$f_1(properties)), init);
             },
             del_39nmmp$f: function () {
             },
@@ -1341,7 +1293,7 @@
                 properties = _.com.github.andrewoma.react.del_39nmmp$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.del_39nmmp$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.del_39nmmp$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.del_39nmmp$f_1(properties)), init);
             },
             details_w5u0dm$f: function () {
             },
@@ -1357,7 +1309,7 @@
                 properties = _.com.github.andrewoma.react.details_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.details_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.details_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.details_w5u0dm$f_1(properties)), init);
             },
             dfn_w5u0dm$f: function () {
             },
@@ -1373,7 +1325,7 @@
                 properties = _.com.github.andrewoma.react.dfn_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.dfn_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.dfn_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.dfn_w5u0dm$f_1(properties)), init);
             },
             div_w5u0dm$f: function () {
             },
@@ -1389,7 +1341,7 @@
                 properties = _.com.github.andrewoma.react.div_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.div_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.div_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.div_w5u0dm$f_1(properties)), init);
             },
             dl_w5u0dm$f: function () {
             },
@@ -1405,7 +1357,7 @@
                 properties = _.com.github.andrewoma.react.dl_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.dl_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.dl_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.dl_w5u0dm$f_1(properties)), init);
             },
             dt_w5u0dm$f: function () {
             },
@@ -1421,7 +1373,7 @@
                 properties = _.com.github.andrewoma.react.dt_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.dt_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.dt_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.dt_w5u0dm$f_1(properties)), init);
             },
             em_w5u0dm$f: function () {
             },
@@ -1437,7 +1389,7 @@
                 properties = _.com.github.andrewoma.react.em_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.em_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.em_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.em_w5u0dm$f_1(properties)), init);
             },
             embed_2uw1y7$f: function () {
             },
@@ -1453,7 +1405,7 @@
                 properties = _.com.github.andrewoma.react.embed_2uw1y7$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.embed_2uw1y7$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.embed_2uw1y7$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.embed_2uw1y7$f_1(properties)), init);
             },
             fieldset_tpxvs4$f: function () {
             },
@@ -1469,7 +1421,7 @@
                 properties = _.com.github.andrewoma.react.fieldset_tpxvs4$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.fieldset_tpxvs4$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.fieldset_tpxvs4$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.fieldset_tpxvs4$f_1(properties)), init);
             },
             figcaption_w5u0dm$f: function () {
             },
@@ -1485,7 +1437,7 @@
                 properties = _.com.github.andrewoma.react.figcaption_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.figcaption_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.figcaption_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.figcaption_w5u0dm$f_1(properties)), init);
             },
             figure_w5u0dm$f: function () {
             },
@@ -1501,7 +1453,7 @@
                 properties = _.com.github.andrewoma.react.figure_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.figure_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.figure_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.figure_w5u0dm$f_1(properties)), init);
             },
             footer_w5u0dm$f: function () {
             },
@@ -1517,7 +1469,7 @@
                 properties = _.com.github.andrewoma.react.footer_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.footer_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.footer_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.footer_w5u0dm$f_1(properties)), init);
             },
             form_aej7ls$f: function () {
             },
@@ -1533,7 +1485,7 @@
                 properties = _.com.github.andrewoma.react.form_aej7ls$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.form_aej7ls$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.form_aej7ls$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.form_aej7ls$f_1(properties)), init);
             },
             h1_w5u0dm$f: function () {
             },
@@ -1549,7 +1501,7 @@
                 properties = _.com.github.andrewoma.react.h1_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.h1_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.h1_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.h1_w5u0dm$f_1(properties)), init);
             },
             h2_w5u0dm$f: function () {
             },
@@ -1565,7 +1517,7 @@
                 properties = _.com.github.andrewoma.react.h2_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.h2_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.h2_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.h2_w5u0dm$f_1(properties)), init);
             },
             h3_w5u0dm$f: function () {
             },
@@ -1581,7 +1533,7 @@
                 properties = _.com.github.andrewoma.react.h3_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.h3_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.h3_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.h3_w5u0dm$f_1(properties)), init);
             },
             h4_w5u0dm$f: function () {
             },
@@ -1597,7 +1549,7 @@
                 properties = _.com.github.andrewoma.react.h4_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.h4_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.h4_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.h4_w5u0dm$f_1(properties)), init);
             },
             h5_w5u0dm$f: function () {
             },
@@ -1613,7 +1565,7 @@
                 properties = _.com.github.andrewoma.react.h5_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.h5_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.h5_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.h5_w5u0dm$f_1(properties)), init);
             },
             h6_w5u0dm$f: function () {
             },
@@ -1629,7 +1581,7 @@
                 properties = _.com.github.andrewoma.react.h6_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.h6_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.h6_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.h6_w5u0dm$f_1(properties)), init);
             },
             head_w5u0dm$f: function () {
             },
@@ -1645,7 +1597,7 @@
                 properties = _.com.github.andrewoma.react.head_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.head_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.head_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.head_w5u0dm$f_1(properties)), init);
             },
             header_w5u0dm$f: function () {
             },
@@ -1661,7 +1613,7 @@
                 properties = _.com.github.andrewoma.react.header_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.header_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.header_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.header_w5u0dm$f_1(properties)), init);
             },
             hr_w5u0dm$f: function () {
             },
@@ -1677,7 +1629,7 @@
                 properties = _.com.github.andrewoma.react.hr_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.hr_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.hr_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.hr_w5u0dm$f_1(properties)), init);
             },
             html_w5u0dm$f: function () {
             },
@@ -1693,7 +1645,7 @@
                 properties = _.com.github.andrewoma.react.html_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.html_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.html_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.html_w5u0dm$f_1(properties)), init);
             },
             i_w5u0dm$f: function () {
             },
@@ -1709,7 +1661,7 @@
                 properties = _.com.github.andrewoma.react.i_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.i_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.i_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.i_w5u0dm$f_1(properties)), init);
             },
             iframe_7n7i3k$f: function () {
             },
@@ -1725,7 +1677,7 @@
                 properties = _.com.github.andrewoma.react.iframe_7n7i3k$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.iframe_7n7i3k$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.iframe_7n7i3k$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.iframe_7n7i3k$f_1(properties)), init);
             },
             img_bffj07$f: function () {
             },
@@ -1741,7 +1693,7 @@
                 properties = _.com.github.andrewoma.react.img_bffj07$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.img_bffj07$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.img_bffj07$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.img_bffj07$f_1(properties)), init);
             },
             input_ehra6o$f: function () {
             },
@@ -1757,7 +1709,7 @@
                 properties = _.com.github.andrewoma.react.input_ehra6o$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.input_ehra6o$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.input_ehra6o$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.input_ehra6o$f_1(properties)), init);
             },
             ins_tkqh10$f: function () {
             },
@@ -1773,7 +1725,7 @@
                 properties = _.com.github.andrewoma.react.ins_tkqh10$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.ins_tkqh10$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.ins_tkqh10$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.ins_tkqh10$f_1(properties)), init);
             },
             kbd_w5u0dm$f: function () {
             },
@@ -1789,7 +1741,7 @@
                 properties = _.com.github.andrewoma.react.kbd_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.kbd_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.kbd_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.kbd_w5u0dm$f_1(properties)), init);
             },
             keygen_a3s3bh$f: function () {
             },
@@ -1805,7 +1757,7 @@
                 properties = _.com.github.andrewoma.react.keygen_a3s3bh$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.keygen_a3s3bh$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.keygen_a3s3bh$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.keygen_a3s3bh$f_1(properties)), init);
             },
             label_46f7q$f: function () {
             },
@@ -1821,7 +1773,7 @@
                 properties = _.com.github.andrewoma.react.label_46f7q$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.label_46f7q$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.label_46f7q$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.label_46f7q$f_1(properties)), init);
             },
             legend_w5u0dm$f: function () {
             },
@@ -1837,7 +1789,7 @@
                 properties = _.com.github.andrewoma.react.legend_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.legend_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.legend_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.legend_w5u0dm$f_1(properties)), init);
             },
             li_fv5cu1$f: function () {
             },
@@ -1853,7 +1805,7 @@
                 properties = _.com.github.andrewoma.react.li_fv5cu1$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.li_fv5cu1$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.li_fv5cu1$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.li_fv5cu1$f_1(properties)), init);
             },
             link_u49jzq$f: function () {
             },
@@ -1869,7 +1821,7 @@
                 properties = _.com.github.andrewoma.react.link_u49jzq$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.link_u49jzq$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.link_u49jzq$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.link_u49jzq$f_1(properties)), init);
             },
             main_w5u0dm$f: function () {
             },
@@ -1885,7 +1837,7 @@
                 properties = _.com.github.andrewoma.react.main_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.main_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.main_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.main_w5u0dm$f_1(properties)), init);
             },
             map_dw7d9a$f: function () {
             },
@@ -1901,7 +1853,7 @@
                 properties = _.com.github.andrewoma.react.map_dw7d9a$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.map_dw7d9a$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.map_dw7d9a$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.map_dw7d9a$f_1(properties)), init);
             },
             mark_w5u0dm$f: function () {
             },
@@ -1917,7 +1869,7 @@
                 properties = _.com.github.andrewoma.react.mark_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.mark_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.mark_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.mark_w5u0dm$f_1(properties)), init);
             },
             menu_pcg61x$f: function () {
             },
@@ -1933,7 +1885,7 @@
                 properties = _.com.github.andrewoma.react.menu_pcg61x$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.menu_pcg61x$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.menu_pcg61x$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.menu_pcg61x$f_1(properties)), init);
             },
             menuitem_w5u0dm$f: function () {
             },
@@ -1949,7 +1901,7 @@
                 properties = _.com.github.andrewoma.react.menuitem_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.menuitem_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.menuitem_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.menuitem_w5u0dm$f_1(properties)), init);
             },
             meta_ul2c5b$f: function () {
             },
@@ -1965,7 +1917,7 @@
                 properties = _.com.github.andrewoma.react.meta_ul2c5b$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.meta_ul2c5b$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.meta_ul2c5b$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.meta_ul2c5b$f_1(properties)), init);
             },
             meter_6kx84x$f: function () {
             },
@@ -1981,7 +1933,7 @@
                 properties = _.com.github.andrewoma.react.meter_6kx84x$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.meter_6kx84x$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.meter_6kx84x$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.meter_6kx84x$f_1(properties)), init);
             },
             nav_w5u0dm$f: function () {
             },
@@ -1997,7 +1949,7 @@
                 properties = _.com.github.andrewoma.react.nav_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.nav_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.nav_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.nav_w5u0dm$f_1(properties)), init);
             },
             noscript_w5u0dm$f: function () {
             },
@@ -2013,7 +1965,7 @@
                 properties = _.com.github.andrewoma.react.noscript_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.noscript_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.noscript_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.noscript_w5u0dm$f_1(properties)), init);
             },
             obj_108c5h$f: function () {
             },
@@ -2029,7 +1981,7 @@
                 properties = _.com.github.andrewoma.react.obj_108c5h$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.obj_108c5h$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.obj_108c5h$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.obj_108c5h$f_1(properties)), init);
             },
             ol_w5u0dm$f: function () {
             },
@@ -2045,7 +1997,7 @@
                 properties = _.com.github.andrewoma.react.ol_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.ol_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.ol_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.ol_w5u0dm$f_1(properties)), init);
             },
             optgroup_w5u0dm$f: function () {
             },
@@ -2061,7 +2013,7 @@
                 properties = _.com.github.andrewoma.react.optgroup_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.optgroup_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.optgroup_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.optgroup_w5u0dm$f_1(properties)), init);
             },
             option_ouidv5$f: function () {
             },
@@ -2077,7 +2029,7 @@
                 properties = _.com.github.andrewoma.react.option_ouidv5$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.option_ouidv5$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.option_ouidv5$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.option_ouidv5$f_1(properties)), init);
             },
             output_px82pv$f: function () {
             },
@@ -2093,7 +2045,7 @@
                 properties = _.com.github.andrewoma.react.output_px82pv$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.output_px82pv$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.output_px82pv$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.output_px82pv$f_1(properties)), init);
             },
             p_w5u0dm$f: function () {
             },
@@ -2109,7 +2061,7 @@
                 properties = _.com.github.andrewoma.react.p_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.p_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.p_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.p_w5u0dm$f_1(properties)), init);
             },
             param_68qg6l$f: function () {
             },
@@ -2125,7 +2077,7 @@
                 properties = _.com.github.andrewoma.react.param_68qg6l$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.param_68qg6l$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.param_68qg6l$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.param_68qg6l$f_1(properties)), init);
             },
             pre_w5u0dm$f: function () {
             },
@@ -2141,7 +2093,7 @@
                 properties = _.com.github.andrewoma.react.pre_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.pre_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.pre_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.pre_w5u0dm$f_1(properties)), init);
             },
             progress_6szicp$f: function () {
             },
@@ -2157,7 +2109,7 @@
                 properties = _.com.github.andrewoma.react.progress_6szicp$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.progress_6szicp$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.progress_6szicp$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.progress_6szicp$f_1(properties)), init);
             },
             q_w5u0dm$f: function () {
             },
@@ -2173,7 +2125,7 @@
                 properties = _.com.github.andrewoma.react.q_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.q_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.q_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.q_w5u0dm$f_1(properties)), init);
             },
             rp_w5u0dm$f: function () {
             },
@@ -2189,7 +2141,7 @@
                 properties = _.com.github.andrewoma.react.rp_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.rp_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.rp_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.rp_w5u0dm$f_1(properties)), init);
             },
             rt_w5u0dm$f: function () {
             },
@@ -2205,7 +2157,7 @@
                 properties = _.com.github.andrewoma.react.rt_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.rt_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.rt_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.rt_w5u0dm$f_1(properties)), init);
             },
             ruby_w5u0dm$f: function () {
             },
@@ -2221,7 +2173,7 @@
                 properties = _.com.github.andrewoma.react.ruby_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.ruby_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.ruby_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.ruby_w5u0dm$f_1(properties)), init);
             },
             s_w5u0dm$f: function () {
             },
@@ -2237,7 +2189,7 @@
                 properties = _.com.github.andrewoma.react.s_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.s_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.s_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.s_w5u0dm$f_1(properties)), init);
             },
             samp_w5u0dm$f: function () {
             },
@@ -2253,7 +2205,7 @@
                 properties = _.com.github.andrewoma.react.samp_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.samp_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.samp_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.samp_w5u0dm$f_1(properties)), init);
             },
             script_y20wsn$f: function () {
             },
@@ -2269,7 +2221,7 @@
                 properties = _.com.github.andrewoma.react.script_y20wsn$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.script_y20wsn$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.script_y20wsn$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.script_y20wsn$f_1(properties)), init);
             },
             section_w5u0dm$f: function () {
             },
@@ -2285,7 +2237,7 @@
                 properties = _.com.github.andrewoma.react.section_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.section_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.section_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.section_w5u0dm$f_1(properties)), init);
             },
             select_t7je0o$f: function () {
             },
@@ -2301,7 +2253,7 @@
                 properties = _.com.github.andrewoma.react.select_t7je0o$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.select_t7je0o$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.select_t7je0o$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.select_t7je0o$f_1(properties)), init);
             },
             small_w5u0dm$f: function () {
             },
@@ -2317,7 +2269,7 @@
                 properties = _.com.github.andrewoma.react.small_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.small_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.small_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.small_w5u0dm$f_1(properties)), init);
             },
             source_hc41ih$f: function () {
             },
@@ -2333,7 +2285,7 @@
                 properties = _.com.github.andrewoma.react.source_hc41ih$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.source_hc41ih$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.source_hc41ih$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.source_hc41ih$f_1(properties)), init);
             },
             span_w5u0dm$f: function () {
             },
@@ -2349,7 +2301,7 @@
                 properties = _.com.github.andrewoma.react.span_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.span_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.span_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.span_w5u0dm$f_1(properties)), init);
             },
             strong_w5u0dm$f: function () {
             },
@@ -2365,7 +2317,7 @@
                 properties = _.com.github.andrewoma.react.strong_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.strong_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.strong_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.strong_w5u0dm$f_1(properties)), init);
             },
             style_12wp55$f: function () {
             },
@@ -2381,7 +2333,7 @@
                 properties = _.com.github.andrewoma.react.style_12wp55$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.style_12wp55$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.style_12wp55$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.style_12wp55$f_1(properties)), init);
             },
             sub_w5u0dm$f: function () {
             },
@@ -2397,7 +2349,7 @@
                 properties = _.com.github.andrewoma.react.sub_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.sub_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.sub_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.sub_w5u0dm$f_1(properties)), init);
             },
             summary_w5u0dm$f: function () {
             },
@@ -2413,7 +2365,7 @@
                 properties = _.com.github.andrewoma.react.summary_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.summary_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.summary_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.summary_w5u0dm$f_1(properties)), init);
             },
             sup_w5u0dm$f: function () {
             },
@@ -2429,7 +2381,7 @@
                 properties = _.com.github.andrewoma.react.sup_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.sup_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.sup_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.sup_w5u0dm$f_1(properties)), init);
             },
             table_7swzos$f: function () {
             },
@@ -2445,7 +2397,7 @@
                 properties = _.com.github.andrewoma.react.table_7swzos$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.table_7swzos$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.table_7swzos$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.table_7swzos$f_1(properties)), init);
             },
             tbody_w5u0dm$f: function () {
             },
@@ -2461,7 +2413,7 @@
                 properties = _.com.github.andrewoma.react.tbody_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.tbody_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.tbody_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.tbody_w5u0dm$f_1(properties)), init);
             },
             td_gbq2ek$f: function () {
             },
@@ -2477,7 +2429,7 @@
                 properties = _.com.github.andrewoma.react.td_gbq2ek$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.td_gbq2ek$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.td_gbq2ek$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.td_gbq2ek$f_1(properties)), init);
             },
             textarea_xgvv3q$f: function () {
             },
@@ -2493,7 +2445,7 @@
                 properties = _.com.github.andrewoma.react.textarea_xgvv3q$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.textarea_xgvv3q$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.textarea_xgvv3q$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.textarea_xgvv3q$f_1(properties)), init);
             },
             tfoot_w5u0dm$f: function () {
             },
@@ -2509,7 +2461,7 @@
                 properties = _.com.github.andrewoma.react.tfoot_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.tfoot_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.tfoot_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.tfoot_w5u0dm$f_1(properties)), init);
             },
             th_cwb9e8$f: function () {
             },
@@ -2525,7 +2477,7 @@
                 properties = _.com.github.andrewoma.react.th_cwb9e8$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.th_cwb9e8$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.th_cwb9e8$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.th_cwb9e8$f_1(properties)), init);
             },
             thead_w5u0dm$f: function () {
             },
@@ -2541,7 +2493,7 @@
                 properties = _.com.github.andrewoma.react.thead_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.thead_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.thead_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.thead_w5u0dm$f_1(properties)), init);
             },
             time_hfo05l$f: function () {
             },
@@ -2557,7 +2509,7 @@
                 properties = _.com.github.andrewoma.react.time_hfo05l$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.time_hfo05l$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.time_hfo05l$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.time_hfo05l$f_1(properties)), init);
             },
             title_w5u0dm$f: function () {
             },
@@ -2573,7 +2525,7 @@
                 properties = _.com.github.andrewoma.react.title_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.title_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.title_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.title_w5u0dm$f_1(properties)), init);
             },
             tr_w5u0dm$f: function () {
             },
@@ -2589,7 +2541,7 @@
                 properties = _.com.github.andrewoma.react.tr_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.tr_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.tr_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.tr_w5u0dm$f_1(properties)), init);
             },
             track_juea3z$f: function () {
             },
@@ -2605,7 +2557,7 @@
                 properties = _.com.github.andrewoma.react.track_juea3z$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.track_juea3z$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.track_juea3z$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.track_juea3z$f_1(properties)), init);
             },
             u_w5u0dm$f: function () {
             },
@@ -2621,7 +2573,7 @@
                 properties = _.com.github.andrewoma.react.u_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.u_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.u_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.u_w5u0dm$f_1(properties)), init);
             },
             ul_w5u0dm$f: function () {
             },
@@ -2637,7 +2589,7 @@
                 properties = _.com.github.andrewoma.react.ul_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.ul_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.ul_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.ul_w5u0dm$f_1(properties)), init);
             },
             variable_w5u0dm$f: function () {
             },
@@ -2653,7 +2605,7 @@
                 properties = _.com.github.andrewoma.react.variable_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.variable_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.variable_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.variable_w5u0dm$f_1(properties)), init);
             },
             video_885pq7$f: function () {
             },
@@ -2669,7 +2621,7 @@
                 properties = _.com.github.andrewoma.react.video_885pq7$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.video_885pq7$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.video_885pq7$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.video_885pq7$f_1(properties)), init);
             },
             wbr_w5u0dm$f: function () {
             },
@@ -2685,7 +2637,7 @@
                 properties = _.com.github.andrewoma.react.wbr_w5u0dm$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.wbr_w5u0dm$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.wbr_w5u0dm$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.wbr_w5u0dm$f_1(properties)), init);
             },
             circle_k62a52$f: function () {
             },
@@ -2701,7 +2653,7 @@
                 properties = _.com.github.andrewoma.react.circle_k62a52$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.circle_k62a52$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.circle_k62a52$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.circle_k62a52$f_1(properties)), init);
             },
             g_k62a52$f: function () {
             },
@@ -2717,7 +2669,7 @@
                 properties = _.com.github.andrewoma.react.g_k62a52$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.g_k62a52$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.g_k62a52$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.g_k62a52$f_1(properties)), init);
             },
             line_k62a52$f: function () {
             },
@@ -2733,7 +2685,7 @@
                 properties = _.com.github.andrewoma.react.line_k62a52$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.line_k62a52$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.line_k62a52$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.line_k62a52$f_1(properties)), init);
             },
             path_k62a52$f: function () {
             },
@@ -2749,7 +2701,7 @@
                 properties = _.com.github.andrewoma.react.path_k62a52$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.path_k62a52$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.path_k62a52$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.path_k62a52$f_1(properties)), init);
             },
             polygon_k62a52$f: function () {
             },
@@ -2765,7 +2717,7 @@
                 properties = _.com.github.andrewoma.react.polygon_k62a52$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.polygon_k62a52$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.polygon_k62a52$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.polygon_k62a52$f_1(properties)), init);
             },
             polyline_k62a52$f: function () {
             },
@@ -2781,7 +2733,7 @@
                 properties = _.com.github.andrewoma.react.polyline_k62a52$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.polyline_k62a52$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.polyline_k62a52$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.polyline_k62a52$f_1(properties)), init);
             },
             rect_k62a52$f: function () {
             },
@@ -2797,7 +2749,7 @@
                 properties = _.com.github.andrewoma.react.rect_k62a52$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.rect_k62a52$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.rect_k62a52$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.rect_k62a52$f_1(properties)), init);
             },
             svg_k62a52$f: function () {
             },
@@ -2813,7 +2765,7 @@
                 properties = _.com.github.andrewoma.react.svg_k62a52$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.svg_k62a52$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.svg_k62a52$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.svg_k62a52$f_1(properties)), init);
             },
             text_k62a52$f: function () {
             },
@@ -2829,7 +2781,7 @@
                 properties = _.com.github.andrewoma.react.text_k62a52$f;
               if (init === void 0)
                 init = _.com.github.andrewoma.react.text_k62a52$f_0;
-              return $receiver.construct_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.text_k62a52$f_1(properties)), init);
+              return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.text_k62a52$f_1(properties)), init);
             },
             ReadWriteProperty: Kotlin.createTrait(null),
             Property: Kotlin.createClass(function () {
@@ -2860,7 +2812,7 @@
               }
             }, /** @lends _.com.github.andrewoma.react.ComponentRenderer */ {
               f: function (it) {
-                return null;
+                return 0;
               },
               render$f: function () {
                 return Kotlin.createObject(function () {
@@ -2879,9 +2831,9 @@
               this.transformer = transformer;
               this.children = new Kotlin.ArrayList();
             }, /** @lends _.com.github.andrewoma.react.Component.prototype */ {
-              construct_ad91at$: function (component, init) {
+              constructAndInsert_ad91at$: function (component, init) {
                 if (init === void 0)
-                  init = _.com.github.andrewoma.react.Component.construct_ad91at$f;
+                  init = _.com.github.andrewoma.react.Component.constructAndInsert_ad91at$f;
                 init.call(component);
                 this.children.add_za3rmp$(component);
                 return component;
@@ -2901,7 +2853,7 @@
                 return result;
               }
             }, /** @lends _.com.github.andrewoma.react.Component */ {
-              construct_ad91at$f: function () {
+              constructAndInsert_ad91at$f: function () {
               },
               transformChildren$f: function (this$Component) {
                 return function (it) {
@@ -5462,9 +5414,205 @@
                 if (callback === void 0)
                   callback = _.com.github.andrewoma.react.React.render_vbpb6g$f;
                 return ReactDOM.render(component, container, callback);
+              },
+              createElement_951m7x$: function (reactComponent, prop, children) {
+                return React.createElement(reactComponent, prop, children);
               }
             }, /** @lends _.com.github.andrewoma.react.React */ {
               render_vbpb6g$f: function () {
+              }
+            })
+          }),
+          flux: Kotlin.definePackage(null, /** @lends _.com.github.andrewoma.flux */ {
+            Store: Kotlin.createClass(null, function () {
+              this.changeListeners_cgy4c3$ = Kotlin.modules['stdlib'].kotlin.collections.hashMapOf_eoa9s7$([]);
+            }, /** @lends _.com.github.andrewoma.flux.Store.prototype */ {
+              addChangeListener_o7wwlr$: function (self, callback) {
+                this.changeListeners_cgy4c3$.put_wn2jw4$(self, callback);
+              },
+              emitChange: function () {
+                var $receiver = this.changeListeners_cgy4c3$.values;
+                var tmp$0;
+                tmp$0 = $receiver.iterator();
+                while (tmp$0.hasNext()) {
+                  var element = tmp$0.next();
+                  element();
+                }
+              },
+              removeListener_za3rmp$: function (self) {
+                this.changeListeners_cgy4c3$.remove_za3rmp$(self);
+              }
+            }, /** @lends _.com.github.andrewoma.flux.Store */ {
+            }),
+            ActionDef: Kotlin.createClass(null, function (dispatcher) {
+              this.dispatcher = dispatcher;
+            }, /** @lends _.com.github.andrewoma.flux.ActionDef.prototype */ {
+              invoke_za3rmp$: function (payload) {
+                this.dispatcher.dispatch_qosh0o$(this, payload);
+              }
+            }),
+            ActionHandlers: Kotlin.createClass(null, function (handlers) {
+              if (handlers === void 0)
+                handlers = Kotlin.modules['stdlib'].kotlin.collections.arrayListOf_9mqe4v$([]);
+              this.handlers = handlers;
+            }),
+            RegisteredActionHandler: Kotlin.createClass(null, function (store, actionDef, callback) {
+              this.store = store;
+              this.actionDef = actionDef;
+              this.callback = callback;
+              this.pending = false;
+              this.handled = false;
+            }),
+            DispatchCallbackBody: Kotlin.createClass(null, function (dispatcher, store) {
+              this.dispatcher = dispatcher;
+              this.store = store;
+            }, /** @lends _.com.github.andrewoma.flux.DispatchCallbackBody.prototype */ {
+              waitFor_h2e3es$: function (registeredActionHandlers) {
+                this.dispatcher.waitFor_h2e3es$(registeredActionHandlers);
+              }
+            }),
+            Dispatcher: Kotlin.createClass(null, function () {
+              this.pendingPayload_iw4jan$ = null;
+              this.pendingActionDef_nael9s$ = null;
+              this.actionHandlersList_e849th$ = Kotlin.modules['stdlib'].kotlin.collections.hashMapOf_eoa9s7$([]);
+              this.dispatching_s6t2sw$ = false;
+            }, /** @lends _.com.github.andrewoma.flux.Dispatcher.prototype */ {
+              register_xztz3k$: function (store, action, callback) {
+                var $receiver = this.actionHandlersList_e849th$;
+                var tmp$0;
+                var value = $receiver.get_za3rmp$(action);
+                if (value == null && !$receiver.containsKey_za3rmp$(action)) {
+                  var answer = new _.com.github.andrewoma.flux.ActionHandlers();
+                  $receiver.put_wn2jw4$(action, answer);
+                  tmp$0 = answer;
+                }
+                 else {
+                  tmp$0 = value;
+                }
+                var actionHandlers = tmp$0;
+                var registeredActionHandler = new _.com.github.andrewoma.flux.RegisteredActionHandler(store, action, callback);
+                actionHandlers.handlers.add_za3rmp$(registeredActionHandler);
+                return registeredActionHandler;
+              },
+              unRegister_slpl22$: function (registeredActionHandler) {
+                var tmp$0, tmp$1;
+                (tmp$1 = (tmp$0 = this.actionHandlersList_e849th$.get_za3rmp$(registeredActionHandler.actionDef)) != null ? tmp$0.handlers : null) != null ? tmp$1.remove_za3rmp$(registeredActionHandler) : null;
+              },
+              waitFor_h2e3es$: function (stores) {
+                var tmp$0;
+                var value = this.dispatching_s6t2sw$;
+                if (!value) {
+                  var message = 'Dispatcher.waitFor(...): Must be invoked while dispatching.';
+                  throw new Kotlin.IllegalArgumentException(message.toString());
+                }
+                var handlersForCurrentAction = Kotlin.modules['stdlib'].kotlin.collections.orEmpty_fvq2g0$((tmp$0 = Kotlin.modules['stdlib'].kotlin.collections.get_qbyksu$(this.actionHandlersList_e849th$, this.pendingActionDef_nael9s$)) != null ? tmp$0.handlers : null);
+                var destination = new Kotlin.ArrayList();
+                var tmp$2;
+                tmp$2 = handlersForCurrentAction.iterator();
+                while (tmp$2.hasNext()) {
+                  var element = tmp$2.next();
+                  if (Kotlin.modules['stdlib'].kotlin.collections.contains_ke19y6$(stores, element.store)) {
+                    destination.add_za3rmp$(element);
+                  }
+                }
+                var tmp$3;
+                var first = new Kotlin.ArrayList();
+                var second = new Kotlin.ArrayList();
+                tmp$3 = destination.iterator();
+                while (tmp$3.hasNext()) {
+                  var element_0 = tmp$3.next();
+                  if (element_0.pending || element_0.handled) {
+                    first.add_za3rmp$(element_0);
+                  }
+                   else {
+                    second.add_za3rmp$(element_0);
+                  }
+                }
+                var tmp$1 = new Kotlin.modules['stdlib'].kotlin.Pair(first, second)
+                , pendingHandlers = tmp$1.component1()
+                , nonPendingHandlers = tmp$1.component2();
+                var unhandledHandlers;
+                firstOrNull_azvtw4$break: {
+                  var tmp$4;
+                  tmp$4 = pendingHandlers.iterator();
+                  while (tmp$4.hasNext()) {
+                    var element_1 = tmp$4.next();
+                    if (!element_1.handled) {
+                      unhandledHandlers = element_1;
+                      break firstOrNull_azvtw4$break;
+                    }
+                  }
+                  unhandledHandlers = null;
+                }
+                var value_0 = unhandledHandlers == null;
+                if (!value_0) {
+                  var message_0 = 'Dispatcher.waitFor(...): Circular dependency detected while waiting for ' + Kotlin.toString(unhandledHandlers) + '.';
+                  throw new Kotlin.IllegalArgumentException(message_0.toString());
+                }
+                var action = _.com.github.andrewoma.flux.Dispatcher.waitFor_h2e3es$f_4(this);
+                var tmp$5;
+                tmp$5 = nonPendingHandlers.iterator();
+                while (tmp$5.hasNext()) {
+                  var element_2 = tmp$5.next();
+                  action(element_2);
+                }
+              },
+              dispatch_qosh0o$: function (action, payload) {
+                var tmp$0, tmp$1;
+                var value = !this.dispatching_s6t2sw$;
+                if (!value) {
+                  var message = 'Dispatch.dispatch(...): Cannot dispatch in the middle of a dispatch.';
+                  throw new Kotlin.IllegalArgumentException(message.toString());
+                }
+                this.startDispatching(action, payload);
+                try {
+                  (tmp$1 = (tmp$0 = this.actionHandlersList_e849th$.get_za3rmp$(action)) != null ? tmp$0.handlers : null) != null ? Kotlin.modules['stdlib'].kotlin.collections.forEach_p7e0bo$(tmp$1, _.com.github.andrewoma.flux.Dispatcher.dispatch_qosh0o$f_0(this)) : null;
+                }
+                finally {
+                  this.stopDispatching();
+                }
+              },
+              invokeCallback: function (it) {
+                it.pending = true;
+                var body = new _.com.github.andrewoma.flux.DispatchCallbackBody(this, it.store);
+                var callback = it.callback;
+                callback.call(body, this.pendingPayload_iw4jan$);
+                it.handled = true;
+              },
+              startDispatching: function (action, payload) {
+                var tmp$0, tmp$1;
+                (tmp$1 = (tmp$0 = this.actionHandlersList_e849th$.get_za3rmp$(action)) != null ? tmp$0.handlers : null) != null ? Kotlin.modules['stdlib'].kotlin.collections.forEach_p7e0bo$(tmp$1, _.com.github.andrewoma.flux.Dispatcher.startDispatching$f) : null;
+                this.pendingPayload_iw4jan$ = payload;
+                this.pendingActionDef_nael9s$ = action;
+                this.dispatching_s6t2sw$ = true;
+              },
+              stopDispatching: function () {
+                this.pendingActionDef_nael9s$ = null;
+                this.pendingPayload_iw4jan$ = null;
+                this.dispatching_s6t2sw$ = false;
+              }
+            }, /** @lends _.com.github.andrewoma.flux.Dispatcher */ {
+              waitFor_h2e3es$f_4: function (this$Dispatcher) {
+                return function (it) {
+                  var tmp$0, tmp$1, tmp$2;
+                  var value = (tmp$2 = (tmp$1 = (tmp$0 = this$Dispatcher.actionHandlersList_e849th$.get_za3rmp$(it.actionDef)) != null ? tmp$0.handlers : null) != null ? tmp$1.contains_za3rmp$(it) : null) != null ? tmp$2 : false;
+                  if (!value) {
+                    var message = 'Dispatcher.waitFor(...): ' + it + ' does not map to a registered callback.';
+                    throw new Kotlin.IllegalArgumentException(message.toString());
+                  }
+                  this$Dispatcher.invokeCallback(it);
+                };
+              },
+              dispatch_qosh0o$f_0: function (this$Dispatcher) {
+                return function (it) {
+                  if (!it.pending) {
+                    this$Dispatcher.invokeCallback(it);
+                  }
+                };
+              },
+              startDispatching$f: function (it) {
+                it.pending = false;
+                it.handled = false;
               }
             })
           })

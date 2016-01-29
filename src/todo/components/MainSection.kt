@@ -1,7 +1,7 @@
 package todo.components
 
 import com.github.andrewoma.react.*
-import todo.actions.todoActions
+import todo.actions.TodoActions
 import todo.stores.Todo
 import todo.stores.areAllCompleted
 
@@ -36,10 +36,10 @@ class MainSection : ComponentSpec<MainSectionProperties, Unit>() {
     }
 
     fun onToggleCompleteAll() {
-        todoActions.toggleCompleteAll()
+        TodoActions.toggleCompleteAll(null)
     }
 }
 
 fun Component.todoMainSection(props: MainSectionProperties): Component {
-    return construct(Component({ MainSection.factory(Ref(props)) }))
+    return constructAndInsert(Component({ MainSection.factory(Ref(props)) }))
 }

@@ -1,7 +1,8 @@
 package todo.components
 
 import com.github.andrewoma.react.*
-import todo.actions.todoActions
+import todo.actions.CreatePayload
+import todo.actions.TodoActions
 
 class Header : ComponentSpec<Unit, Unit>() {
     companion object {
@@ -23,11 +24,11 @@ class Header : ComponentSpec<Unit, Unit>() {
 
     fun onSave(text: String) {
         if (!text.trim().isEmpty()) {
-            todoActions.create(text)
+            TodoActions.create(CreatePayload(text))
         }
     }
 }
 
 fun Component.todoHeader(): Component {
-    return construct(Component({ Header.factory(Ref(null)) }))
+    return constructAndInsert(Component({ Header.factory(Ref(null)) }))
 }
