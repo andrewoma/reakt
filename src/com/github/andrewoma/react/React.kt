@@ -11,6 +11,10 @@ public class React {
 
     public fun <C : ReactComponent<*, *>> render(component: C, container: Element, callback: () -> Unit = {}): C
             = reactRender(component, container, callback)
+
+    fun <P> createElement(reactComponent: ReactComponent<P, *>, prop: P, vararg children: Any?): Any {
+        return reactCreateElement(reactComponent, prop, children)
+    }
 }
 
 public val react: React = React()
@@ -24,3 +28,6 @@ internal fun <C : ReactComponent<*, *>> reactRender(component: C, container: Ele
 
 @native("Reakt.flattenProperties") @Suppress("UNUSED_PARAMETER")
 internal fun <T>  flatten(properties: T): T = noImpl
+
+@native("React.createElement")
+internal fun <P> reactCreateElement(reactComponent: ReactComponent<*, *>, prop: P, vararg children: Any?): ReactComponent<Any, Any> = noImpl

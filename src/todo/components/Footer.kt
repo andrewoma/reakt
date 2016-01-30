@@ -1,7 +1,7 @@
 package todo.components
 
 import com.github.andrewoma.react.*
-import todo.actions.todoActions
+import todo.actions.TodoActions
 import todo.stores.Todo
 import todo.stores.completedCount
 
@@ -37,10 +37,10 @@ class Footer : ComponentSpec<FooterProperties, Unit>() {
     }
 
     fun onClearCompletedClick() {
-        todoActions.destroyCompleted()
+        TodoActions.destroyCompleted(null)
     }
 }
 
 fun Component.todoFooter(props: FooterProperties): Component {
-    return construct(Component({ Footer.factory(Ref(props)) }))
+    return constructAndInsert(Component({ Footer.factory(Ref(props)) }))
 }

@@ -52,5 +52,5 @@ class TodoTextInput : ComponentSpec<TodoTextInputProperties, String>() {
 }
 
 fun Component.todoTextInput(props: TodoTextInputProperties): Component {
-    return construct(Component({ TodoTextInput.factory(Ref(props)) }))
+    return constructAndInsert(Component({ TodoTextInput.factory(Ref(props)) }))
 }

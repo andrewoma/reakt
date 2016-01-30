@@ -1,10 +1,8 @@
 package todo.stores
 
-import com.github.andrewoma.react.log
+import com.github.andrewoma.flux.Dispatcher
+import com.github.andrewoma.flux.Store
 import todo.actions.*
-import todo.dispatcher.TodoDispatcher
-import todo.dispatcher.todoDispatcher
-import java.util.HashSet
 import java.util.LinkedHashMap
 
 data class Todo(
@@ -13,8 +11,6 @@ data class Todo(
         val complete: Boolean = false
 )
 
-interface Event
-class ChangeEvent : Event
 
 fun Collection<Todo>.areAllCompleted() = this.size == completedCount()
 fun Collection<Todo>.completedCount(): Int {
@@ -23,9 +19,49 @@ fun Collection<Todo>.completedCount(): Int {
     return completed
 }
 
-class TodoStore {
+val todoDispatcher = Dispatcher()
+
+class TodoStore : Store() {
     private val todos = LinkedHashMap<String, Todo>()
-    private val listeners = HashSet<(Event) -> Unit>()
+
+    init {
+        register(todoDispatcher, TodoActions.create) { payload ->
+            withNonEmpty(payload.text) {
+                create(it)
+                emitChange()
+            }
+        }
+        register(todoDispatcher, TodoActions.toggleCompleteAll) { payload ->
+            val complete = !areAllComplete()
+            updateAll {
+                // Only update if required
+                if (it.complete == complete) it else it.copy(complete = complete)
+            }
+            emitChange()
+        }
+        register(todoDispatcher, TodoActions.undoComplete) { payload ->
+            update(payload.id) { it.copy(complete = false) }
+            emitChange()
+        }
+        register(todoDispatcher, TodoActions.complete) { payload ->
+            update(payload.id) { it.copy(complete = true) }
+            emitChange()
+        }
+        register(todoDispatcher, TodoActions.update) { payload ->
+            withNonEmpty(payload.text) { text ->
+                update(payload.id) { it.copy(text = text) }
+                emitChange()
+            }
+        }
+        register(todoDispatcher, TodoActions.destroy) { payload ->
+            destroy(payload.id)
+            emitChange()
+        }
+        register(todoDispatcher, TodoActions.destroyCompleted) { payload ->
+            destroyCompleted()
+            emitChange()
+        }
+    }
 
     fun getAll(): Collection<Todo> = todos.values
 
@@ -66,64 +102,14 @@ class TodoStore {
 
     fun areAllComplete() = todos.values.areAllCompleted()
 
-    fun addChangeListener(callback: (Event) -> Unit) {
-        listeners.add(callback)
-    }
-
-    fun removeChangeListener(callback: (Event) -> Unit) {
-        listeners.remove(callback)
-    }
-
-    fun emitChange() {
-        val event = ChangeEvent()
-        for (l in listeners) l(event)
-    }
-}
-
-/**
- * The action handler acts as a mediator between the view and store
- */
-class TodoStoreActionHandler(val store: TodoStore, dispatcher: TodoDispatcher) {
-    init {
-        dispatcher.register { onAction(it) }
-    }
-
     inline fun withNonEmpty(text: String, onNonEmpty: (String) -> Unit) {
         val trimmed = text.trim()
         if (!trimmed.isEmpty()) onNonEmpty(trimmed)
     }
-
-    fun onAction(action: TodoAction) {
-        when (action) {
-            is Create -> withNonEmpty(action.text) { store.create(it) }
-
-            is ToggleCompleteAll -> {
-                val complete = !store.areAllComplete()
-                store.updateAll {
-                    // Only update if required
-                    if (it.complete == complete) it else it.copy(complete = complete)
-                }
-            }
-
-            is UndoComplete -> store.update(action.id) { it.copy(complete = false) }
-
-            is Complete -> store.update(action.id) { it.copy(complete = true) }
-
-            is Update -> withNonEmpty(action.text) { text -> store.update(action.id) { it.copy(text = text) } }
-
-            is Destroy -> store.destroy(action.id)
-
-            is DestroyCompleted -> store.destroyCompleted()
-
-            else -> log.error("Unknown action", action)
-        }
-
-        store.emitChange()
-    }
 }
 
+
 val todoStore = TodoStore()
-val todoStoreActionHandler = TodoStoreActionHandler(todoStore, todoDispatcher)
 
 
 

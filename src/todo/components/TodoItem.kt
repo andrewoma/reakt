@@ -1,7 +1,9 @@
 package todo.components
 
 import com.github.andrewoma.react.*
-import todo.actions.todoActions
+import todo.actions.DestroyPayload
+import todo.actions.TodoActions
+import todo.actions.UpdatePayload
 import todo.stores.Todo
 
 data class TodoItemProperties(val key: String, val todo: Todo)
@@ -53,7 +55,7 @@ class TodoItem : ComponentSpec<TodoItemProperties, TodoItemState>() {
     }
 
     fun onToggleComplete() {
-        todoActions.toggleComplete(props.todo)
+        TodoActions.toggleComplete(props.todo)
     }
 
     fun onDoubleClick() {
@@ -61,12 +63,12 @@ class TodoItem : ComponentSpec<TodoItemProperties, TodoItemState>() {
     }
 
     fun onSave(value: String) {
-        todoActions.updateText(props.todo.id, value)
+        TodoActions.update(UpdatePayload(props.todo.id, value))
         state = state.copy(isEditing = false)
     }
 
     fun onDestroyClick() {
-        todoActions.destroy(props.todo.id)
+        TodoActions.destroy(DestroyPayload(props.todo.id))
     }
 
     override fun shouldComponentUpdate(nextProps: TodoItemProperties, nextState: TodoItemState): Boolean {
@@ -75,5 +77,5 @@ class TodoItem : ComponentSpec<TodoItemProperties, TodoItemState>() {
 }
 
 fun Component.todoItem(props: TodoItemProperties): Component {
-    return construct(Component({ TodoItem.factory(Ref(props)) }))
+    return constructAndInsert(Component({ TodoItem.factory(Ref(props)) }))
 }

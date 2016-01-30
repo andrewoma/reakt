@@ -138,7 +138,7 @@ abstract class ReactComponentSpec<P : Any, S : Any>() : ReactMixin<P, S> {
      * If you need to interact with the browser, perform your work in componentDidMount() or the other lifecycle methods instead.
      * Keeping render() pure makes server rendering more practical and makes components easier to think about.
      */
-    abstract fun render(): ReactComponent<Any, Any>?
+    abstract fun render(): ReactElement<P>?
 
     // DefaultProps don't work very well as Kotlin set all the keys on an object and makes set versus null ambiguous
     // So prevent the usage.
@@ -231,4 +231,8 @@ interface ReactComponent<P, S> {
 @native
 interface ReactComponentFactory<P : Any, S : Any> {
     operator fun invoke(properties: Ref<P>?, vararg children: Any?): ReactComponent<Ref<P>, Ref<S>>
+}
+
+@native
+interface ReactElement<P> {
 }
