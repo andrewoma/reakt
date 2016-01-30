@@ -5,7 +5,7 @@ package com.github.andrewoma.react
  */
 interface ComponentRenderer {
     @Suppress("UNCHECKED_CAST")
-    fun render(): Any? {
+    fun render(): ReactElement<*>? {
         // This bit of trickery makes root an instance of Component so that the scoped render method is visible
         val root = object : Component({ 0 }) {}
         root.render()
@@ -15,7 +15,7 @@ interface ComponentRenderer {
         // check(root.children[0] is ReactComponent<*, *>, "Root must be a Component or null")
         if (root.children.isEmpty()) return null
 
-        return root.children[0].transform()
+        return root.children[0].transform() as ReactElement<Any>
     }
 
     // Stolen from Kara. This allows a component to create an extension function to Component
@@ -32,7 +32,6 @@ abstract class ComponentSpec<S:Any, P:Any> : ReactComponentSpec<S, P>(), Compone
 /**
  * The base Component type
  */
-// The return type of the transformer can be (string|number|ReactElement), so it must be Any until sealed classes won't work in KotlinJS.
 open class Component(val transformer: (Component) -> Any) {
     public val children: MutableList<Component> = java.util.ArrayList()
 
