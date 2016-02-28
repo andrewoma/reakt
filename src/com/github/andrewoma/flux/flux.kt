@@ -1,6 +1,7 @@
 package com.github.andrewoma.flux
 
-public abstract class Store {
+// TODO ... this requires review ... lots of dubious casts between possibly unsound or unrelated PAYLOAD types
+abstract class Store {
 
     private val changeListeners: MutableMap<Any, () -> Unit> = hashMapOf()
 
@@ -8,7 +9,7 @@ public abstract class Store {
         return dispatcher.register(this, actionDef, callback)
     }
 
-    public fun addChangeListener(self: Any, callback: () -> Unit) {
+    fun addChangeListener(self: Any, callback: () -> Unit) {
         changeListeners.put(self, callback)
     }
 
@@ -21,9 +22,9 @@ public abstract class Store {
     }
 }
 
-public class ActionDef<PAYLOAD>(val dispatcher: Dispatcher) {
+class ActionDef<PAYLOAD>(val dispatcher: Dispatcher) {
 
-    public operator fun invoke(payload: PAYLOAD) {
+    operator fun invoke(payload: PAYLOAD) {
         dispatcher.dispatch(this, payload)
     }
 }
@@ -33,12 +34,12 @@ private class ActionHandlers<PAYLOAD>(val handlers: MutableList<RegisteredAction
 
 }
 
-public class RegisteredActionHandler<PAYLOAD>(val store: Store, val actionDef: ActionDef<PAYLOAD>, val callback: DispatchCallbackBody.(PAYLOAD) -> Unit) {
+class RegisteredActionHandler<PAYLOAD>(val store: Store, val actionDef: ActionDef<PAYLOAD>, val callback: DispatchCallbackBody.(PAYLOAD) -> Unit) {
     var pending = false
     var handled = false
 }
 
-public class DispatchCallbackBody(val dispatcher: Dispatcher, val store: Store) {
+class DispatchCallbackBody(val dispatcher: Dispatcher, val store: Store) {
     fun waitFor(vararg registeredActionHandlers: Store) {
         dispatcher.waitFor(registeredActionHandlers)
     }
@@ -51,7 +52,7 @@ class Dispatcher {
     private var dispatching = false
 
     fun <PAYLOAD> register(store: Store, action: ActionDef<PAYLOAD>, callback: DispatchCallbackBody.(PAYLOAD) -> Unit): RegisteredActionHandler<PAYLOAD> {
-        val actionHandlers = actionHandlersList.getOrPut(action, { ActionHandlers<PAYLOAD>() })
+        val actionHandlers = actionHandlersList.getOrPut(action, { ActionHandlers<PAYLOAD>() }) as ActionHandlers<PAYLOAD>
         val registeredActionHandler = RegisteredActionHandler(store, action, callback)
         actionHandlers.handlers.add(registeredActionHandler)
         return registeredActionHandler

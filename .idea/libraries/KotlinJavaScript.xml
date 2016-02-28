@@ -6,6 +6,7 @@
     <JAVADOC />
     <SOURCES>
       <root url="jar://$KOTLIN_BUNDLED$/lib/kotlin-jslib.jar!/" />
+      <root url="jar://$KOTLIN_BUNDLED$/lib/kotlin-jslib-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

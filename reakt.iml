@@ -6,19 +6,8 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
     </content>
-    <orderEntry type="jdk" jdkName="1.6" jdkType="JavaSDK" />
+    <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="KotlinJavaScript" level="project" />
-    <orderEntry type="module-library">
-      <library name="&lt;Kotlin JavaScript library&gt;">
-        <CLASSES>
-          <root url="kotlin-js-meta://$KOTLIN_BUNDLED$/lib/kotlin-jslib.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="jar://$KOTLIN_BUNDLED$/lib/kotlin-jslib.jar!/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
   </component>
 </module>

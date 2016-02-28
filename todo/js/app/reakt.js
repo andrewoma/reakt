@@ -7,185 +7,6 @@
         _.com.github.andrewoma.react.log.info_9mqe4v$(['Starting Todo app']);
         _.com.github.andrewoma.react.react.render_vbpb6g$(_.todo.components.createTodoApp(), (tmp$0 = document.getElementById('todoapp')) != null ? tmp$0 : Kotlin.throwNPE());
       },
-      stores: Kotlin.definePackage(function () {
-        this.todoDispatcher = new _.com.github.andrewoma.flux.Dispatcher();
-        this.todoStore = new _.todo.stores.TodoStore();
-      }, /** @lends _.todo.stores */ {
-        Todo: Kotlin.createClass(null, function (id, text, complete) {
-          if (complete === void 0)
-            complete = false;
-          this.id = id;
-          this.text = text;
-          this.complete = complete;
-        }, /** @lends _.todo.stores.Todo.prototype */ {
-          component1: function () {
-            return this.id;
-          },
-          component2: function () {
-            return this.text;
-          },
-          component3: function () {
-            return this.complete;
-          },
-          copy_qz9155$: function (id, text, complete) {
-            return new _.todo.stores.Todo(id === void 0 ? this.id : id, text === void 0 ? this.text : text, complete === void 0 ? this.complete : complete);
-          },
-          toString: function () {
-            return 'Todo(id=' + Kotlin.toString(this.id) + (', text=' + Kotlin.toString(this.text)) + (', complete=' + Kotlin.toString(this.complete)) + ')';
-          },
-          hashCode: function () {
-            var result = 0;
-            result = result * 31 + Kotlin.hashCode(this.id) | 0;
-            result = result * 31 + Kotlin.hashCode(this.text) | 0;
-            result = result * 31 + Kotlin.hashCode(this.complete) | 0;
-            return result;
-          },
-          equals_za3rmp$: function (other) {
-            return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.id, other.id) && Kotlin.equals(this.text, other.text) && Kotlin.equals(this.complete, other.complete)))));
-          }
-        }),
-        areAllCompleted_oze285$: function ($receiver) {
-          return $receiver.size === _.todo.stores.completedCount_oze285$($receiver);
-        },
-        completedCount_oze285$: function ($receiver) {
-          var tmp$0;
-          var completed = 0;
-          tmp$0 = $receiver.iterator();
-          while (tmp$0.hasNext()) {
-            var t = tmp$0.next();
-            if (t.complete)
-              completed += 1;
-          }
-          return completed;
-        },
-        TodoStore: Kotlin.createClass(function () {
-          return [_.com.github.andrewoma.flux.Store];
-        }, function $fun() {
-          $fun.baseInitializer.call(this);
-          this.todos_91fe12$ = new Kotlin.LinkedHashMap();
-          _.todo.stores.todoDispatcher.register_xztz3k$(this, _.todo.actions.TodoActions.create, _.todo.stores.TodoStore.TodoStore$f(this));
-          _.todo.stores.todoDispatcher.register_xztz3k$(this, _.todo.actions.TodoActions.toggleCompleteAll, _.todo.stores.TodoStore.TodoStore$f_0(this));
-          _.todo.stores.todoDispatcher.register_xztz3k$(this, _.todo.actions.TodoActions.undoComplete, _.todo.stores.TodoStore.TodoStore$f_1(this));
-          _.todo.stores.todoDispatcher.register_xztz3k$(this, _.todo.actions.TodoActions.complete, _.todo.stores.TodoStore.TodoStore$f_2(this));
-          _.todo.stores.todoDispatcher.register_xztz3k$(this, _.todo.actions.TodoActions.update, _.todo.stores.TodoStore.TodoStore$f_3(this));
-          _.todo.stores.todoDispatcher.register_xztz3k$(this, _.todo.actions.TodoActions.destroy, _.todo.stores.TodoStore.TodoStore$f_4(this));
-          _.todo.stores.todoDispatcher.register_xztz3k$(this, _.todo.actions.TodoActions.destroyCompleted, _.todo.stores.TodoStore.TodoStore$f_5(this));
-        }, /** @lends _.todo.stores.TodoStore.prototype */ {
-          getAll: function () {
-            return this.todos_91fe12$.values;
-          },
-          get_61zpoe$: function (id) {
-            return this.todos_91fe12$.get_za3rmp$(id);
-          },
-          create_61zpoe$: function (text) {
-            var id = ((new Date()).getTime() + Math.floor(Math.random() * 999999)).toString().toString();
-            this.todos_91fe12$.put_wn2jw4$(id, new _.todo.stores.Todo(id, text, false));
-          },
-          update_b2pvf8$: function (id, update) {
-            var existing = this.todos_91fe12$.get_za3rmp$(id);
-            if (existing != null) {
-              this.todos_91fe12$.put_wn2jw4$(id, update(existing));
-            }
-          },
-          destroy_61zpoe$: function (id) {
-            this.todos_91fe12$.remove_za3rmp$(id);
-          },
-          destroyCompleted: function () {
-            var tmp$0;
-            tmp$0 = this.todos_91fe12$.values.iterator();
-            while (tmp$0.hasNext()) {
-              var todo = tmp$0.next();
-              if (todo.complete)
-                this.todos_91fe12$.remove_za3rmp$(todo.id);
-            }
-          },
-          updateAll_2qbbu$: function (update) {
-            var tmp$0;
-            tmp$0 = this.todos_91fe12$.values.iterator();
-            while (tmp$0.hasNext()) {
-              var todo = tmp$0.next();
-              var updated = update(todo);
-              if (updated !== todo) {
-                this.todos_91fe12$.put_wn2jw4$(updated.id, updated);
-              }
-            }
-          },
-          areAllComplete: function () {
-            return _.todo.stores.areAllCompleted_oze285$(this.todos_91fe12$.values);
-          },
-          withNonEmpty_fqkxi5$: Kotlin.defineInlineFunction('reakt.todo.stores.TodoStore.withNonEmpty_fqkxi5$', function (text, onNonEmpty) {
-            var trimmed = Kotlin.modules['stdlib'].kotlin.text.trim_pdl1w0$(text);
-            if (!Kotlin.modules['stdlib'].kotlin.text.isEmpty_gw00vq$(trimmed))
-              onNonEmpty(trimmed);
-          })
-        }, /** @lends _.todo.stores.TodoStore */ {
-          TodoStore$f: function (this$TodoStore) {
-            return function (payload) {
-              var trimmed = Kotlin.modules['stdlib'].kotlin.text.trim_pdl1w0$(payload.text);
-              if (!Kotlin.modules['stdlib'].kotlin.text.isEmpty_gw00vq$(trimmed)) {
-                this$TodoStore.create_61zpoe$(trimmed);
-                this$TodoStore.emitChange();
-              }
-            };
-          },
-          f_0: function (complete) {
-            return function (it) {
-              return Kotlin.equals(it.complete, complete) ? it : it.copy_qz9155$(void 0, void 0, complete);
-            };
-          },
-          TodoStore$f_0: function (this$TodoStore) {
-            return function (payload) {
-              var complete = !this$TodoStore.areAllComplete();
-              this$TodoStore.updateAll_2qbbu$(_.todo.stores.TodoStore.f_0(complete));
-              this$TodoStore.emitChange();
-            };
-          },
-          f_1: function (it) {
-            return it.copy_qz9155$(void 0, void 0, false);
-          },
-          TodoStore$f_1: function (this$TodoStore) {
-            return function (payload) {
-              this$TodoStore.update_b2pvf8$(payload.id, _.todo.stores.TodoStore.f_1);
-              this$TodoStore.emitChange();
-            };
-          },
-          f_2: function (it) {
-            return it.copy_qz9155$(void 0, void 0, true);
-          },
-          TodoStore$f_2: function (this$TodoStore) {
-            return function (payload) {
-              this$TodoStore.update_b2pvf8$(payload.id, _.todo.stores.TodoStore.f_2);
-              this$TodoStore.emitChange();
-            };
-          },
-          f_3: function (text) {
-            return function (it) {
-              return it.copy_qz9155$(void 0, text);
-            };
-          },
-          TodoStore$f_3: function (this$TodoStore) {
-            return function (payload) {
-              var trimmed = Kotlin.modules['stdlib'].kotlin.text.trim_pdl1w0$(payload.text);
-              if (!Kotlin.modules['stdlib'].kotlin.text.isEmpty_gw00vq$(trimmed)) {
-                this$TodoStore.update_b2pvf8$(payload.id, _.todo.stores.TodoStore.f_3(trimmed));
-                this$TodoStore.emitChange();
-              }
-            };
-          },
-          TodoStore$f_4: function (this$TodoStore) {
-            return function (payload) {
-              this$TodoStore.destroy_61zpoe$(payload.id);
-              this$TodoStore.emitChange();
-            };
-          },
-          TodoStore$f_5: function (this$TodoStore) {
-            return function (payload) {
-              this$TodoStore.destroyCompleted();
-              this$TodoStore.emitChange();
-            };
-          }
-        })
-      }),
       actions: Kotlin.definePackage(function () {
         this.TodoActions = Kotlin.createObject(null, function () {
           this.create = new _.com.github.andrewoma.flux.ActionDef(_.todo.stores.todoDispatcher);
@@ -235,13 +56,243 @@
         })
       }),
       components: Kotlin.definePackage(null, /** @lends _.todo.components */ {
+        FooterProperties: Kotlin.createClass(null, function (todos) {
+          this.todos = todos;
+        }, /** @lends _.todo.components.FooterProperties.prototype */ {
+          component1: function () {
+            return this.todos;
+          },
+          copy_4wilis$: function (todos) {
+            return new _.todo.components.FooterProperties(todos === void 0 ? this.todos : todos);
+          },
+          toString: function () {
+            return 'FooterProperties(todos=' + Kotlin.toString(this.todos) + ')';
+          },
+          hashCode: function () {
+            var result = 0;
+            result = result * 31 + Kotlin.hashCode(this.todos) | 0;
+            return result;
+          },
+          equals_za3rmp$: function (other) {
+            return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.todos, other.todos))));
+          }
+        }),
+        Footer: Kotlin.createClass(function () {
+          return [_.com.github.andrewoma.react.ComponentSpec];
+        }, function $fun() {
+          $fun.baseInitializer.call(this);
+        }, /** @lends _.todo.components.Footer.prototype */ {
+          render_sx5o3u$: function ($receiver) {
+            _.com.github.andrewoma.react.log.debug_9mqe4v$(['Footer.render', this.props]);
+            if (this.props.todos.isEmpty())
+              return;
+            var completed = _.todo.stores.completedCount_9xsf6m$(this.props.todos);
+            var itemsLeft = this.props.todos.size - completed;
+            var itemsLeftPhrase = (itemsLeft === 1 ? ' item ' : ' items ') + 'left';
+            _.com.github.andrewoma.react.footer_w5u0dm$($receiver, _.todo.components.Footer.render_sx5o3u$f, _.todo.components.Footer.render_sx5o3u$f_0(itemsLeft, itemsLeftPhrase, completed, this));
+          },
+          onClearCompletedClick: function () {
+            _.todo.actions.TodoActions.destroyCompleted.invoke_za3rmp$(null);
+          }
+        }, /** @lends _.todo.components.Footer */ {
+          object_initializer$: function () {
+            return Kotlin.createObject(null, function () {
+              this.factory = _.com.github.andrewoma.react.react.createFactory_oqkx6a$(new _.todo.components.Footer());
+            });
+          },
+          render_sx5o3u$f: function () {
+            this.id = 'footer';
+          },
+          f: function () {
+            this.id = 'todo-count';
+          },
+          f_0: function (itemsLeft) {
+            return function () {
+              _.com.github.andrewoma.react.text_3pk7xh$(this, itemsLeft.toString());
+            };
+          },
+          f_1: function (itemsLeft, itemsLeftPhrase) {
+            return function () {
+              _.com.github.andrewoma.react.text_3pk7xh$(_.com.github.andrewoma.react.strong_w5u0dm$(this, void 0, _.todo.components.Footer.f_0(itemsLeft)), itemsLeftPhrase);
+            };
+          },
+          f_2: function (this$Footer) {
+            return function (it) {
+              this$Footer.onClearCompletedClick();
+            };
+          },
+          f_3: function (this$Footer) {
+            return function () {
+              this.id = 'clear-completed';
+              this.onClick = _.todo.components.Footer.f_2(this$Footer);
+            };
+          },
+          f_4: function (completed) {
+            return function () {
+              _.com.github.andrewoma.react.text_3pk7xh$(this, 'Clear completed (' + completed + ')');
+            };
+          },
+          render_sx5o3u$f_0: function (itemsLeft, itemsLeftPhrase, completed, this$Footer) {
+            return function () {
+              _.com.github.andrewoma.react.span_w5u0dm$(this, _.todo.components.Footer.f, _.todo.components.Footer.f_1(itemsLeft, itemsLeftPhrase));
+              if (completed !== 0) {
+                _.com.github.andrewoma.react.button_7a8emq$(this, _.todo.components.Footer.f_3(this$Footer), _.todo.components.Footer.f_4(completed));
+              }
+            };
+          }
+        }),
+        todoFooter_ufne8c$f: function (props) {
+          return function (it) {
+            return _.todo.components.Footer.object.factory.invoke(new _.com.github.andrewoma.react.Ref(props));
+          };
+        },
+        todoFooter_ufne8c$: function ($receiver, props) {
+          return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.todo.components.todoFooter_ufne8c$f(props)));
+        },
+        Header: Kotlin.createClass(function () {
+          return [_.com.github.andrewoma.react.ComponentSpec];
+        }, function $fun() {
+          $fun.baseInitializer.call(this);
+        }, /** @lends _.todo.components.Header.prototype */ {
+          render_sx5o3u$: function ($receiver) {
+            _.com.github.andrewoma.react.log.debug_9mqe4v$(['Header.render']);
+            _.com.github.andrewoma.react.header_w5u0dm$($receiver, _.todo.components.Header.render_sx5o3u$f, _.todo.components.Header.render_sx5o3u$f_0(this));
+          },
+          onSave_61zpoe$: function (text) {
+            var $receiver = Kotlin.modules['stdlib'].kotlin.text.trim_gw00vq$(text).toString();
+            if (!($receiver.length === 0)) {
+              _.todo.actions.TodoActions.create.invoke_za3rmp$(new _.todo.actions.CreatePayload(text));
+            }
+          }
+        }, /** @lends _.todo.components.Header */ {
+          object_initializer$: function () {
+            return Kotlin.createObject(null, function () {
+              this.factory = _.com.github.andrewoma.react.react.createFactory_oqkx6a$(new _.todo.components.Header());
+            });
+          },
+          render_sx5o3u$f: function () {
+            this.id = 'header';
+          },
+          f: function () {
+            _.com.github.andrewoma.react.text_3pk7xh$(this, 'todos');
+          },
+          f_0: function (this$Header) {
+            return function (it) {
+              this$Header.onSave_61zpoe$(it);
+            };
+          },
+          render_sx5o3u$f_0: function (this$Header) {
+            return function () {
+              _.com.github.andrewoma.react.h1_w5u0dm$(this, void 0, _.todo.components.Header.f);
+              _.todo.components.todoTextInput_o29w70$(this, new _.todo.components.TodoTextInputProperties(void 0, 'new-todo', 'What needs to be done?', void 0, _.todo.components.Header.f_0(this$Header)));
+            };
+          }
+        }),
+        todoHeader_sx5o3u$f: function (it) {
+          return _.todo.components.Header.object.factory.invoke(new _.com.github.andrewoma.react.Ref(null));
+        },
+        todoHeader_sx5o3u$: function ($receiver) {
+          return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.todo.components.todoHeader_sx5o3u$f));
+        },
+        MainSectionProperties: Kotlin.createClass(null, function (todos) {
+          this.todos = todos;
+        }, /** @lends _.todo.components.MainSectionProperties.prototype */ {
+          component1: function () {
+            return this.todos;
+          },
+          copy_4wilis$: function (todos) {
+            return new _.todo.components.MainSectionProperties(todos === void 0 ? this.todos : todos);
+          },
+          toString: function () {
+            return 'MainSectionProperties(todos=' + Kotlin.toString(this.todos) + ')';
+          },
+          hashCode: function () {
+            var result = 0;
+            result = result * 31 + Kotlin.hashCode(this.todos) | 0;
+            return result;
+          },
+          equals_za3rmp$: function (other) {
+            return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.todos, other.todos))));
+          }
+        }),
+        MainSection: Kotlin.createClass(function () {
+          return [_.com.github.andrewoma.react.ComponentSpec];
+        }, function $fun() {
+          $fun.baseInitializer.call(this);
+        }, /** @lends _.todo.components.MainSection.prototype */ {
+          render_sx5o3u$: function ($receiver) {
+            _.com.github.andrewoma.react.log.debug_9mqe4v$(['MainSection.render', this.props]);
+            if (this.props.todos.size < 1)
+              return;
+            _.com.github.andrewoma.react.section_w5u0dm$($receiver, _.todo.components.MainSection.render_sx5o3u$f, _.todo.components.MainSection.render_sx5o3u$f_0(this));
+          },
+          onToggleCompleteAll: function () {
+            _.todo.actions.TodoActions.toggleCompleteAll.invoke_za3rmp$(null);
+          }
+        }, /** @lends _.todo.components.MainSection */ {
+          object_initializer$: function () {
+            return Kotlin.createObject(null, function () {
+              this.factory = _.com.github.andrewoma.react.react.createFactory_oqkx6a$(new _.todo.components.MainSection());
+            });
+          },
+          render_sx5o3u$f: function () {
+            this.id = 'main';
+          },
+          f: function (this$MainSection) {
+            return function (it) {
+              this$MainSection.onToggleCompleteAll();
+            };
+          },
+          f_0: function (this$MainSection) {
+            return function () {
+              this.id = 'toggle-all';
+              this.type = 'checkbox';
+              this.onChange = _.todo.components.MainSection.f(this$MainSection);
+              this.checked = _.todo.stores.areAllCompleted_9xsf6m$(this$MainSection.props.todos) ? 'checked' : '';
+            };
+          },
+          f_1: function () {
+            this.htmlFor = 'toggle-all';
+          },
+          f_2: function () {
+            _.com.github.andrewoma.react.text_3pk7xh$(this, 'Mark all as complete');
+          },
+          f_3: function () {
+            this.id = 'todo-list';
+          },
+          f_4: function (this$MainSection) {
+            return function () {
+              var tmp$0;
+              tmp$0 = this$MainSection.props.todos.iterator();
+              while (tmp$0.hasNext()) {
+                var todo = tmp$0.next();
+                _.todo.components.todoItem_w6isj2$(this, new _.todo.components.TodoItemProperties(todo.id, todo));
+              }
+            };
+          },
+          render_sx5o3u$f_0: function (this$MainSection) {
+            return function () {
+              _.com.github.andrewoma.react.input_ehra6o$(this, _.todo.components.MainSection.f_0(this$MainSection));
+              _.com.github.andrewoma.react.label_46f7q$(this, _.todo.components.MainSection.f_1, _.todo.components.MainSection.f_2);
+              _.com.github.andrewoma.react.ul_w5u0dm$(this, _.todo.components.MainSection.f_3, _.todo.components.MainSection.f_4(this$MainSection));
+            };
+          }
+        }),
+        todoMainSection_8kskxl$f: function (props) {
+          return function (it) {
+            return _.todo.components.MainSection.object.factory.invoke(new _.com.github.andrewoma.react.Ref(props));
+          };
+        },
+        todoMainSection_8kskxl$: function ($receiver, props) {
+          return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.todo.components.todoMainSection_8kskxl$f(props)));
+        },
         TodoAppState: Kotlin.createClass(null, function (todos) {
           this.todos = todos;
         }, /** @lends _.todo.components.TodoAppState.prototype */ {
           component1: function () {
             return this.todos;
           },
-          copy_t0gbx$: function (todos) {
+          copy_4wilis$: function (todos) {
             return new _.todo.components.TodoAppState(todos === void 0 ? this.todos : todos);
           },
           toString: function () {
@@ -297,181 +348,6 @@
         }),
         createTodoApp: function () {
           return _.todo.components.TodoApp.object.factory.invoke(new _.com.github.andrewoma.react.Ref(null));
-        },
-        TodoTextInputProperties: Kotlin.createClass(null, function (className, id, placeHolder, value, onSave) {
-          if (className === void 0)
-            className = null;
-          if (id === void 0)
-            id = null;
-          if (placeHolder === void 0)
-            placeHolder = null;
-          if (value === void 0)
-            value = null;
-          this.className = className;
-          this.id = id;
-          this.placeHolder = placeHolder;
-          this.value = value;
-          this.onSave = onSave;
-        }),
-        TodoTextInput: Kotlin.createClass(function () {
-          return [_.com.github.andrewoma.react.ComponentSpec];
-        }, function $fun() {
-          $fun.baseInitializer.call(this);
-        }, /** @lends _.todo.components.TodoTextInput.prototype */ {
-          initialState: function () {
-            var tmp$0;
-            return (tmp$0 = this.props.value) != null ? tmp$0 : '';
-          },
-          render_sx5o3u$: function ($receiver) {
-            _.com.github.andrewoma.react.log.debug_9mqe4v$(['TodoTextInput.render', this.props, this.state]);
-            _.com.github.andrewoma.react.input_ehra6o$($receiver, _.todo.components.TodoTextInput.render_sx5o3u$f(this));
-          },
-          save: function () {
-            this.props.onSave(this.state);
-            this.state = '';
-          },
-          onChange_uqgllb$: function (event) {
-            this.state = event.currentTarget.value;
-          },
-          onKeyDown_pt5yb2$: function (event) {
-            if (event.keyCode === _.todo.components.TodoTextInput.object.enterKeyCode) {
-              this.save();
-            }
-          }
-        }, /** @lends _.todo.components.TodoTextInput */ {
-          object_initializer$: function () {
-            return Kotlin.createObject(null, function () {
-              this.enterKeyCode = 13;
-              this.factory = _.com.github.andrewoma.react.react.createFactory_oqkx6a$(new _.todo.components.TodoTextInput());
-            });
-          },
-          f: function (this$TodoTextInput) {
-            return function (it) {
-              this$TodoTextInput.save();
-            };
-          },
-          f_0: function (this$TodoTextInput) {
-            return function (it) {
-              this$TodoTextInput.onChange_uqgllb$(it);
-            };
-          },
-          f_1: function (this$TodoTextInput) {
-            return function (it) {
-              this$TodoTextInput.onKeyDown_pt5yb2$(it);
-            };
-          },
-          render_sx5o3u$f: function (this$TodoTextInput) {
-            return function () {
-              this.className = this$TodoTextInput.props.className;
-              this.id = this$TodoTextInput.props.id;
-              this.placeholder = this$TodoTextInput.props.placeHolder;
-              this.onBlur = _.todo.components.TodoTextInput.f(this$TodoTextInput);
-              this.onChange = _.todo.components.TodoTextInput.f_0(this$TodoTextInput);
-              this.onKeyDown = _.todo.components.TodoTextInput.f_1(this$TodoTextInput);
-              this.value = this$TodoTextInput.state;
-              this.autoFocus = true;
-            };
-          }
-        }),
-        todoTextInput_o29w70$f: function (props) {
-          return function (it) {
-            return _.todo.components.TodoTextInput.object.factory.invoke(new _.com.github.andrewoma.react.Ref(props));
-          };
-        },
-        todoTextInput_o29w70$: function ($receiver, props) {
-          return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.todo.components.todoTextInput_o29w70$f(props)));
-        },
-        MainSectionProperties: Kotlin.createClass(null, function (todos) {
-          this.todos = todos;
-        }, /** @lends _.todo.components.MainSectionProperties.prototype */ {
-          component1: function () {
-            return this.todos;
-          },
-          copy_t0gbx$: function (todos) {
-            return new _.todo.components.MainSectionProperties(todos === void 0 ? this.todos : todos);
-          },
-          toString: function () {
-            return 'MainSectionProperties(todos=' + Kotlin.toString(this.todos) + ')';
-          },
-          hashCode: function () {
-            var result = 0;
-            result = result * 31 + Kotlin.hashCode(this.todos) | 0;
-            return result;
-          },
-          equals_za3rmp$: function (other) {
-            return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.todos, other.todos))));
-          }
-        }),
-        MainSection: Kotlin.createClass(function () {
-          return [_.com.github.andrewoma.react.ComponentSpec];
-        }, function $fun() {
-          $fun.baseInitializer.call(this);
-        }, /** @lends _.todo.components.MainSection.prototype */ {
-          render_sx5o3u$: function ($receiver) {
-            _.com.github.andrewoma.react.log.debug_9mqe4v$(['MainSection.render', this.props]);
-            if (this.props.todos.size < 1)
-              return;
-            _.com.github.andrewoma.react.section_w5u0dm$($receiver, _.todo.components.MainSection.render_sx5o3u$f, _.todo.components.MainSection.render_sx5o3u$f_0(this));
-          },
-          onToggleCompleteAll: function () {
-            _.todo.actions.TodoActions.toggleCompleteAll.invoke_za3rmp$(null);
-          }
-        }, /** @lends _.todo.components.MainSection */ {
-          object_initializer$: function () {
-            return Kotlin.createObject(null, function () {
-              this.factory = _.com.github.andrewoma.react.react.createFactory_oqkx6a$(new _.todo.components.MainSection());
-            });
-          },
-          render_sx5o3u$f: function () {
-            this.id = 'main';
-          },
-          f: function (this$MainSection) {
-            return function (it) {
-              this$MainSection.onToggleCompleteAll();
-            };
-          },
-          f_0: function (this$MainSection) {
-            return function () {
-              this.id = 'toggle-all';
-              this.type = 'checkbox';
-              this.onChange = _.todo.components.MainSection.f(this$MainSection);
-              this.checked = _.todo.stores.areAllCompleted_oze285$(this$MainSection.props.todos) ? 'checked' : '';
-            };
-          },
-          f_1: function () {
-            this.htmlFor = 'toggle-all';
-          },
-          f_2: function () {
-            _.com.github.andrewoma.react.text_3pk7xh$(this, 'Mark all as complete');
-          },
-          f_3: function () {
-            this.id = 'todo-list';
-          },
-          f_4: function (this$MainSection) {
-            return function () {
-              var tmp$0;
-              tmp$0 = this$MainSection.props.todos.iterator();
-              while (tmp$0.hasNext()) {
-                var todo = tmp$0.next();
-                _.todo.components.todoItem_w6isj2$(this, new _.todo.components.TodoItemProperties(todo.id, todo));
-              }
-            };
-          },
-          render_sx5o3u$f_0: function (this$MainSection) {
-            return function () {
-              _.com.github.andrewoma.react.input_ehra6o$(this, _.todo.components.MainSection.f_0(this$MainSection));
-              _.com.github.andrewoma.react.label_46f7q$(this, _.todo.components.MainSection.f_1, _.todo.components.MainSection.f_2);
-              _.com.github.andrewoma.react.ul_w5u0dm$(this, _.todo.components.MainSection.f_3, _.todo.components.MainSection.f_4(this$MainSection));
-            };
-          }
-        }),
-        todoMainSection_8kskxl$f: function (props) {
-          return function (it) {
-            return _.todo.components.MainSection.object.factory.invoke(new _.com.github.andrewoma.react.Ref(props));
-          };
-        },
-        todoMainSection_8kskxl$: function ($receiver, props) {
-          return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.todo.components.todoMainSection_8kskxl$f(props)));
         },
         TodoItemProperties: Kotlin.createClass(null, function (key, todo) {
           this.key = key;
@@ -634,233 +510,524 @@
         todoItem_w6isj2$: function ($receiver, props) {
           return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.todo.components.todoItem_w6isj2$f(props)));
         },
-        Header: Kotlin.createClass(function () {
+        TodoTextInputProperties: Kotlin.createClass(null, function (className, id, placeHolder, value, onSave) {
+          if (className === void 0)
+            className = null;
+          if (id === void 0)
+            id = null;
+          if (placeHolder === void 0)
+            placeHolder = null;
+          if (value === void 0)
+            value = null;
+          this.className = className;
+          this.id = id;
+          this.placeHolder = placeHolder;
+          this.value = value;
+          this.onSave = onSave;
+        }),
+        TodoTextInput: Kotlin.createClass(function () {
           return [_.com.github.andrewoma.react.ComponentSpec];
         }, function $fun() {
           $fun.baseInitializer.call(this);
-        }, /** @lends _.todo.components.Header.prototype */ {
-          render_sx5o3u$: function ($receiver) {
-            _.com.github.andrewoma.react.log.debug_9mqe4v$(['Header.render']);
-            _.com.github.andrewoma.react.header_w5u0dm$($receiver, _.todo.components.Header.render_sx5o3u$f, _.todo.components.Header.render_sx5o3u$f_0(this));
+        }, /** @lends _.todo.components.TodoTextInput.prototype */ {
+          initialState: function () {
+            var tmp$0;
+            return (tmp$0 = this.props.value) != null ? tmp$0 : '';
           },
-          onSave_61zpoe$: function (text) {
-            if (!Kotlin.modules['stdlib'].kotlin.text.isEmpty_gw00vq$(Kotlin.modules['stdlib'].kotlin.text.trim_pdl1w0$(text))) {
-              _.todo.actions.TodoActions.create.invoke_za3rmp$(new _.todo.actions.CreatePayload(text));
+          render_sx5o3u$: function ($receiver) {
+            _.com.github.andrewoma.react.log.debug_9mqe4v$(['TodoTextInput.render', this.props, this.state]);
+            _.com.github.andrewoma.react.input_ehra6o$($receiver, _.todo.components.TodoTextInput.render_sx5o3u$f(this));
+          },
+          save: function () {
+            this.props.onSave(this.state);
+            this.state = '';
+          },
+          onChange_uqgllb$: function (event) {
+            this.state = event.currentTarget.value;
+          },
+          onKeyDown_pt5yb2$: function (event) {
+            if (event.keyCode === _.todo.components.TodoTextInput.object.enterKeyCode) {
+              this.save();
             }
           }
-        }, /** @lends _.todo.components.Header */ {
+        }, /** @lends _.todo.components.TodoTextInput */ {
           object_initializer$: function () {
             return Kotlin.createObject(null, function () {
-              this.factory = _.com.github.andrewoma.react.react.createFactory_oqkx6a$(new _.todo.components.Header());
+              this.enterKeyCode = 13;
+              this.factory = _.com.github.andrewoma.react.react.createFactory_oqkx6a$(new _.todo.components.TodoTextInput());
             });
           },
-          render_sx5o3u$f: function () {
-            this.id = 'header';
-          },
-          f: function () {
-            _.com.github.andrewoma.react.text_3pk7xh$(this, 'todos');
-          },
-          f_0: function (this$Header) {
+          f: function (this$TodoTextInput) {
             return function (it) {
-              this$Header.onSave_61zpoe$(it);
+              this$TodoTextInput.save();
             };
           },
-          render_sx5o3u$f_0: function (this$Header) {
+          f_0: function (this$TodoTextInput) {
+            return function (it) {
+              this$TodoTextInput.onChange_uqgllb$(it);
+            };
+          },
+          f_1: function (this$TodoTextInput) {
+            return function (it) {
+              this$TodoTextInput.onKeyDown_pt5yb2$(it);
+            };
+          },
+          render_sx5o3u$f: function (this$TodoTextInput) {
             return function () {
-              _.com.github.andrewoma.react.h1_w5u0dm$(this, void 0, _.todo.components.Header.f);
-              _.todo.components.todoTextInput_o29w70$(this, new _.todo.components.TodoTextInputProperties(void 0, 'new-todo', 'What needs to be done?', void 0, _.todo.components.Header.f_0(this$Header)));
+              this.className = this$TodoTextInput.props.className;
+              this.id = this$TodoTextInput.props.id;
+              this.placeholder = this$TodoTextInput.props.placeHolder;
+              this.onBlur = _.todo.components.TodoTextInput.f(this$TodoTextInput);
+              this.onChange = _.todo.components.TodoTextInput.f_0(this$TodoTextInput);
+              this.onKeyDown = _.todo.components.TodoTextInput.f_1(this$TodoTextInput);
+              this.value = this$TodoTextInput.state;
+              this.autoFocus = true;
             };
           }
         }),
-        todoHeader_sx5o3u$f: function (it) {
-          return _.todo.components.Header.object.factory.invoke(new _.com.github.andrewoma.react.Ref(null));
+        todoTextInput_o29w70$f: function (props) {
+          return function (it) {
+            return _.todo.components.TodoTextInput.object.factory.invoke(new _.com.github.andrewoma.react.Ref(props));
+          };
         },
-        todoHeader_sx5o3u$: function ($receiver) {
-          return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.todo.components.todoHeader_sx5o3u$f));
-        },
-        FooterProperties: Kotlin.createClass(null, function (todos) {
-          this.todos = todos;
-        }, /** @lends _.todo.components.FooterProperties.prototype */ {
+        todoTextInput_o29w70$: function ($receiver, props) {
+          return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.todo.components.todoTextInput_o29w70$f(props)));
+        }
+      }),
+      stores: Kotlin.definePackage(function () {
+        this.todoDispatcher = new _.com.github.andrewoma.flux.Dispatcher();
+        this.todoStore = new _.todo.stores.TodoStore();
+      }, /** @lends _.todo.stores */ {
+        Todo: Kotlin.createClass(null, function (id, text, complete) {
+          if (complete === void 0)
+            complete = false;
+          this.id = id;
+          this.text = text;
+          this.complete = complete;
+        }, /** @lends _.todo.stores.Todo.prototype */ {
           component1: function () {
-            return this.todos;
+            return this.id;
           },
-          copy_t0gbx$: function (todos) {
-            return new _.todo.components.FooterProperties(todos === void 0 ? this.todos : todos);
+          component2: function () {
+            return this.text;
+          },
+          component3: function () {
+            return this.complete;
+          },
+          copy_qz9155$: function (id, text, complete) {
+            return new _.todo.stores.Todo(id === void 0 ? this.id : id, text === void 0 ? this.text : text, complete === void 0 ? this.complete : complete);
           },
           toString: function () {
-            return 'FooterProperties(todos=' + Kotlin.toString(this.todos) + ')';
+            return 'Todo(id=' + Kotlin.toString(this.id) + (', text=' + Kotlin.toString(this.text)) + (', complete=' + Kotlin.toString(this.complete)) + ')';
           },
           hashCode: function () {
             var result = 0;
-            result = result * 31 + Kotlin.hashCode(this.todos) | 0;
+            result = result * 31 + Kotlin.hashCode(this.id) | 0;
+            result = result * 31 + Kotlin.hashCode(this.text) | 0;
+            result = result * 31 + Kotlin.hashCode(this.complete) | 0;
             return result;
           },
           equals_za3rmp$: function (other) {
-            return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.todos, other.todos))));
+            return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.id, other.id) && Kotlin.equals(this.text, other.text) && Kotlin.equals(this.complete, other.complete)))));
           }
         }),
-        Footer: Kotlin.createClass(function () {
-          return [_.com.github.andrewoma.react.ComponentSpec];
+        areAllCompleted_9xsf6m$: function ($receiver) {
+          return $receiver.size === _.todo.stores.completedCount_9xsf6m$($receiver);
+        },
+        completedCount_9xsf6m$: function ($receiver) {
+          var tmp$0;
+          var completed = 0;
+          tmp$0 = $receiver.iterator();
+          while (tmp$0.hasNext()) {
+            var t = tmp$0.next();
+            if (t.complete)
+              completed += 1;
+          }
+          return completed;
+        },
+        TodoStore: Kotlin.createClass(function () {
+          return [_.com.github.andrewoma.flux.Store];
         }, function $fun() {
           $fun.baseInitializer.call(this);
-        }, /** @lends _.todo.components.Footer.prototype */ {
-          render_sx5o3u$: function ($receiver) {
-            _.com.github.andrewoma.react.log.debug_9mqe4v$(['Footer.render', this.props]);
-            if (this.props.todos.isEmpty())
-              return;
-            var completed = _.todo.stores.completedCount_oze285$(this.props.todos);
-            var itemsLeft = this.props.todos.size - completed;
-            var itemsLeftPhrase = (itemsLeft === 1 ? ' item ' : ' items ') + 'left';
-            _.com.github.andrewoma.react.footer_w5u0dm$($receiver, _.todo.components.Footer.render_sx5o3u$f, _.todo.components.Footer.render_sx5o3u$f_0(itemsLeft, itemsLeftPhrase, completed, this));
+          this.todos_91fe12$ = new Kotlin.LinkedHashMap();
+          this.register_80p2z8$(_.todo.stores.todoDispatcher, _.todo.actions.TodoActions.create, _.todo.stores.TodoStore.TodoStore$f(this));
+          this.register_80p2z8$(_.todo.stores.todoDispatcher, _.todo.actions.TodoActions.toggleCompleteAll, _.todo.stores.TodoStore.TodoStore$f_0(this));
+          this.register_80p2z8$(_.todo.stores.todoDispatcher, _.todo.actions.TodoActions.undoComplete, _.todo.stores.TodoStore.TodoStore$f_1(this));
+          this.register_80p2z8$(_.todo.stores.todoDispatcher, _.todo.actions.TodoActions.complete, _.todo.stores.TodoStore.TodoStore$f_2(this));
+          this.register_80p2z8$(_.todo.stores.todoDispatcher, _.todo.actions.TodoActions.update, _.todo.stores.TodoStore.TodoStore$f_3(this));
+          this.register_80p2z8$(_.todo.stores.todoDispatcher, _.todo.actions.TodoActions.destroy, _.todo.stores.TodoStore.TodoStore$f_4(this));
+          this.register_80p2z8$(_.todo.stores.todoDispatcher, _.todo.actions.TodoActions.destroyCompleted, _.todo.stores.TodoStore.TodoStore$f_5(this));
+        }, /** @lends _.todo.stores.TodoStore.prototype */ {
+          getAll: function () {
+            return this.todos_91fe12$.values;
           },
-          onClearCompletedClick: function () {
-            _.todo.actions.TodoActions.destroyCompleted.invoke_za3rmp$(null);
-          }
-        }, /** @lends _.todo.components.Footer */ {
-          object_initializer$: function () {
-            return Kotlin.createObject(null, function () {
-              this.factory = _.com.github.andrewoma.react.react.createFactory_oqkx6a$(new _.todo.components.Footer());
-            });
+          get_61zpoe$: function (id) {
+            return this.todos_91fe12$.get_za3rmp$(id);
           },
-          render_sx5o3u$f: function () {
-            this.id = 'footer';
+          create_61zpoe$: function (text) {
+            var id = ((new Date()).getTime() + Math.floor(Math.random() * 999999)).toString().toString();
+            this.todos_91fe12$.put_wn2jw4$(id, new _.todo.stores.Todo(id, text, false));
           },
-          f: function () {
-            this.id = 'todo-count';
+          update_b2pvf8$: function (id, update) {
+            var existing = this.todos_91fe12$.get_za3rmp$(id);
+            if (existing != null) {
+              this.todos_91fe12$.put_wn2jw4$(id, update(existing));
+            }
           },
-          f_0: function (itemsLeft) {
-            return function () {
-              _.com.github.andrewoma.react.text_3pk7xh$(this, itemsLeft.toString());
-            };
+          destroy_61zpoe$: function (id) {
+            this.todos_91fe12$.remove_za3rmp$(id);
           },
-          f_1: function (itemsLeft, itemsLeftPhrase) {
-            return function () {
-              _.com.github.andrewoma.react.text_3pk7xh$(_.com.github.andrewoma.react.strong_w5u0dm$(this, void 0, _.todo.components.Footer.f_0(itemsLeft)), itemsLeftPhrase);
-            };
+          destroyCompleted: function () {
+            var tmp$0;
+            tmp$0 = this.todos_91fe12$.values.iterator();
+            while (tmp$0.hasNext()) {
+              var todo = tmp$0.next();
+              if (todo.complete)
+                this.todos_91fe12$.remove_za3rmp$(todo.id);
+            }
           },
-          f_2: function (this$Footer) {
-            return function (it) {
-              this$Footer.onClearCompletedClick();
-            };
+          updateAll_2qbbu$: function (update) {
+            var tmp$0;
+            tmp$0 = this.todos_91fe12$.values.iterator();
+            while (tmp$0.hasNext()) {
+              var todo = tmp$0.next();
+              var updated = update(todo);
+              if (updated !== todo) {
+                this.todos_91fe12$.put_wn2jw4$(updated.id, updated);
+              }
+            }
           },
-          f_3: function (this$Footer) {
-            return function () {
-              this.id = 'clear-completed';
-              this.onClick = _.todo.components.Footer.f_2(this$Footer);
-            };
+          areAllComplete: function () {
+            return _.todo.stores.areAllCompleted_9xsf6m$(this.todos_91fe12$.values);
           },
-          f_4: function (completed) {
-            return function () {
-              _.com.github.andrewoma.react.text_3pk7xh$(this, 'Clear completed (' + completed + ')');
-            };
-          },
-          render_sx5o3u$f_0: function (itemsLeft, itemsLeftPhrase, completed, this$Footer) {
-            return function () {
-              _.com.github.andrewoma.react.span_w5u0dm$(this, _.todo.components.Footer.f, _.todo.components.Footer.f_1(itemsLeft, itemsLeftPhrase));
-              if (completed !== 0) {
-                _.com.github.andrewoma.react.button_7a8emq$(this, _.todo.components.Footer.f_3(this$Footer), _.todo.components.Footer.f_4(completed));
+          withNonEmpty_fqkxi5$: Kotlin.defineInlineFunction('reakt.todo.stores.TodoStore.withNonEmpty_fqkxi5$', function (text, onNonEmpty) {
+            var trimmed = Kotlin.modules['stdlib'].kotlin.text.trim_gw00vq$(text).toString();
+            if (!(trimmed.length === 0))
+              onNonEmpty(trimmed);
+          })
+        }, /** @lends _.todo.stores.TodoStore */ {
+          TodoStore$f: function (this$TodoStore) {
+            return function (payload) {
+              var trimmed = Kotlin.modules['stdlib'].kotlin.text.trim_gw00vq$(payload.text).toString();
+              if (!(trimmed.length === 0)) {
+                this$TodoStore.create_61zpoe$(trimmed);
+                this$TodoStore.emitChange();
               }
             };
+          },
+          f_0: function (complete) {
+            return function (it) {
+              return Kotlin.equals(it.complete, complete) ? it : it.copy_qz9155$(void 0, void 0, complete);
+            };
+          },
+          TodoStore$f_0: function (this$TodoStore) {
+            return function (payload) {
+              var complete = !this$TodoStore.areAllComplete();
+              this$TodoStore.updateAll_2qbbu$(_.todo.stores.TodoStore.f_0(complete));
+              this$TodoStore.emitChange();
+            };
+          },
+          f_1: function (it) {
+            return it.copy_qz9155$(void 0, void 0, false);
+          },
+          TodoStore$f_1: function (this$TodoStore) {
+            return function (payload) {
+              this$TodoStore.update_b2pvf8$(payload.id, _.todo.stores.TodoStore.f_1);
+              this$TodoStore.emitChange();
+            };
+          },
+          f_2: function (it) {
+            return it.copy_qz9155$(void 0, void 0, true);
+          },
+          TodoStore$f_2: function (this$TodoStore) {
+            return function (payload) {
+              this$TodoStore.update_b2pvf8$(payload.id, _.todo.stores.TodoStore.f_2);
+              this$TodoStore.emitChange();
+            };
+          },
+          f_3: function (text) {
+            return function (it) {
+              return it.copy_qz9155$(void 0, text);
+            };
+          },
+          TodoStore$f_3: function (this$TodoStore) {
+            return function (payload) {
+              var trimmed = Kotlin.modules['stdlib'].kotlin.text.trim_gw00vq$(payload.text).toString();
+              if (!(trimmed.length === 0)) {
+                this$TodoStore.update_b2pvf8$(payload.id, _.todo.stores.TodoStore.f_3(trimmed));
+                this$TodoStore.emitChange();
+              }
+            };
+          },
+          TodoStore$f_4: function (this$TodoStore) {
+            return function (payload) {
+              this$TodoStore.destroy_61zpoe$(payload.id);
+              this$TodoStore.emitChange();
+            };
+          },
+          TodoStore$f_5: function (this$TodoStore) {
+            return function (payload) {
+              this$TodoStore.destroyCompleted();
+              this$TodoStore.emitChange();
+            };
           }
-        }),
-        todoFooter_ufne8c$f: function (props) {
-          return function (it) {
-            return _.todo.components.Footer.object.factory.invoke(new _.com.github.andrewoma.react.Ref(props));
-          };
-        },
-        todoFooter_ufne8c$: function ($receiver, props) {
-          return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.todo.components.todoFooter_ufne8c$f(props)));
-        }
+        })
       })
     }),
     com: Kotlin.definePackage(null, /** @lends _.com */ {
       github: Kotlin.definePackage(null, /** @lends _.com.github */ {
         andrewoma: Kotlin.definePackage(null, /** @lends _.com.github.andrewoma */ {
+          flux: Kotlin.definePackage(null, /** @lends _.com.github.andrewoma.flux */ {
+            Store: Kotlin.createClass(null, function () {
+              this.changeListeners_cgy4c3$ = Kotlin.modules['stdlib'].kotlin.collections.hashMapOf_eoa9s7$([]);
+            }, /** @lends _.com.github.andrewoma.flux.Store.prototype */ {
+              register_80p2z8$: function (dispatcher, actionDef, callback) {
+                return dispatcher.register_xztz3k$(this, actionDef, callback);
+              },
+              addChangeListener_o7wwlr$: function (self, callback) {
+                this.changeListeners_cgy4c3$.put_wn2jw4$(self, callback);
+              },
+              emitChange: function () {
+                var $receiver = this.changeListeners_cgy4c3$.values;
+                var tmp$0;
+                tmp$0 = $receiver.iterator();
+                while (tmp$0.hasNext()) {
+                  var element = tmp$0.next();
+                  element();
+                }
+              },
+              removeListener_za3rmp$: function (self) {
+                this.changeListeners_cgy4c3$.remove_za3rmp$(self);
+              }
+            }, /** @lends _.com.github.andrewoma.flux.Store */ {
+            }),
+            ActionDef: Kotlin.createClass(null, function (dispatcher) {
+              this.dispatcher = dispatcher;
+            }, /** @lends _.com.github.andrewoma.flux.ActionDef.prototype */ {
+              invoke_za3rmp$: function (payload) {
+                this.dispatcher.dispatch_qosh0o$(this, payload);
+              }
+            }),
+            ActionHandlers: Kotlin.createClass(null, function (handlers) {
+              if (handlers === void 0)
+                handlers = Kotlin.modules['stdlib'].kotlin.collections.arrayListOf_9mqe4v$([]);
+              this.handlers = handlers;
+            }),
+            RegisteredActionHandler: Kotlin.createClass(null, function (store, actionDef, callback) {
+              this.store = store;
+              this.actionDef = actionDef;
+              this.callback = callback;
+              this.pending = false;
+              this.handled = false;
+            }),
+            DispatchCallbackBody: Kotlin.createClass(null, function (dispatcher, store) {
+              this.dispatcher = dispatcher;
+              this.store = store;
+            }, /** @lends _.com.github.andrewoma.flux.DispatchCallbackBody.prototype */ {
+              waitFor_h2e3es$: function (registeredActionHandlers) {
+                this.dispatcher.waitFor_h2e3es$(registeredActionHandlers);
+              }
+            }),
+            Dispatcher: Kotlin.createClass(null, function () {
+              this.pendingPayload_iw4jan$ = null;
+              this.pendingActionDef_nael9s$ = null;
+              this.actionHandlersList_e849th$ = Kotlin.modules['stdlib'].kotlin.collections.hashMapOf_eoa9s7$([]);
+              this.dispatching_s6t2sw$ = false;
+            }, /** @lends _.com.github.andrewoma.flux.Dispatcher.prototype */ {
+              register_xztz3k$: function (store, action, callback) {
+                var $receiver = this.actionHandlersList_e849th$;
+                var tmp$0;
+                var value = $receiver.get_za3rmp$(action);
+                if (value == null) {
+                  var answer = new _.com.github.andrewoma.flux.ActionHandlers();
+                  $receiver.put_wn2jw4$(action, answer);
+                  tmp$0 = answer;
+                }
+                 else {
+                  tmp$0 = value;
+                }
+                var actionHandlers = tmp$0;
+                var registeredActionHandler = new _.com.github.andrewoma.flux.RegisteredActionHandler(store, action, callback);
+                actionHandlers.handlers.add_za3rmp$(registeredActionHandler);
+                return registeredActionHandler;
+              },
+              unRegister_slpl22$: function (registeredActionHandler) {
+                var tmp$0, tmp$1;
+                (tmp$1 = (tmp$0 = this.actionHandlersList_e849th$.get_za3rmp$(registeredActionHandler.actionDef)) != null ? tmp$0.handlers : null) != null ? Kotlin.modules['stdlib'].kotlin.collections.remove_4kvzvw$(tmp$1, registeredActionHandler) : null;
+              },
+              waitFor_h2e3es$: function (stores) {
+                var tmp$0;
+                var value = this.dispatching_s6t2sw$;
+                if (!value) {
+                  var message = 'Dispatcher.waitFor(...): Must be invoked while dispatching.';
+                  throw new Kotlin.IllegalArgumentException(message.toString());
+                }
+                var $receiver = (tmp$0 = Kotlin.modules['stdlib'].kotlin.collections.get_9ju2mf$(this.actionHandlersList_e849th$, this.pendingActionDef_nael9s$)) != null ? tmp$0.handlers : null;
+                var handlersForCurrentAction = $receiver != null ? $receiver : Kotlin.modules['stdlib'].kotlin.collections.emptyList();
+                var destination = new Kotlin.ArrayList();
+                var tmp$2;
+                tmp$2 = handlersForCurrentAction.iterator();
+                while (tmp$2.hasNext()) {
+                  var element = tmp$2.next();
+                  if (Kotlin.modules['stdlib'].kotlin.collections.contains_ke19y6$(stores, element.store)) {
+                    destination.add_za3rmp$(element);
+                  }
+                }
+                var tmp$3;
+                var first = new Kotlin.ArrayList();
+                var second = new Kotlin.ArrayList();
+                tmp$3 = destination.iterator();
+                while (tmp$3.hasNext()) {
+                  var element_0 = tmp$3.next();
+                  if (element_0.pending || element_0.handled) {
+                    first.add_za3rmp$(element_0);
+                  }
+                   else {
+                    second.add_za3rmp$(element_0);
+                  }
+                }
+                var tmp$1 = new Kotlin.modules['stdlib'].kotlin.Pair(first, second)
+                , pendingHandlers = tmp$1.component1()
+                , nonPendingHandlers = tmp$1.component2();
+                var unhandledHandlers;
+                firstOrNull_udlcbx$break: {
+                  var tmp$4;
+                  tmp$4 = pendingHandlers.iterator();
+                  while (tmp$4.hasNext()) {
+                    var element_1 = tmp$4.next();
+                    if (!element_1.handled) {
+                      unhandledHandlers = element_1;
+                      break firstOrNull_udlcbx$break;
+                    }
+                  }
+                  unhandledHandlers = null;
+                }
+                var value_0 = unhandledHandlers == null;
+                if (!value_0) {
+                  var message_0 = 'Dispatcher.waitFor(...): Circular dependency detected while waiting for ' + Kotlin.toString(unhandledHandlers) + '.';
+                  throw new Kotlin.IllegalArgumentException(message_0.toString());
+                }
+                var action = _.com.github.andrewoma.flux.Dispatcher.waitFor_h2e3es$f_4(this);
+                var tmp$5;
+                tmp$5 = nonPendingHandlers.iterator();
+                while (tmp$5.hasNext()) {
+                  var element_2 = tmp$5.next();
+                  action(element_2);
+                }
+              },
+              dispatch_qosh0o$: function (action, payload) {
+                var tmp$0, tmp$1;
+                var value = !this.dispatching_s6t2sw$;
+                if (!value) {
+                  var message = 'Dispatch.dispatch(...): Cannot dispatch in the middle of a dispatch.';
+                  throw new Kotlin.IllegalArgumentException(message.toString());
+                }
+                this.startDispatching(action, payload);
+                try {
+                  (tmp$1 = (tmp$0 = this.actionHandlersList_e849th$.get_za3rmp$(action)) != null ? tmp$0.handlers : null) != null ? Kotlin.modules['stdlib'].kotlin.collections.forEach_lcecrh$(tmp$1, _.com.github.andrewoma.flux.Dispatcher.dispatch_qosh0o$f_0(this)) : null;
+                }
+                finally {
+                  this.stopDispatching();
+                }
+              },
+              invokeCallback: function (it) {
+                it.pending = true;
+                var body = new _.com.github.andrewoma.flux.DispatchCallbackBody(this, it.store);
+                var callback = it.callback;
+                callback.call(body, this.pendingPayload_iw4jan$);
+                it.handled = true;
+              },
+              startDispatching: function (action, payload) {
+                var tmp$0, tmp$1;
+                (tmp$1 = (tmp$0 = this.actionHandlersList_e849th$.get_za3rmp$(action)) != null ? tmp$0.handlers : null) != null ? Kotlin.modules['stdlib'].kotlin.collections.forEach_lcecrh$(tmp$1, _.com.github.andrewoma.flux.Dispatcher.startDispatching$f) : null;
+                this.pendingPayload_iw4jan$ = payload;
+                this.pendingActionDef_nael9s$ = action;
+                this.dispatching_s6t2sw$ = true;
+              },
+              stopDispatching: function () {
+                this.pendingActionDef_nael9s$ = null;
+                this.pendingPayload_iw4jan$ = null;
+                this.dispatching_s6t2sw$ = false;
+              }
+            }, /** @lends _.com.github.andrewoma.flux.Dispatcher */ {
+              waitFor_h2e3es$f_4: function (this$Dispatcher) {
+                return function (it) {
+                  var tmp$0, tmp$1, tmp$2;
+                  var value = (tmp$2 = (tmp$1 = (tmp$0 = this$Dispatcher.actionHandlersList_e849th$.get_za3rmp$(it.actionDef)) != null ? tmp$0.handlers : null) != null ? Kotlin.modules['stdlib'].kotlin.collections.contains_cwuzrm$(tmp$1, it) : null) != null ? tmp$2 : false;
+                  if (!value) {
+                    var message = 'Dispatcher.waitFor(...): ' + it + ' does not map to a registered callback.';
+                    throw new Kotlin.IllegalArgumentException(message.toString());
+                  }
+                  this$Dispatcher.invokeCallback(it);
+                };
+              },
+              dispatch_qosh0o$f_0: function (this$Dispatcher) {
+                return function (it) {
+                  if (!it.pending) {
+                    this$Dispatcher.invokeCallback(it);
+                  }
+                };
+              },
+              startDispatching$f: function (it) {
+                it.pending = false;
+                it.handled = false;
+              }
+            })
+          }),
           react: Kotlin.definePackage(function () {
             this.log = new _.com.github.andrewoma.react.Log(_.com.github.andrewoma.react.logLevelFromLocation(document.location.search));
             this.react = new _.com.github.andrewoma.react.React();
           }, /** @lends _.com.github.andrewoma.react */ {
-            classSet_eoa9s7$: function (classes) {
-              var tmp$0, tmp$1, tmp$2;
-              var sb = new Kotlin.StringBuilder();
-              tmp$0 = classes, tmp$1 = tmp$0.length;
-              for (var tmp$2 = 0; tmp$2 !== tmp$1; ++tmp$2) {
-                var pair = tmp$0[tmp$2];
-                if (pair.second)
-                  sb.append(pair.first);
+            ComponentRenderer: Kotlin.createTrait(null, /** @lends _.com.github.andrewoma.react.ComponentRenderer.prototype */ {
+              render: function () {
+                var root = _.com.github.andrewoma.react.ComponentRenderer.render$f();
+                this.render_sx5o3u$(root);
+                _.com.github.andrewoma.react.check_8kj6y5$(root.children.size <= 1, 'React only supports one (or zero) root components');
+                if (root.children.isEmpty())
+                  return null;
+                return root.children.get_za3lpa$(0).transform();
               }
-              return sb.toString();
-            },
-            ReactMixin: Kotlin.createTrait(null, /** @lends _.com.github.andrewoma.react.ReactMixin.prototype */ {
-              componentWillMount: function () {
+            }, /** @lends _.com.github.andrewoma.react.ComponentRenderer */ {
+              f: function (it) {
+                return 0;
               },
-              componentDidMount: function () {
-              },
-              componentWillReceiveProps_za3rmp$: function (nextProps) {
-              },
-              shouldComponentUpdate_wn2jw4$: function (nextProps, nextState) {
-                return true;
-              },
-              componentWillUpdate_wn2jw4$: function (nextProps, nextState) {
-              },
-              componentDidUpdate_wn2jw4$: function (nextProps, nextState) {
-              },
-              componentWillUnmount: function () {
+              render$f: function () {
+                return Kotlin.createObject(function () {
+                  return [_.com.github.andrewoma.react.Component];
+                }, function $fun() {
+                  $fun.baseInitializer.call(this, _.com.github.andrewoma.react.ComponentRenderer.f);
+                });
               }
             }),
-            Ref: Kotlin.createClass(null, function (value) {
-              this.value = value;
+            ComponentSpec: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.ComponentRenderer, _.com.github.andrewoma.react.ReactComponentSpec];
+            }, function $fun() {
+              $fun.baseInitializer.call(this);
             }),
-            RefContent: Kotlin.createClass(null, function (realRef) {
-              this.realRef = realRef;
-            }, /** @lends _.com.github.andrewoma.react.RefContent.prototype */ {
-              asComponent: function () {
-                return this.realRef;
+            Component: Kotlin.createClass(null, function (transformer) {
+              this.transformer = transformer;
+              this.children = new Kotlin.ArrayList();
+            }, /** @lends _.com.github.andrewoma.react.Component.prototype */ {
+              constructAndInsert_ad91at$: function (component, init) {
+                if (init === void 0)
+                  init = _.com.github.andrewoma.react.Component.constructAndInsert_ad91at$f;
+                init.call(component);
+                this.children.add_za3rmp$(component);
+                return component;
               },
-              asDomNode: function () {
-                return this.realRef;
+              transform: function () {
+                return this.transformer(this);
+              },
+              transformChildren: function () {
+                return Kotlin.arrayFromFun(this.children.size, _.com.github.andrewoma.react.Component.transformChildren$f(this));
               }
-            }),
-            ReactComponentSpec: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.ReactMixin];
-            }, function () {
-              this.component = null;
-              this.mixins = [];
-              this.displayName = '';
-            }, /** @lends _.com.github.andrewoma.react.ReactComponentSpec.prototype */ {
-              refs_61zpoe$: function (refName) {
-                var tmp$0;
-                return new _.com.github.andrewoma.react.RefContent(((tmp$0 = this.component) != null ? tmp$0 : Kotlin.throwNPE()).refs[refName]);
+            }, /** @lends _.com.github.andrewoma.react.Component */ {
+              constructAndInsert_ad91at$f: function () {
               },
-              state: {
-                get: function () {
-                  var tmp$0, tmp$1;
-                  return (tmp$1 = ((tmp$0 = this.component) != null ? tmp$0 : Kotlin.throwNPE()).state.value) != null ? tmp$1 : Kotlin.throwNPE();
-                },
-                set: function (value) {
-                  var tmp$0;
-                  ((tmp$0 = this.component) != null ? tmp$0 : Kotlin.throwNPE()).setState(new _.com.github.andrewoma.react.Ref(value));
-                }
-              },
-              props: {
-                get: function () {
-                  var tmp$0, tmp$1;
-                  return (tmp$1 = ((tmp$0 = this.component) != null ? tmp$0 : Kotlin.throwNPE()).props.value) != null ? tmp$1 : Kotlin.throwNPE();
-                },
-                set: function (value) {
-                  var tmp$0;
-                  ((tmp$0 = this.component) != null ? tmp$0 : Kotlin.throwNPE()).setProps(new _.com.github.andrewoma.react.Ref(value), null);
-                }
-              },
-              getInitialState: function () {
-                var state = this.initialState();
-                return state == null ? null : new _.com.github.andrewoma.react.Ref(state);
-              },
-              initialState: function () {
-                return null;
-              },
-              getDefaultProps: function () {
-                return null;
+              transformChildren$f: function (this$Component) {
+                return function (it) {
+                  return this$Component.children.get_za3lpa$(it).transform();
+                };
               }
             }),
             initProps_febbmr$: function (properties, init) {
@@ -2783,84 +2950,6 @@
                 init = _.com.github.andrewoma.react.text_k62a52$f_0;
               return $receiver.constructAndInsert_ad91at$(new _.com.github.andrewoma.react.Component(_.com.github.andrewoma.react.text_k62a52$f_1(properties)), init);
             },
-            ReadWriteProperty: Kotlin.createTrait(null),
-            Property: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.ReadWriteProperty];
-            }, null, /** @lends _.com.github.andrewoma.react.Property.prototype */ {
-              getValue_dsk1ci$: function (thisRef, property) {
-                return Reakt.getProperty(thisRef != null ? thisRef : Kotlin.throwNPE(), property.name);
-              },
-              setValue_w32e13$: function (thisRef, property, value) {
-                Reakt.setProperty(thisRef != null ? thisRef : Kotlin.throwNPE(), property.name, value);
-              }
-            }),
-            check_8kj6y5$: function (condition, message) {
-              if (message === void 0)
-                message = 'Assertion failed';
-              if (!condition) {
-                throw new Kotlin.Exception(message);
-              }
-            },
-            ComponentRenderer: Kotlin.createTrait(null, /** @lends _.com.github.andrewoma.react.ComponentRenderer.prototype */ {
-              render: function () {
-                var root = _.com.github.andrewoma.react.ComponentRenderer.render$f();
-                this.render_sx5o3u$(root);
-                _.com.github.andrewoma.react.check_8kj6y5$(root.children.size <= 1, 'React only supports one (or zero) root components');
-                if (root.children.isEmpty())
-                  return null;
-                return root.children.get_za3lpa$(0).transform();
-              }
-            }, /** @lends _.com.github.andrewoma.react.ComponentRenderer */ {
-              f: function (it) {
-                return 0;
-              },
-              render$f: function () {
-                return Kotlin.createObject(function () {
-                  return [_.com.github.andrewoma.react.Component];
-                }, function $fun() {
-                  $fun.baseInitializer.call(this, _.com.github.andrewoma.react.ComponentRenderer.f);
-                });
-              }
-            }),
-            ComponentSpec: Kotlin.createClass(function () {
-              return [_.com.github.andrewoma.react.ComponentRenderer, _.com.github.andrewoma.react.ReactComponentSpec];
-            }, function $fun() {
-              $fun.baseInitializer.call(this);
-            }),
-            Component: Kotlin.createClass(null, function (transformer) {
-              this.transformer = transformer;
-              this.children = new Kotlin.ArrayList();
-            }, /** @lends _.com.github.andrewoma.react.Component.prototype */ {
-              constructAndInsert_ad91at$: function (component, init) {
-                if (init === void 0)
-                  init = _.com.github.andrewoma.react.Component.constructAndInsert_ad91at$f;
-                init.call(component);
-                this.children.add_za3rmp$(component);
-                return component;
-              },
-              transform: function () {
-                return this.transformer(this);
-              },
-              transformChildren: function () {
-                var size = this.children.size;
-                var init = _.com.github.andrewoma.react.Component.transformChildren$f(this);
-                var tmp$0;
-                var result = Kotlin.nullArray(size);
-                tmp$0 = size - 1;
-                for (var i = 0; i <= tmp$0; i++) {
-                  result[i] = init(i);
-                }
-                return result;
-              }
-            }, /** @lends _.com.github.andrewoma.react.Component */ {
-              constructAndInsert_ad91at$f: function () {
-              },
-              transformChildren$f: function (this$Component) {
-                return function (it) {
-                  return this$Component.children.get_za3lpa$(it).transform();
-                };
-              }
-            }),
             EventTarget: Kotlin.createTrait(null),
             DataTransfer: Kotlin.createTrait(null),
             Style: Kotlin.createClass(null, null),
@@ -5332,6 +5421,17 @@
                 }
               }
             }),
+            classSet_eoa9s7$: function (classes) {
+              var tmp$0, tmp$1, tmp$2;
+              var sb = new Kotlin.StringBuilder();
+              tmp$0 = classes, tmp$1 = tmp$0.length;
+              for (var tmp$2 = 0; tmp$2 !== tmp$1; ++tmp$2) {
+                var pair = tmp$0[tmp$2];
+                if (pair.second)
+                  sb.append(pair.first);
+              }
+              return sb.toString();
+            },
             LogLevel: Kotlin.createClass(null, function (ordinal) {
               this.ordinal = ordinal;
             }, null, /** @lends _.com.github.andrewoma.react.LogLevel */ {
@@ -5398,7 +5498,12 @@
             logLevelFromLocation: function (location) {
               var tmp$0, tmp$1, tmp$2;
               var prefix = 'log-level=';
-              tmp$0 = Kotlin.copyToArray(Kotlin.modules['stdlib'].kotlin.text.split_nhz2th$(location, Kotlin.modules['stdlib'].kotlin.text.toRegex_pdl1w0$('[?&]'))), tmp$1 = tmp$0.length;
+              var regex = Kotlin.modules['stdlib'].kotlin.text.Regex_61zpoe$('[?&]');
+              var limit;
+              if (limit === void 0) {
+                limit = 0;
+              }
+              tmp$0 = Kotlin.copyToArray(regex.split_905azu$(location, limit)), tmp$1 = tmp$0.length;
               for (var tmp$2 = 0; tmp$2 !== tmp$1; ++tmp$2) {
                 var token = tmp$0[tmp$2];
                 if (Kotlin.modules['stdlib'].kotlin.text.startsWith_41xvrb$(token, prefix))
@@ -5406,6 +5511,17 @@
               }
               return _.com.github.andrewoma.react.LogLevel.object.none;
             },
+            ReadWriteProperty: Kotlin.createTrait(null),
+            Property: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.ReadWriteProperty];
+            }, null, /** @lends _.com.github.andrewoma.react.Property.prototype */ {
+              getValue_dsk1ci$: function (thisRef, property) {
+                return Reakt.getProperty(thisRef != null ? thisRef : Kotlin.throwNPE(), property.name);
+              },
+              setValue_w32e13$: function (thisRef, property, value) {
+                Reakt.setProperty(thisRef != null ? thisRef : Kotlin.throwNPE(), property.name, value);
+              }
+            }),
             React: Kotlin.createClass(null, null, /** @lends _.com.github.andrewoma.react.React.prototype */ {
               createFactory_oqkx6a$: function (spec) {
                 return Reakt.createClass(spec);
@@ -5421,200 +5537,86 @@
             }, /** @lends _.com.github.andrewoma.react.React */ {
               render_vbpb6g$f: function () {
               }
-            })
-          }),
-          flux: Kotlin.definePackage(null, /** @lends _.com.github.andrewoma.flux */ {
-            Store: Kotlin.createClass(null, function () {
-              this.changeListeners_cgy4c3$ = Kotlin.modules['stdlib'].kotlin.collections.hashMapOf_eoa9s7$([]);
-            }, /** @lends _.com.github.andrewoma.flux.Store.prototype */ {
-              addChangeListener_o7wwlr$: function (self, callback) {
-                this.changeListeners_cgy4c3$.put_wn2jw4$(self, callback);
+            }),
+            ReactMixin: Kotlin.createTrait(null, /** @lends _.com.github.andrewoma.react.ReactMixin.prototype */ {
+              componentWillMount: function () {
               },
-              emitChange: function () {
-                var $receiver = this.changeListeners_cgy4c3$.values;
+              componentDidMount: function () {
+              },
+              componentWillReceiveProps_za3rmp$: function (nextProps) {
+              },
+              shouldComponentUpdate_wn2jw4$: function (nextProps, nextState) {
+                return true;
+              },
+              componentWillUpdate_wn2jw4$: function (nextProps, nextState) {
+              },
+              componentDidUpdate_wn2jw4$: function (nextProps, nextState) {
+              },
+              componentWillUnmount: function () {
+              }
+            }),
+            Ref: Kotlin.createClass(null, function (value) {
+              this.value = value;
+            }),
+            RefContent: Kotlin.createClass(null, function (realRef) {
+              this.realRef = realRef;
+            }, /** @lends _.com.github.andrewoma.react.RefContent.prototype */ {
+              asComponent: function () {
+                return this.realRef;
+              },
+              asDomNode: function () {
+                return this.realRef;
+              }
+            }),
+            ReactComponentSpec: Kotlin.createClass(function () {
+              return [_.com.github.andrewoma.react.ReactMixin];
+            }, function () {
+              this.component = null;
+              this.mixins = [];
+              this.displayName = '';
+            }, /** @lends _.com.github.andrewoma.react.ReactComponentSpec.prototype */ {
+              refs_61zpoe$: function (refName) {
                 var tmp$0;
-                tmp$0 = $receiver.iterator();
-                while (tmp$0.hasNext()) {
-                  var element = tmp$0.next();
-                  element();
+                return new _.com.github.andrewoma.react.RefContent(((tmp$0 = this.component) != null ? tmp$0 : Kotlin.throwNPE()).refs[refName]);
+              },
+              state: {
+                get: function () {
+                  var tmp$0, tmp$1;
+                  return (tmp$1 = ((tmp$0 = this.component) != null ? tmp$0 : Kotlin.throwNPE()).state.value) != null ? tmp$1 : Kotlin.throwNPE();
+                },
+                set: function (value) {
+                  var tmp$0;
+                  ((tmp$0 = this.component) != null ? tmp$0 : Kotlin.throwNPE()).setState(new _.com.github.andrewoma.react.Ref(value));
                 }
               },
-              removeListener_za3rmp$: function (self) {
-                this.changeListeners_cgy4c3$.remove_za3rmp$(self);
-              }
-            }, /** @lends _.com.github.andrewoma.flux.Store */ {
-            }),
-            ActionDef: Kotlin.createClass(null, function (dispatcher) {
-              this.dispatcher = dispatcher;
-            }, /** @lends _.com.github.andrewoma.flux.ActionDef.prototype */ {
-              invoke_za3rmp$: function (payload) {
-                this.dispatcher.dispatch_qosh0o$(this, payload);
-              }
-            }),
-            ActionHandlers: Kotlin.createClass(null, function (handlers) {
-              if (handlers === void 0)
-                handlers = Kotlin.modules['stdlib'].kotlin.collections.arrayListOf_9mqe4v$([]);
-              this.handlers = handlers;
-            }),
-            RegisteredActionHandler: Kotlin.createClass(null, function (store, actionDef, callback) {
-              this.store = store;
-              this.actionDef = actionDef;
-              this.callback = callback;
-              this.pending = false;
-              this.handled = false;
-            }),
-            DispatchCallbackBody: Kotlin.createClass(null, function (dispatcher, store) {
-              this.dispatcher = dispatcher;
-              this.store = store;
-            }, /** @lends _.com.github.andrewoma.flux.DispatchCallbackBody.prototype */ {
-              waitFor_h2e3es$: function (registeredActionHandlers) {
-                this.dispatcher.waitFor_h2e3es$(registeredActionHandlers);
+              props: {
+                get: function () {
+                  var tmp$0, tmp$1;
+                  return (tmp$1 = ((tmp$0 = this.component) != null ? tmp$0 : Kotlin.throwNPE()).props.value) != null ? tmp$1 : Kotlin.throwNPE();
+                },
+                set: function (value) {
+                  var tmp$0;
+                  ((tmp$0 = this.component) != null ? tmp$0 : Kotlin.throwNPE()).setProps(new _.com.github.andrewoma.react.Ref(value), null);
+                }
+              },
+              getInitialState: function () {
+                var state = this.initialState();
+                return state == null ? null : new _.com.github.andrewoma.react.Ref(state);
+              },
+              initialState: function () {
+                return null;
+              },
+              getDefaultProps: function () {
+                return null;
               }
             }),
-            Dispatcher: Kotlin.createClass(null, function () {
-              this.pendingPayload_iw4jan$ = null;
-              this.pendingActionDef_nael9s$ = null;
-              this.actionHandlersList_e849th$ = Kotlin.modules['stdlib'].kotlin.collections.hashMapOf_eoa9s7$([]);
-              this.dispatching_s6t2sw$ = false;
-            }, /** @lends _.com.github.andrewoma.flux.Dispatcher.prototype */ {
-              register_xztz3k$: function (store, action, callback) {
-                var $receiver = this.actionHandlersList_e849th$;
-                var tmp$0;
-                var value = $receiver.get_za3rmp$(action);
-                if (value == null && !$receiver.containsKey_za3rmp$(action)) {
-                  var answer = new _.com.github.andrewoma.flux.ActionHandlers();
-                  $receiver.put_wn2jw4$(action, answer);
-                  tmp$0 = answer;
-                }
-                 else {
-                  tmp$0 = value;
-                }
-                var actionHandlers = tmp$0;
-                var registeredActionHandler = new _.com.github.andrewoma.flux.RegisteredActionHandler(store, action, callback);
-                actionHandlers.handlers.add_za3rmp$(registeredActionHandler);
-                return registeredActionHandler;
-              },
-              unRegister_slpl22$: function (registeredActionHandler) {
-                var tmp$0, tmp$1;
-                (tmp$1 = (tmp$0 = this.actionHandlersList_e849th$.get_za3rmp$(registeredActionHandler.actionDef)) != null ? tmp$0.handlers : null) != null ? tmp$1.remove_za3rmp$(registeredActionHandler) : null;
-              },
-              waitFor_h2e3es$: function (stores) {
-                var tmp$0;
-                var value = this.dispatching_s6t2sw$;
-                if (!value) {
-                  var message = 'Dispatcher.waitFor(...): Must be invoked while dispatching.';
-                  throw new Kotlin.IllegalArgumentException(message.toString());
-                }
-                var handlersForCurrentAction = Kotlin.modules['stdlib'].kotlin.collections.orEmpty_fvq2g0$((tmp$0 = Kotlin.modules['stdlib'].kotlin.collections.get_qbyksu$(this.actionHandlersList_e849th$, this.pendingActionDef_nael9s$)) != null ? tmp$0.handlers : null);
-                var destination = new Kotlin.ArrayList();
-                var tmp$2;
-                tmp$2 = handlersForCurrentAction.iterator();
-                while (tmp$2.hasNext()) {
-                  var element = tmp$2.next();
-                  if (Kotlin.modules['stdlib'].kotlin.collections.contains_ke19y6$(stores, element.store)) {
-                    destination.add_za3rmp$(element);
-                  }
-                }
-                var tmp$3;
-                var first = new Kotlin.ArrayList();
-                var second = new Kotlin.ArrayList();
-                tmp$3 = destination.iterator();
-                while (tmp$3.hasNext()) {
-                  var element_0 = tmp$3.next();
-                  if (element_0.pending || element_0.handled) {
-                    first.add_za3rmp$(element_0);
-                  }
-                   else {
-                    second.add_za3rmp$(element_0);
-                  }
-                }
-                var tmp$1 = new Kotlin.modules['stdlib'].kotlin.Pair(first, second)
-                , pendingHandlers = tmp$1.component1()
-                , nonPendingHandlers = tmp$1.component2();
-                var unhandledHandlers;
-                firstOrNull_azvtw4$break: {
-                  var tmp$4;
-                  tmp$4 = pendingHandlers.iterator();
-                  while (tmp$4.hasNext()) {
-                    var element_1 = tmp$4.next();
-                    if (!element_1.handled) {
-                      unhandledHandlers = element_1;
-                      break firstOrNull_azvtw4$break;
-                    }
-                  }
-                  unhandledHandlers = null;
-                }
-                var value_0 = unhandledHandlers == null;
-                if (!value_0) {
-                  var message_0 = 'Dispatcher.waitFor(...): Circular dependency detected while waiting for ' + Kotlin.toString(unhandledHandlers) + '.';
-                  throw new Kotlin.IllegalArgumentException(message_0.toString());
-                }
-                var action = _.com.github.andrewoma.flux.Dispatcher.waitFor_h2e3es$f_4(this);
-                var tmp$5;
-                tmp$5 = nonPendingHandlers.iterator();
-                while (tmp$5.hasNext()) {
-                  var element_2 = tmp$5.next();
-                  action(element_2);
-                }
-              },
-              dispatch_qosh0o$: function (action, payload) {
-                var tmp$0, tmp$1;
-                var value = !this.dispatching_s6t2sw$;
-                if (!value) {
-                  var message = 'Dispatch.dispatch(...): Cannot dispatch in the middle of a dispatch.';
-                  throw new Kotlin.IllegalArgumentException(message.toString());
-                }
-                this.startDispatching(action, payload);
-                try {
-                  (tmp$1 = (tmp$0 = this.actionHandlersList_e849th$.get_za3rmp$(action)) != null ? tmp$0.handlers : null) != null ? Kotlin.modules['stdlib'].kotlin.collections.forEach_p7e0bo$(tmp$1, _.com.github.andrewoma.flux.Dispatcher.dispatch_qosh0o$f_0(this)) : null;
-                }
-                finally {
-                  this.stopDispatching();
-                }
-              },
-              invokeCallback: function (it) {
-                it.pending = true;
-                var body = new _.com.github.andrewoma.flux.DispatchCallbackBody(this, it.store);
-                var callback = it.callback;
-                callback.call(body, this.pendingPayload_iw4jan$);
-                it.handled = true;
-              },
-              startDispatching: function (action, payload) {
-                var tmp$0, tmp$1;
-                (tmp$1 = (tmp$0 = this.actionHandlersList_e849th$.get_za3rmp$(action)) != null ? tmp$0.handlers : null) != null ? Kotlin.modules['stdlib'].kotlin.collections.forEach_p7e0bo$(tmp$1, _.com.github.andrewoma.flux.Dispatcher.startDispatching$f) : null;
-                this.pendingPayload_iw4jan$ = payload;
-                this.pendingActionDef_nael9s$ = action;
-                this.dispatching_s6t2sw$ = true;
-              },
-              stopDispatching: function () {
-                this.pendingActionDef_nael9s$ = null;
-                this.pendingPayload_iw4jan$ = null;
-                this.dispatching_s6t2sw$ = false;
+            check_8kj6y5$: function (condition, message) {
+              if (message === void 0)
+                message = 'Assertion failed';
+              if (!condition) {
+                throw new Kotlin.Exception(message);
               }
-            }, /** @lends _.com.github.andrewoma.flux.Dispatcher */ {
-              waitFor_h2e3es$f_4: function (this$Dispatcher) {
-                return function (it) {
-                  var tmp$0, tmp$1, tmp$2;
-                  var value = (tmp$2 = (tmp$1 = (tmp$0 = this$Dispatcher.actionHandlersList_e849th$.get_za3rmp$(it.actionDef)) != null ? tmp$0.handlers : null) != null ? tmp$1.contains_za3rmp$(it) : null) != null ? tmp$2 : false;
-                  if (!value) {
-                    var message = 'Dispatcher.waitFor(...): ' + it + ' does not map to a registered callback.';
-                    throw new Kotlin.IllegalArgumentException(message.toString());
-                  }
-                  this$Dispatcher.invokeCallback(it);
-                };
-              },
-              dispatch_qosh0o$f_0: function (this$Dispatcher) {
-                return function (it) {
-                  if (!it.pending) {
-                    this$Dispatcher.invokeCallback(it);
-                  }
-                };
-              },
-              startDispatching$f: function (it) {
-                it.pending = false;
-                it.handled = false;
-              }
-            })
+            }
           })
         })
       })
@@ -5623,3 +5625,5 @@
   Kotlin.defineModule('reakt', _);
   _.todo.main_kand9s$([]);
 }(Kotlin));
+
+//@ sourceMappingURL=reakt.js.map
