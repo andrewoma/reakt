@@ -34,6 +34,9 @@ Reakt.createClass = function (spec) {
     spec.shouldComponentUpdate = function (nextProps, nextState) {
         return injectComponent(spec, this).shouldComponentUpdate_wn2jw4$(refValue(nextProps), refValue(nextState));
     };
+    spec.componentWillUnmount = function () {
+        return injectComponent(spec, this).componentWillUnmount();
+    };
 
     // Wrap raw factory function into an object that we can provide an interface to
     var reactClass = React.createClass(spec);
