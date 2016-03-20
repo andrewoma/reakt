@@ -1,51 +1,56 @@
 var Reakt = Reakt || {};
 
 Reakt.createClass = function (spec) {
-    // React can't cope with functions defined on prototypes, so forward via simple properties
-    // It also messes with 'this', replacing the spec's 'this' with the created component instance.
-    // This doesn't play nicely with a class system, so we inject the component into an instance
-
-    function injectComponent(spec, component) {
-        var factory = spec.constructor.bind.apply(spec.constructor, [null]);
-        var newSpec = new factory();
-        newSpec.component = component;
-        return newSpec;
-    }
-
     function refValue(ref) {
         return ref ? ref.value : null;
     }
 
-    spec.render = function () {
-        return injectComponent(spec, this).render();
-    };
-    spec.getDefaultProps = function () {
-        return injectComponent(spec, this).getDefaultProps();
-    };
-    spec.getInitialState = function () {
-        return injectComponent(spec, this).getInitialState();
-    };
-    spec.componentWillMount = function () {
-        return injectComponent(spec, this).componentWillMount();
-    };
-    spec.componentDidMount = function () {
-        return injectComponent(spec, this).componentDidMount();
-    };
-    spec.shouldComponentUpdate = function (nextProps, nextState) {
-        return injectComponent(spec, this).shouldComponentUpdate_wn2jw4$(refValue(nextProps), refValue(nextState));
-    };
-    spec.componentWillUnmount = function () {
-        return injectComponent(spec, this).componentWillUnmount();
+    var reactComponentSpec = {};
+
+    function KotlinComponentConstructor(reactComponent) {
+        var newKotlinComponentSpecFactory = spec.constructor.bind.apply(spec.constructor, [null]);
+        var newKotlinComponentSpec = new newKotlinComponentSpecFactory();
+        newKotlinComponentSpec.component = reactComponent;
+        reactComponent.kotlinComponent = newKotlinComponentSpec;
+    }
+
+    reactComponentSpec.getDefaultProps = function () {
+        return spec.getDefaultProps();
     };
 
-    // Wrap raw factory function into an object that we can provide an interface to
-    var reactClass = React.createClass(spec);
-    var factory = React.createFactory(reactClass);
-    return {
-        invoke: function (props, children) {
-            return factory(props, children);
-        }
+    reactComponentSpec.getInitialState = function() {
+        KotlinComponentConstructor(this)
+        return this.kotlinComponent.getInitialState()
     }
+
+    reactComponentSpec.componentWillMount = function() {
+        return this.kotlinComponent.componentWillMount();
+    }
+
+    reactComponentSpec.componentDidMount = function () {
+        return this.kotlinComponent.componentDidMount();
+    };
+
+    reactComponentSpec.render = function() {
+        return this.kotlinComponent.render();
+    }
+
+    reactComponentSpec.shouldComponentUpdate = function (nextProps, nextState) {
+        return this.kotlinComponent.shouldComponentUpdate_wn2jw4$(refValue(nextProps), refValue(nextState));
+    };
+
+    reactComponentSpec.componentWillUnmount = function () {
+        return this.kotlinComponent.componentWillUnmount();
+    };
+
+    var reactClass = React.createClass(reactComponentSpec);
+    var factory = React.createFactory(reactClass);
+
+    return {
+            invoke: function (props, children) {
+                return factory(props, children);
+            }
+         }
 };
 
 Reakt.setProperty = function(thisRef, name, value) {
