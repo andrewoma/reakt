@@ -11,9 +11,9 @@ To run the example, clone the repository, build the project and open `index.html
 * A Kotlin-based HTML builder api (no JSX equivalent is required).
 
 #### Comparison
-* Component: [Kotlin](https://github.com/andrewoma/reakt/blob/master/src/todo/components/TodoItem.kt)  vs [JavaScript](https://github.com/facebook/flux/blob/master/examples/flux-todomvc/js/components/TodoItem.react.js)
-* Actions: [Kotlin](https://github.com/andrewoma/reakt/blob/master/src/todo/actions/Actions.kt)  vs [JavaScript](https://github.com/facebook/flux/blob/master/examples/flux-todomvc/js/actions/TodoActions.js)  
-* Store: [Kotlin](https://github.com/andrewoma/reakt/blob/master/src/todo/stores/TodoStore.kt)  vs [JavaScript](https://github.com/facebook/flux/blob/master/examples/flux-todomvc/js/stores/TodoStore.js)
+* Component: [Kotlin](todo/src/main/kotlin/todo/components/TodoItem.kt)  vs [JavaScript](https://github.com/facebook/flux/blob/master/examples/flux-todomvc/js/components/TodoItem.react.js)
+* Actions: [Kotlin](todo/src/main/kotlin/todo/actions/Actions.kt)  vs [JavaScript](https://github.com/facebook/flux/blob/master/examples/flux-todomvc/js/actions/TodoActions.js)
+* Store: [Kotlin](todo/src/main/kotlin/todo/stores/TodoStore.kt)  vs [JavaScript](https://github.com/facebook/flux/blob/master/examples/flux-todomvc/js/stores/TodoStore.js)
 
 #### Building
 * Clone repository
@@ -21,8 +21,8 @@ To run the example, clone the repository, build the project and open `index.html
 ./gradlew buildWeb
 ```
 
-* That's it. Now you can open todo/build/classes/main/index.html to see the example Todo application.
-* Open build.gradle in IntelliJ, make project will overwrite generated js, so just refresh in browser
+* That's it. Now you can open `todo/build/classes/main/index.html` to see the example Todo application.
+* Open `build.gradle` in IntelliJ, make project will overwrite generated js, so just refresh in browser
 
 #### Using in your project as a library
 * Build reakt.jar (reakt/build/libs)
@@ -30,7 +30,7 @@ To run the example, clone the repository, build the project and open `index.html
 ./gradlew reakt:jar
 ```
 
-* In IntelliJ, you can add this jar as a dependency to your Kotlin(Javascript) project orf rom command line
+* In IntelliJ, you can add this jar as a dependency to your Kotlin(Javascript) project or from command line
 ```
 kotlinc-js -output my-awesome-app.js src -library-files reakt.jar
 ```
@@ -49,7 +49,6 @@ kotlinc-js -output my-awesome-app.js src -library-files reakt.jar
 * Review naming conventions (Actions/Events)
 * Add properties to the CSS Sytle class
 * Support the full React API (refs, renderToString, renderToDocument et al)
-* Build as a library and separate out the todo example as a user of the library
 * Wrap the test API and support DOM-based tests (probably via Karma)
 * Review the visibility of the react.* package
 
