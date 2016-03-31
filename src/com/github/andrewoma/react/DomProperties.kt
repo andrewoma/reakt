@@ -147,6 +147,7 @@ open class HtmlGlobalProperties : ReactProperties() {
     var scrollLeft: Int? by Property()
     var scrollTop: Int? by Property()
     var style: Style? by Property()
+    var ariaHidden: Boolean? by Property()
 }
 
 class FormProperties : HtmlGlobalProperties() {
@@ -256,6 +257,7 @@ class TextareaProperties : HtmlGlobalProperties() {
     var placeholder: String? by Property()
     var readOnly: String? by Property()
     var required: Boolean? by Property()
+    var rows:Int? by Property()
 }
 
 class AudioProperties : HtmlGlobalProperties() {
