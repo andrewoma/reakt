@@ -258,6 +258,7 @@ class TextareaProperties : HtmlGlobalProperties() {
     var readOnly: String? by Property()
     var required: Boolean? by Property()
     var rows:Int? by Property()
+    var value: String? by Property()
 }
 
 class AudioProperties : HtmlGlobalProperties() {
