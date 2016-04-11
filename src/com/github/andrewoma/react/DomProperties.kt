@@ -14,6 +14,150 @@ interface DataTransfer {
 
 // TODO
 class Style {
+
+    // Text and Fonts
+    var font: String? = null
+    var fontFamily: String? = null
+    var fontSize: String? = null
+    var fontWeight: String? = null
+    var fontStyle: String? = null
+    var fontVariant: String? = null
+    var fontStretch: String? = null
+    var fontSizeAdjust: String? = null
+    var fontSynthesis: String? = null
+    var lineHeight: String? = null
+    var letterSpacing: String? = null
+    var wordSpacing: String? = null
+    var textAlign: String? = null
+    var textDecoration: String? = null
+    var textIndent: String? = null
+    var textTransform: String? = null
+    var verticalAlign: String? = null
+    var whiteSpace: String? = null
+
+    // Colors and Backgrounds
+    var color: String? = null
+    var opacity: String? = null
+    var backgroundColor: String? = null
+    var background: String? = null
+    var backgroundImage: String? = null
+    var backgroundRepeat: String? = null
+    var backgroundPosition: String? = null
+    var backgroundAttachment: String? = null
+    var backgroundClip: String? = null
+    var backgroundOrigin: String? = null
+    var backgroundSize: String? = null
+    var borderRadius: String? = null
+    var borderTopLeftRadius: String? = null
+    var borderTopRightRadius: String? = null
+    var borderBottomRightRadius: String? = null
+    var borderBottomLeftRadius: String? = null
+    var borderImage: String? = null
+    var borderImageSource: String? = null
+    var borderImageSlice: String? = null
+    var borderImageWidth: String? = null
+    var borderImageOutset: String? = null
+    var borderImageRepeat: String? = null
+    var boxShadow: String? = null
+
+    // The Box Model: margins, padding, and borders
+    var margin: String? = null
+    var marginTop: String? = null
+    var marginRight: String? = null
+    var marginBottom: String? = null
+    var marginLeft: String? = null
+    var padding: String? = null
+    var paddingTop: String? = null
+    var paddingRight: String? = null
+    var paddingBottom: String? = null
+    var paddingLeft: String? = null
+    var border: String? = null
+    var borderTop: String? = null
+    var borderRight: String? = null
+    var borderBottom: String? = null
+    var borderLeft: String? = null
+    var borderWidth: String? = null
+    var borderTopWidth: String? = null
+    var borderRightWidth: String? = null
+    var borderBottomWidth: String? = null
+    var borderLeftWidth: String? = null
+    var borderStyle: String? = null
+    var borderTopStyle: String? = null
+    var borderRightStyle: String? = null
+    var borderBottomStyle: String? = null
+    var borderLeftStyle: String? = null
+    var borderColor: String? = null
+    var borderTopColor: String? = null
+    var borderRightColor: String? = null
+    var borderBottomColor: String? = null
+    var borderLeftColor: String? = null
+
+    // Visual Formatting: dimensions, display, and positioning
+    var width: String? = null
+    var height: String? = null
+    var minWidth: String? = null
+    var maxWidth: String? = null
+    var minHeight: String? = null
+    var maxHeight: String? = null
+    var position: String? = null
+    var top: String? = null
+    var right: String? = null
+    var bottom: String? = null
+    var left: String? = null
+    var clip: String? = null
+    var overflow: String? = null
+    var zIndex: String? = null
+    var float: String? = null
+    var clear: String? = null
+    var display: String? = null
+    var visibility: String? = null
+
+    // Generated Content and Lists
+    var content: String? = null
+    var quotes: String? = null
+    var counterIncrement: String? = null
+    var counterReset: String? = null
+    var listStyle: String? = null
+    var listStyleType: String? = null
+    var listStyleImage: String? = null
+    var listStylePosition: String? = null
+
+    // Tables
+    var tableLayout: String? = null
+    var borderCollapse: String? = null
+    var borderSpacing: String? = null
+    var emptyCells: String? = null
+    var captionSide: String? = null
+
+    // Paged Media
+    var pageBreakBefore: String? = null
+    var pageBreakAfter: String? = null
+    var pageBreakInside: String? = null
+    var orphans: String? = null
+    var widows: String? = null
+
+    // Transitions
+    var transition: String? = null
+    var transitionProperty: String? = null
+    var transitionDuration: String? = null
+    var transitionTimingFunction: String? = null
+    var transitionDelay: String? = null
+
+    // Transformations
+    var transform: String? = null
+    var transformOrigin: String? = null
+
+    // Misc.
+    var outline: String? = null
+    var outlineStyle: String? = null
+    var outlineColor: String? = null
+    var outlineWidth: String? = null
+    var cursor: String? = null
+    var direction: String? = null
+    var unicodeBidi: String? = null
+    var all: String? = null
+
+
 }
 
 interface SyntheticEvent {
