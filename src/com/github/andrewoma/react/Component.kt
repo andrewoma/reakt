@@ -5,7 +5,7 @@ package com.github.andrewoma.react
  */
 interface ComponentRenderer {
     @Suppress("UNCHECKED_CAST")
-    fun render(): ReactElement<*>? {
+    fun render(): Any? {
         // This bit of trickery makes root an instance of Component so that the scoped render method is visible
         val root = object : Component({ 0 }) {}
         root.render()
@@ -15,7 +15,7 @@ interface ComponentRenderer {
         // check(root.children[0] is ReactComponent<*, *>, "Root must be a Component or null")
         if (root.children.isEmpty()) return null
 
-        return root.children[0].transform() as ReactElement<Any>
+        return root.children[0].transform()
     }
 
     // Stolen from Kara. This allows a component to create an extension function to Component
@@ -26,7 +26,7 @@ interface ComponentRenderer {
 /**
  * The standard base class for Kotlin components that use the Component builder
  */
-abstract class ComponentSpec<S:Any, P:Any> : ReactComponentSpec<S, P>(), ComponentRenderer
+abstract class ComponentSpec<S : Any, P : Any> : ReactComponentSpec<S, P>(), ComponentRenderer
 
 
 /**
