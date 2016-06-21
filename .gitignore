@@ -1,5 +1,7 @@
+atlassian-ide-plugin.xml
 .idea
 .gradle
 build
 target/
-*.iml
+
+todo/web

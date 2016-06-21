@@ -1,0 +1,46 @@
+apply plugin: "kotlin2js"
+apply plugin: "idea"
+
+idea {
+    module {
+        name = "todo"
+    }
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-js-library:$kotlin_version"
+    compile project(":reakt")
+}
+
+def outDir = "${buildDir}/classes/main/"
+
+compileKotlin2Js.kotlinOptions.sourceMap = true
+compileKotlin2Js.kotlinOptions.outputFile = "${outDir}/todo_main.js"
+compileKotlin2Js.kotlinOptions.suppressWarnings = true
+compileKotlin2Js.kotlinOptions.verbose = true
+
+task copyJsFilesFromDependencies(dependsOn: build) {
+    doLast {
+        configurations.compile.each { File file ->
+            copy {
+                includeEmptyDirs = false
+
+                from zipTree(file.absolutePath)
+                into "${outDir}/lib"
+                include { fileTreeElement ->
+                    def path = fileTreeElement.path
+                    path.endsWith(".js") && (path.startsWith("META-INF/resources/") || !path.startsWith("META-INF/"))
+                }
+            }
+        }
+    }
+}
+
+task copyWebFiles(type:Copy) {
+    from sourceSets.main.resources
+    into outDir
+}
+
+build.dependsOn copyWebFiles
+
+task buildWeb(dependsOn:copyJsFilesFromDependencies)
