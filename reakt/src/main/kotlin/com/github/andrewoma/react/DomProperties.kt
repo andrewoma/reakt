@@ -291,7 +291,6 @@ open class HtmlGlobalProperties : ReactProperties() {
     var scrollLeft: Int? by Property()
     var scrollTop: Int? by Property()
     var style: Style? by Property()
-    var ariaHidden: Boolean? by Property()
 }
 
 class FormProperties : HtmlGlobalProperties() {
@@ -529,9 +528,6 @@ class AProperties : HtmlGlobalProperties() {
     var href: String? by Property()
     var rel: String? by Property()
     var target: String? by Property()
-    var dataToggle: String? by Property()
-    var ariaHaspopup: Boolean? by Property()
-    var ariaExpanded: Boolean? by Property()
 }
 
 class BaseProperties : HtmlGlobalProperties() {
