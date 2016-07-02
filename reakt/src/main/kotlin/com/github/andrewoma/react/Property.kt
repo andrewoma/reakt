@@ -21,6 +21,19 @@ public class Property<in R, T> : ReadWriteProperty<R, T> {
     }
 }
 
+public open class PrefixProperty<in R, T>(val prefix: String) : ReadWriteProperty<R, T> {
+    override fun getValue(thisRef: R, property: KProperty<*>): T {
+        return getProperty(thisRef as Any, prefix + property.name)
+    }
+
+    override fun setValue(thisRef: R, property: KProperty<*>, value: T) {
+        setProperty(thisRef as Any, prefix + property.name, value)
+    }
+}
+
+public class DataProperty<in R, T> : PrefixProperty<R, T>("data-")
+public class AreaProperty<in R, T> : PrefixProperty<R, T>("area-")
+
 @native("Reakt.getProperty") @Suppress("UNUSED_PARAMETER")
 private fun <T> getProperty(thisRef: Any, name: String): T = noImpl
 
