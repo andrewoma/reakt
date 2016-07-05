@@ -35,6 +35,10 @@ Reakt.createClass = function (spec) {
         return this.kotlinComponent.render();
     }
 
+    reactComponentSpec.componentWillReceiveProps = function (nextProps) {
+        return this.kotlinComponent.componentWillReceiveProps_za3rmp$(refValue(nextProps));
+    };
+
     reactComponentSpec.shouldComponentUpdate = function (nextProps, nextState) {
         return this.kotlinComponent.shouldComponentUpdate_wn2jw4$(refValue(nextProps), refValue(nextState));
     };
