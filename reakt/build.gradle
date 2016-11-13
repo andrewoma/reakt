@@ -2,22 +2,27 @@ apply plugin: "kotlin2js"
 apply plugin: "idea"
 
 idea {
-	module {
-		name = "reakt"
-	}
+    module {
+        name = "reakt"
+    }
 }
 
 dependencies {
-  compile "org.jetbrains.kotlin:kotlin-js-library:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-js-library:$kotlin_version"
+}
+
+compileKotlin2Js {
+    kotlinOptions.outputFile = "build/classes/main/reakt_main.js"
+    kotlinOptions.moduleKind = "plain"
 }
 
 task jarSources(type:Jar){
-	from sourceSets.main.allSource
-	classifier = 'source'
+    from sourceSets.main.allSource
+    classifier = 'source'
 }
 
 artifacts {
-	compile jarSources
+    compile jarSources
 }
 
 def outDir = "${buildDir}/classes/main/"
@@ -26,18 +31,18 @@ def jsDir = "src/main/js"
 compileKotlin2Js.kotlinOptions.outputFile = outDir + "reakt_main.js"
 
 jar {
-	from sourceSets.main.allSource
-	include "**/*.kt"
-	from jsDir
-	include "**/*.js"
-	from outDir
-	include "**/*.js"
-	manifest {
-		attributes(
-			"Specification-Title": "Reakt lib",
-			"Kotlin-JS-Module-Name": "lib-reakt"
-		)
-	}
+    from sourceSets.main.allSource
+    include "**/*.kt"
+    from jsDir
+    include "**/*.js"
+    from outDir
+    include "**/*.js"
+    manifest {
+        attributes(
+                "Specification-Title": "Reakt lib",
+                "Kotlin-JS-Module-Name": "lib-reakt"
+        )
+    }
 }
 
 jar.dependsOn(compileKotlin2Js)
