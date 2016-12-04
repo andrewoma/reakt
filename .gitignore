@@ -3,5 +3,7 @@ atlassian-ide-plugin.xml
 .gradle
 build
 target/
-
 todo/web
+*.iml
+*.ipr
+*.iws
