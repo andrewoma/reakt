@@ -4,42 +4,37 @@ Reakt is a [Kotlin](http://kotlinlang.org/) wrapper for facebook's [React](http:
 
 It includes a working port of the [Flux TodoMVC Example](https://github.com/facebook/flux/tree/master/examples/flux-todomvc).
 
-To run the example, clone the repository and open `index.html` from the `todo` directory.
+To run the example, clone the repository, build the project and open `index.html` from the `todo/build/web` directory.
 
 #### Features
 * A completely typesafe wrapper over React.
 * A Kotlin-based HTML builder api (no JSX equivalent is required).
 
 #### Comparison
-* Component: [Kotlin](https://github.com/andrewoma/reakt/blob/master/src/todo/components/TodoItem.kt)  vs [JavaScript](https://github.com/facebook/flux/blob/master/examples/flux-todomvc/js/components/TodoItem.react.js)
-* Actions: [Kotlin](https://github.com/andrewoma/reakt/blob/master/src/todo/actions/Actions.kt)  vs [JavaScript](https://github.com/facebook/flux/blob/master/examples/flux-todomvc/js/actions/TodoActions.js)  
-* Store: [Kotlin](https://github.com/andrewoma/reakt/blob/master/src/todo/stores/TodoStore.kt)  vs [JavaScript](https://github.com/facebook/flux/blob/master/examples/flux-todomvc/js/stores/TodoStore.js)
+* Component: [Kotlin](todo/src/main/kotlin/todo/components/TodoItem.kt)  vs [JavaScript](https://github.com/facebook/flux/blob/master/examples/flux-todomvc/js/components/TodoItem.react.js)
+* Actions: [Kotlin](todo/src/main/kotlin/todo/actions/Actions.kt)  vs [JavaScript](https://github.com/facebook/flux/blob/master/examples/flux-todomvc/js/actions/TodoActions.js)
+* Store: [Kotlin](todo/src/main/kotlin/todo/stores/TodoStore.kt)  vs [JavaScript](https://github.com/facebook/flux/blob/master/examples/flux-todomvc/js/stores/TodoStore.js)
 
 #### Building
-* [Download](https://kotlinlang.org/docs/tutorials/command-line.html) a standalone Kotlin compiler
+* Clone repository
 ```
-curl -s get.sdkman.io | bash
-sdk install kotlin
+./gradlew buildWeb
 ```
-* [Compile](https://kotlinlang.org/docs/tutorials/command-line-library-js.html) the library into javascript files
-```
-git clone https://github.com/andrewoma/reakt reakt
-cd reakt
-kotlinc-js -output todo/js/app/reakt.js src -meta-info
-```
-* That's it. Now you can open todo/index.html to see the example Todo application.
+
+* That's it. Now you can open `todo/build/classes/main/index.html` to see the example Todo application.
+* Open `build.gradle` in IntelliJ, make project will overwrite generated js, so just refresh in browser
 
 #### Using in your project as a library
-* Build (see previous point)
-* Create a jar from the compiled javascript files
+* Build reakt.jar (reakt/build/libs)
 ```
-jar cf reakt.jar todo/js/app/*.js
+./gradlew reakt:jar
 ```
-* In IntelliJ, you can add this jar as a dependency to your Kotlin(Javascript) project or
-* From command line
+
+* In IntelliJ, you can add this jar as a dependency to your Kotlin(Javascript) project or from command line
 ```
 kotlinc-js -output my-awesome-app.js src -library-files reakt.jar
 ```
+* See Todo sample for how to use gradle build
 
 #### Credits
 * [wizzard0's](https://github.com/wizzard0) [React TypeScript Definitions](https://github.com/wizzard0/react-typescript-definitions).
@@ -54,7 +49,6 @@ kotlinc-js -output my-awesome-app.js src -library-files reakt.jar
 * Review naming conventions (Actions/Events)
 * Add properties to the CSS Sytle class
 * Support the full React API (refs, renderToString, renderToDocument et al)
-* Build as a library and separate out the todo example as a user of the library
 * Wrap the test API and support DOM-based tests (probably via Karma)
 * Review the visibility of the react.* package
 

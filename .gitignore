@@ -1,4 +1,7 @@
 atlassian-ide-plugin.xml
-.idea/workspace.xml
-.idea/tasks.xml
-target
+.idea
+.gradle
+build
+target/
+
+todo/web
