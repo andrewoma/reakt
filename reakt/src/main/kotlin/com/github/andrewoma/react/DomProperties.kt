@@ -311,6 +311,7 @@ class InputProperties : HtmlGlobalProperties() {
     var autoComplete: String? by Property()
     var autoFocus: Boolean? by Property()
     var checked: Any? by Property()
+    var defaultChecked: Any? by Property()
     var defaultValue: Any? by Property()
     var disabled: Boolean? by Property()
     var form: String? by Property()
