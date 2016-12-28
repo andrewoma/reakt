@@ -6,6 +6,7 @@ import org.w3c.dom.events.Event
 // TODO
 interface EventTarget {
     val value: String
+    val checked:Boolean
 }
 
 // TODO
