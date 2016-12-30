@@ -292,6 +292,7 @@ open class HtmlGlobalProperties : ReactProperties() {
     var scrollLeft: Int? by Property()
     var scrollTop: Int? by Property()
     var style: Style? by Property()
+    var onLoad: () -> Unit? by Property()
 }
 
 class FormProperties : HtmlGlobalProperties() {
