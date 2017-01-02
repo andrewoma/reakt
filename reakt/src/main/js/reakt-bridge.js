@@ -47,6 +47,11 @@ Reakt.createClass = function (spec) {
         return this.kotlinComponent.componentWillUnmount();
     };
 
+    reactComponentSpec.componentDidUpdate = function (nextProps, nextState) {
+        return this.kotlinComponent.componentDidUpdate_wn2jw4$(refValue(nextProps), refValue(nextState));
+    };
+
+
     var reactClass = React.createClass(reactComponentSpec);
     var factory = React.createFactory(reactClass);
 
