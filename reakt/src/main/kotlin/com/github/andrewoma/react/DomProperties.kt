@@ -565,6 +565,10 @@ class ParamProperties : HtmlGlobalProperties() {
     var value: String? by Property()
 }
 
+class OptgroupProperties : HtmlGlobalProperties() {
+    var label:String? by Property()
+}
+
 class OptionProperties : HtmlGlobalProperties() {
     var selected: Boolean? by Property()
     var value: String? by Property()

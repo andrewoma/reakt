@@ -572,8 +572,8 @@ public fun Component.ol(properties: HtmlGlobalProperties.() -> Unit = {}, init: 
 @Suppress("UNUSED_PARAMETER")
 fun reactOptgroup(props: HtmlGlobalProperties, vararg children: Any?): ReactElement<HtmlGlobalProperties> = noImpl
 
-public fun Component.optgroup(properties: HtmlGlobalProperties.() -> Unit = {}, init: Component.() -> Unit = {}): Component {
-    return constructAndInsert(Component({ reactOptgroup(initProps(HtmlGlobalProperties(), properties), *it.transformChildren()) }), init)
+public fun Component.optgroup(properties: OptgroupProperties.() -> Unit = {}, init: Component.() -> Unit = {}): Component {
+    return constructAndInsert(Component({ reactOptgroup(initProps(OptgroupProperties(), properties), *it.transformChildren()) }), init)
 }
 
 @native("React.DOM.option")
