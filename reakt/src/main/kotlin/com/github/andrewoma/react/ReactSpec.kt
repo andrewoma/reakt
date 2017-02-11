@@ -156,8 +156,7 @@ abstract class ReactComponentSpec<P : Any, S : Any>() : ReactMixin<P, S> {
  * Component classses created by createClass() return instances of ReactComponent when called.
  * Most of the time when you're using React you're either creating or consuming these component objects.
  */
-@native
-interface ReactComponent<P, S> {
+external interface ReactComponent<P, S> {
 
     val refs: dynamic
 
@@ -204,7 +203,7 @@ interface ReactComponent<P, S> {
      * @param nextState the object that will be merged with the component's state
      * @param callback an optional callback function that is executed once setState is completed.
      */
-    fun setState(nextState: S, callback: () -> Unit = {}): Unit
+    fun setState(nextState: S, callback: () -> Unit = definedExternally): Unit
 
     /**
      * Like setState() but deletes any pre-existing state keys that are not in nextState.
@@ -228,11 +227,11 @@ interface ReactComponent<P, S> {
     fun forceUpdate(callback: () -> Unit): Unit
 }
 
-@native
-interface ReactComponentFactory<P : Any, S : Any> {
+
+external interface ReactComponentFactory<P : Any, S : Any> {
     operator fun invoke(properties: Ref<P>?, vararg children: Any?): ReactComponent<Ref<P>, Ref<S>>
 }
 
-@native
-interface ReactElement<P> {
+
+external interface ReactElement<P> {
 }

@@ -2,11 +2,12 @@ package com.github.andrewoma.react
 
 import org.w3c.dom.Window
 import org.w3c.dom.events.Event
+import kotlin.js.Date
 
 // TODO
 interface EventTarget {
     val value: String
-    val checked:Boolean
+    val checked: Boolean
 }
 
 // TODO
@@ -403,7 +404,7 @@ class TextareaProperties : HtmlGlobalProperties() {
     var placeholder: String? by Property()
     var readOnly: String? by Property()
     var required: Boolean? by Property()
-    var rows:Int? by Property()
+    var rows: Int? by Property()
     var value: String? by Property()
 }
 
@@ -454,6 +455,7 @@ class CommandProperties : HtmlGlobalProperties() {
 class TdProperties : HtmlGlobalProperties() {
     var colSpan: Int? by Property()
     var rowSpan: Int? by Property()
+    var valign: String? by Property()
 }
 
 class ThProperties : HtmlGlobalProperties() {
@@ -566,11 +568,12 @@ class ParamProperties : HtmlGlobalProperties() {
 }
 
 class OptgroupProperties : HtmlGlobalProperties() {
-    var label:String? by Property()
+    var label: String? by Property()
 }
 
 class OptionProperties : HtmlGlobalProperties() {
     var selected: Boolean? by Property()
+    var defaultSelected: Boolean? by Property()
     var value: String? by Property()
 }
 

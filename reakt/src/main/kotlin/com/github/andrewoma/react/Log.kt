@@ -1,5 +1,7 @@
 package com.github.andrewoma.react
 
+import kotlin.browser.document
+
 // Enum doesn't seem to be supported
 //public enum class LogLevel { debug info warn error none }
 class LogLevel(val ordinal: Int) {
@@ -23,20 +25,18 @@ class LogLevel(val ordinal: Int) {
     }
 }
 
-public class Log(val logLevel: LogLevel) {
+class Log(val logLevel: LogLevel) {
 
-    public fun debug(vararg objects: Any?): Unit = logIfEnabled(LogLevel.debug) { console.info(*objects) }
-    public fun info(vararg objects: Any?): Unit = logIfEnabled(LogLevel.info) { console.info(*objects) }
-    public fun warn(vararg objects: Any?): Unit = logIfEnabled(LogLevel.warn) { console.warn(*objects) }
-    public fun error(vararg objects: Any?): Unit = logIfEnabled(LogLevel.error) { console.error(*objects) }
+    fun debug(vararg objects: Any?): Unit = logIfEnabled(LogLevel.debug) { console.info(*objects) }
+    fun info(vararg objects: Any?): Unit = logIfEnabled(LogLevel.info) { console.info(*objects) }
+    fun warn(vararg objects: Any?): Unit = logIfEnabled(LogLevel.warn) { console.warn(*objects) }
+    fun error(vararg objects: Any?): Unit = logIfEnabled(LogLevel.error) { console.error(*objects) }
 
     inline private fun logIfEnabled(level: LogLevel, f: () -> Unit) {
         if (level.ordinal >= logLevel.ordinal) f()
     }
 }
 
-@native("document.location.search")
-private val urlParameters: String = noImpl
 
 private fun logLevelFromLocation(location: String): LogLevel {
     // Doesn't seem to be regex support for capturing groups, so hack away
@@ -47,4 +47,4 @@ private fun logLevelFromLocation(location: String): LogLevel {
     return LogLevel.none
 }
 
-public val log: Log = Log(logLevelFromLocation(urlParameters))
+val log: Log = Log(logLevelFromLocation(document.location!!.search))
