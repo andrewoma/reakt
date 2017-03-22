@@ -32,6 +32,7 @@ interface ReactMixin<P, S> {
      *
      * @param nextProps the props object that the component will receive
      */
+	@JsName("componentWillReceiveProps")
     fun componentWillReceiveProps(nextProps: P): Unit {
     }
 
@@ -48,6 +49,7 @@ interface ReactMixin<P, S> {
      * @param nextProps the props object that the component will receive
      * @param nextState the state object that the component will receive
      */
+	@JsName("shouldComponentUpdate")
     fun shouldComponentUpdate(nextProps: P, nextState: S): Boolean {
         return true
     }
@@ -69,6 +71,7 @@ interface ReactMixin<P, S> {
      * @param nextProps the props object that the component has received
      * @param nextState the state object that the component has received
      */
+	@JsName("componentDidUpdate")
     fun componentDidUpdate(nextProps: P, nextState: S): Unit {
     }
 
