@@ -1,3 +1,7 @@
+> **WARNING**: This project is not actively maintained and was a proof of concept
+> using now outdated versions of Kotlin and React. See the [Koltin full stack sample](https://github.com/Kotlin/kotlin-fullstack-sample) as an example of using Kotlin with React.
+
+
 #### Reakt
 
 Reakt is a [Kotlin](http://kotlinlang.org/) wrapper for Facebook's [React](http://facebook.github.io/react/) library.
