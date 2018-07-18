@@ -1,5 +1,5 @@
 > **WARNING**: This project is not actively maintained and was a proof of concept
-> using now outdated versions of Kotlin and React. See the [Koltin full stack sample](https://github.com/Kotlin/kotlin-fullstack-sample) as an example of using Kotlin with React.
+> using now outdated versions of Kotlin and React. See the [Create React Kotlin App](https://github.com/JetBrains/create-react-kotlin-app) as an example of using Kotlin with React.
 
 
 #### Reakt
